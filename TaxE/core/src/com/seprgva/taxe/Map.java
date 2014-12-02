@@ -4,6 +4,7 @@ public class Map
 {
 	public int xSize;
 	public int ySize;
+	public int[][] mapArray;
 	
 	private Map()
 	{
@@ -14,8 +15,15 @@ public class Map
 	
 	private void initialise()
 	{
-		// TODO Auto-generated method stub
-		
+		Tile tempTile = new Tile(0,0);
+		for (int i=0; i<xSize; i++)
+		{
+			tempTile.xPosition = i;
+			for (int j=0; j<ySize; j++)
+			{
+				tempTile.yPosition = j;
+			}
+		}
 	}
 
 	//Nested class of Tile. Will be used for Map initialisation. 
@@ -28,7 +36,9 @@ public class Map
 		
 		public Tile(int xCoord, int yCoord)
 		{
-			
+			xPosition = xCoord;
+			yPosition = yCoord;
+			isOccupied = false;
 		}
 	}
 }
