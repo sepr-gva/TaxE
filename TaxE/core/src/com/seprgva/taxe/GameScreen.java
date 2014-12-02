@@ -10,12 +10,15 @@ public class GameScreen implements Screen {
 	final TaxE game;
 	
 	OrthographicCamera camera;
+	Map gameMap;
 	
 	public GameScreen(final TaxE gam) {
 		game = gam;
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
+		
+		gameMap = new Map();
 	}
 
 	@Override
@@ -31,6 +34,8 @@ public class GameScreen implements Screen {
 		//Draw
 		game.batch.begin();
 		game.font.draw(game.batch, "Implement game here", 150, 100);
+		game.font.draw(game.batch, gameMap.toString(), 150, 120);
+		game.font.draw(game.batch, gameMap.mapArray[1][1].toString(), 150, 140);
 		game.batch.end();
 		
 	}
