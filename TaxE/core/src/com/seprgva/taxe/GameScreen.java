@@ -34,8 +34,11 @@ public class GameScreen implements Screen {
 		//Draw
 		game.batch.begin();
 		game.font.draw(game.batch, "Implement game here", 150, 100);
+		
+		//Only for testing purposes
 		game.font.draw(game.batch, gameMap.toString(), 150, 120);
 		game.font.draw(game.batch, gameMap.mapArray[1][1].toString(), 150, 140);
+		
 		game.batch.end();
 		
 	}
