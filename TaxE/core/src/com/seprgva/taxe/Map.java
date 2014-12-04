@@ -36,35 +36,4 @@ public class Map
 			}
 		}
 	}
-
-	//Nested class of Tile. Will be used for Map initialisation. 
-	public class Tile
-	{
-		public int xPosition;
-		public int yPosition;
-		Tile[] neighbours = new Tile[4];	//Should be able to calculate neighbours using tile coordinates as a unique ID.
-		public String occupiedBy;
-		
-		public Tile(int xCoord, int yCoord)
-		{
-			xPosition = xCoord;
-			yPosition = yCoord;
-			occupiedBy = null;
-		}
-		
-		@Override
-		public String toString()
-		{
-			String returnString = "";
-			if (occupiedBy == null)
-			{
-				returnString = "Tile at position " + xPosition + ", " + yPosition + " is empty.";
-			}
-			else
-			{
-				returnString = "Tile at position " + xPosition + ", " + yPosition + " contains a " + occupiedBy + ".";
-			}
-			return returnString;
-		}
-	}
 }
