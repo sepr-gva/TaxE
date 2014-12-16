@@ -31,7 +31,7 @@ public class Map
 		{
 			for (int j=0; j<ySize; j++)
 			{
-				Tile tempTile = new Tile(i,j);
+				Tile tempTile = new Tile(i,j, "blank");
 				mapArray[i][j] = tempTile;
 			}
 		}

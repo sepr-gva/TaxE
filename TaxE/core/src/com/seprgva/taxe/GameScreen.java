@@ -12,18 +12,25 @@ public class GameScreen implements Screen {
 	OrthographicCamera camera;
 	Map gameMap;
 	
-	public GameScreen(final TaxE gam) {
-		game = gam;
+	public GameScreen(final TaxE gameInstance) {
+		game = gameInstance;
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
 		
+		//Map is currently set to 20x20
 		gameMap = new Map();
+		
+		//Placing two cities on the map
+		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
+		gameMap.mapArray[5][5] = new City(5,5, "London");
+		gameMap.mapArray[5][10] = new City(5,10, "York");
+		
 	}
 
 	@Override
 	public void render(float delta) {
-		//Clear the screen and set its color
+		//Clear the screen and set its colour
 		Gdx.gl.glClearColor(0,0,0.2f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -37,7 +44,8 @@ public class GameScreen implements Screen {
 		
 		//Only for testing purposes
 		game.font.draw(game.batch, gameMap.toString(), 150, 120);
-		game.font.draw(game.batch, gameMap.mapArray[1][1].toString(), 150, 140);
+		game.font.draw(game.batch, gameMap.mapArray[5][5].toString(), 150, 140);
+		game.font.draw(game.batch, gameMap.mapArray[5][10].toString(), 150, 160);
 		
 		game.batch.end();
 		

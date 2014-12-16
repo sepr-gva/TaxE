@@ -8,25 +8,19 @@ public class Tile
 	Tile[] neighbours = new Tile[4];	//Should be able to calculate neighbours using tile coordinates as a unique ID.
 	public String tileType;
 	
-	public Tile(int xCoord, int yCoord)
+	public Tile(int xCoord, int yCoord, String type)
 	{
 		xPosition = xCoord;
 		yPosition = yCoord;
-		tileType = null;
+		tileType = type;
 	}
 	
 	@Override
 	public String toString()
 	{
 		String returnString = "";
-		if (tileType == null)
-		{
-			returnString = "Tile at position " + xPosition + ", " + yPosition + " is empty.";
-		}
-		else
-		{
-			returnString = "Tile at position " + xPosition + ", " + yPosition + " contains a " + tileType + ".";
-		}
+		returnString = "Tile at position " + xPosition + ", " + yPosition + " is empty.";
+	
 		return returnString;
 	}
 }
