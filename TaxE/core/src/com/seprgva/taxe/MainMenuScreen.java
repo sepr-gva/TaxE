@@ -10,8 +10,9 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 public class MainMenuScreen implements Screen {
 	
 	final TaxE game;
-	OrthographicCamera camera;
+	public OrthographicCamera camera;
 	Texture menu;
+	GameButton but;
 	
 	public MainMenuScreen(final TaxE gam) {
 		game = gam;
@@ -21,6 +22,10 @@ public class MainMenuScreen implements Screen {
 		
 		menu = new Texture(Gdx.files.internal("MainMenuScreen.png"));
 		menu.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		but = new GameButton(menu, 100, 100, game, camera);
+		
+		
 	}
 
 	@Override
@@ -38,10 +43,12 @@ public class MainMenuScreen implements Screen {
 		game.batch.draw(menu, 0, 0, 1000, 625);
 		game.batch.end();
 		
-		if (Gdx.input.isTouched()) {
-			game.setScreen(new CustomisationScreen(game));
-			dispose();
-		}
+		but.draw();
+		
+//		if (Gdx.input.isTouched()) {
+//			game.setScreen(new CustomisationScreen(game));
+//			dispose();
+//		}
 	}
 
 	@Override
