@@ -2,8 +2,8 @@ package com.seprgva.taxe;
 
 public class Rail extends Tile
 {
-	Rail prevRail;
-	Rail nextRail;
+	Rail prevRail = null;
+	Rail nextRail = null;
 	boolean junction;
 	
 	public Rail(int xCoord, int yCoord)
@@ -18,5 +18,15 @@ public class Rail extends Tile
 		returnString = "Tile at position " + xPosition + ", " + yPosition + " is a rail";
 		
 		return returnString;
+	}
+	
+	public Rail getPrevRail()
+	{
+		return prevRail;
+	}
+	
+	public Rail getNextRail()
+	{
+		return nextRail;
 	}
 }

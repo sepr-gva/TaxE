@@ -25,7 +25,10 @@ public class GameScreen implements Screen {
 		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
 		gameMap.mapArray[5][5] = new City(5,5, "London");
 		gameMap.mapArray[5][10] = new City(5,10, "York");
-		
+		for (int i = 6; i <= 9; i++)
+		{
+			gameMap.mapArray[5][i] = new Rail(5, i);
+		}
 	}
 
 	@Override

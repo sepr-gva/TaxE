@@ -3,6 +3,9 @@ package com.seprgva.taxe;
 public class City extends Tile
 {
 	String cityName;
+	Rail nextRail = null;
+	Rail prevRail = null;
+	Train[] trainsInStation;
 	
 	public City(int xCoord, int yCoord, String name)
 	{
