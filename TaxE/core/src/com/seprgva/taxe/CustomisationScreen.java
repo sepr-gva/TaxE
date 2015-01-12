@@ -13,7 +13,7 @@ public class CustomisationScreen implements Screen {
 	
 	OrthographicCamera camera;
 	
-	//Should pass player as parameter as well, so we can have seperate customisation
+	//Should pass player as parameter as well, so we can have separate customisation
 	//screen for each player (once player class implemented)
 	public CustomisationScreen(final TaxE gam) {
 		game = gam;
@@ -26,7 +26,7 @@ public class CustomisationScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		//Clear the screen and set the color
+		//Clear the screen and set the colour
 		Gdx.gl.glClearColor(0,0,0.2f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
