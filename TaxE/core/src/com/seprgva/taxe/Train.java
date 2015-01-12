@@ -6,13 +6,21 @@ public class Train
 	Tile currentLocation;
 	//Player owner;
 	
-	public Train(int ID)
+	public Train(int ID, Tile startingLocation)
 	{
 		identifier = ID;
+		currentLocation = startingLocation;
 	}
 	
 	public void traverse(Tile destination)
 	{
-		
+		currentLocation = destination;
+	}
+	
+	@Override
+	public String toString()
+	{
+		String returnString = "Train with ID " + identifier + " is at location " + currentLocation.xPosition + ", " + currentLocation.yPosition;
+		return returnString;
 	}
 }

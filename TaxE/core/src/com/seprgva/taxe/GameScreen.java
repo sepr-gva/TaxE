@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import java.util.ArrayList;
 
 public class GameScreen implements Screen {
 	
@@ -11,6 +12,15 @@ public class GameScreen implements Screen {
 	
 	OrthographicCamera camera;
 	Map gameMap;
+	int trainID = 0;
+	ArrayList<Train> trainList = new ArrayList<Train>();
+	
+	private void createTrain(int X, int Y)
+	{
+		Train newTrain = new Train(trainID, gameMap.mapArray[X][Y]);
+		trainList.add(newTrain);
+		trainID++;
+	}
 	
 	public GameScreen(final TaxE gameInstance) {
 		game = gameInstance;
@@ -29,6 +39,7 @@ public class GameScreen implements Screen {
 		{
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
+		createTrain(5,5);
 	}
 
 	@Override
@@ -49,6 +60,7 @@ public class GameScreen implements Screen {
 		game.font.draw(game.batch, gameMap.toString(), 150, 120);
 		game.font.draw(game.batch, gameMap.mapArray[5][5].toString(), 150, 140);
 		game.font.draw(game.batch, gameMap.mapArray[5][10].toString(), 150, 160);
+		game.font.draw(game.batch, trainList.get(0).toString(), 150, 180);
 		
 		game.batch.end();
 		
