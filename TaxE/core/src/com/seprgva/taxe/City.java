@@ -4,7 +4,7 @@ public class City extends Tile
 {
 	String cityName;
 	Rail nextRail = null;
-	Rail prevRail = null;
+	Rail prevRail = null;  //method needed to decided multi case
 	Train[] trainsInStation;
 	
 	public City(int xCoord, int yCoord, String name)
