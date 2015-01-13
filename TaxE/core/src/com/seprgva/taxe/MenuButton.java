@@ -7,21 +7,21 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class GameButton extends Rectangle{
+public class MenuButton extends Rectangle {
 	
 	Texture texture;
 	TaxE game;
 	OrthographicCamera camera;
 	long time = TimeUtils.millis();
 	
-	GameButton(Texture texture, int x, int y, TaxE game, OrthographicCamera camera){
-		this.camera = camera;
+	public MenuButton(Texture texture, int x, int y, int width, int height, TaxE game, OrthographicCamera camera){
 		this.texture = texture;
 		this.x = x;
 		this.y = y;
-		this.width = 16;
-		this.height = 16;
+		this.width = width;
+		this.height = height;
 		this.game = game;
+		this.camera = camera;
 	}
 	
 	public void changeX(int x){
@@ -40,6 +40,20 @@ public class GameButton extends Rectangle{
 		return this.y;
 	}
 	
+	public float getWidth(){
+		return this.width;
+	}
+	
+	public float getHeight(){
+		return this.height;
+	}
+	
+	public void draw(){
+		game.batch.begin();
+		game.batch.draw(texture, x, y, width, height);
+		game.batch.end();
+	}
+	
 	public boolean isPressed(){
 		if (Gdx.input.isTouched() && TimeUtils.millis() - time > 300){
 			Vector3 touchPos = new Vector3();
@@ -56,19 +70,6 @@ public class GameButton extends Rectangle{
 		else{
 			return false;
 		}
-		
-	}
-	
-	public void draw(){
-		game.batch.begin();
-		if (isPressed()){
-			game.batch.draw(this.texture, this.x, this.y, this.width, this.height);
-		}
-		else{
-			game.batch.draw(this.texture, this.x, this.y, this.width, this.height);
-		}
-		game.batch.end();
-		
 	}
 
 }

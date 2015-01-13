@@ -4,61 +4,44 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.TimeUtils;
 
-public class MainMenuScreen implements Screen {
-	
+public class HowToScreen implements Screen {
+
 	final TaxE game;
-	public OrthographicCamera camera;
-	MenuButton play, how, quit;
+	OrthographicCamera camera;
+	long time;
 	
-	public MainMenuScreen(final TaxE gam) {
+	public HowToScreen(final TaxE gam){
 		game = gam;
-		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
-		play = new MenuButton(game.play, 450, 300, 100, 80, game, camera);
-		how = new MenuButton(game.how, 350, 200, 300, 80, game, camera);
-		quit = new MenuButton(game.quit, 450, 100, 100, 80, game, camera);
-		
-		
-		
+		time = TimeUtils.millis();
 	}
 	
 	public void update(){
-		if (play.isPressed()){
-			game.setScreen(new GameScreen(game));
-		}
-		if (how.isPressed()){
-			game.setScreen(new HowToScreen(game));
-		}
-		if (quit.isPressed()){
-			Gdx.app.exit();
+		if (Gdx.input.isTouched()){
+			game.setScreen(new MainMenuScreen(game));
 		}
 	}
-
+	
 	@Override
 	public void render(float delta) {
 		//Clear the screen and set the color
 		Gdx.gl.glClearColor(0,0,0,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+				
 		camera.update();
 		//Make sure the coordinate systems match
 		game.batch.setProjectionMatrix(camera.combined);
 		
-		//Draw
 		game.batch.begin();
-		game.batch.draw(game.title, 300, 400, 400, 100);
+		game.font.draw(game.batch, "Implement game manual here \n touch to go back", 100, 100);
 		game.batch.end();
 		
-		play.draw();
-		how.draw();
-		quit.draw();
-		
-		update();
+		if (TimeUtils.millis() - time > 300){
+			update();
+		}
 	}
 
 	@Override
