@@ -4,9 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.math.Rectangle;
 
 public class MainMenuScreen implements Screen {
 	
@@ -19,9 +16,9 @@ public class MainMenuScreen implements Screen {
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
-		play = new MenuButton(game.play, 450, 300, 129, 80, game, camera);
-		how = new MenuButton(game.how, 350, 200, 362, 80, game, camera);
-		quit = new MenuButton(game.quit, 450, 100, 126, 80, game, camera);
+		play = new MenuButton(game.play, 435, 300, 129, 80, game, camera);
+		how = new MenuButton(game.how, 319, 200, 362, 80, game, camera);
+		quit = new MenuButton(game.quit, 437, 100, 126, 80, game, camera);
 		
 		
 		

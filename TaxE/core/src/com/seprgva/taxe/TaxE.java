@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaxE extends Game {
 	public SpriteBatch batch;
-	Texture gva, how, play, quit, title;
-	BitmapFont font;
+	public Texture gva, how, play, quit, title;
+	public BitmapFont font;
 	
 	@Override
 	public void create () {
