@@ -2,8 +2,10 @@ package com.seprgva.taxe;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+
 import java.util.ArrayList;
 
 public class GameScreen implements Screen {
@@ -54,13 +56,18 @@ public class GameScreen implements Screen {
 		
 		//Draw
 		game.batch.begin();
-		game.font.draw(game.batch, "Implement game here", 150, 100);
+		game.font.draw(game.batch, "Implement game here", 150, 200);
 		
 		//Only for testing purposes
-		game.font.draw(game.batch, gameMap.toString(), 150, 120);
-		game.font.draw(game.batch, gameMap.mapArray[5][5].toString(), 150, 140);
-		game.font.draw(game.batch, gameMap.mapArray[5][10].toString(), 150, 160);
-		game.font.draw(game.batch, trainList.get(0).toString(), 150, 180);
+		game.font.draw(game.batch, gameMap.toString(), 150, 180);
+		game.font.draw(game.batch, gameMap.mapArray[5][5].toString(), 150, 160);
+		game.font.draw(game.batch, gameMap.mapArray[5][10].toString(), 150, 140);
+		game.font.draw(game.batch, trainList.get(0).toString(), 150, 120);
+		
+		if (Gdx.input.isKeyPressed(Keys.T))
+		{
+			trainList.get(0).traverse(gameMap.mapArray[5][10]);
+		}
 		
 		game.batch.end();
 		
