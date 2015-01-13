@@ -19,17 +19,18 @@ public class MainMenuScreen implements Screen {
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
-		play = new MenuButton(game.play, 450, 300, 100, 80, game, camera);
-		how = new MenuButton(game.how, 350, 200, 300, 80, game, camera);
-		quit = new MenuButton(game.quit, 450, 100, 100, 80, game, camera);
+		play = new MenuButton(game.play, 450, 300, 129, 80, game, camera);
+		how = new MenuButton(game.how, 350, 200, 362, 80, game, camera);
+		quit = new MenuButton(game.quit, 450, 100, 126, 80, game, camera);
 		
 		
 		
 	}
 	
 	public void update(){
+		//Should the main menu be disposed on setting a new screen? We can always make a new one on a back button press
 		if (play.isPressed()){
-			game.setScreen(new GameScreen(game));
+			game.setScreen(new CustomisationScreen(game));
 		}
 		if (how.isPressed()){
 			game.setScreen(new HowToScreen(game));
@@ -42,7 +43,7 @@ public class MainMenuScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		//Clear the screen and set the color
-		Gdx.gl.glClearColor(0,0,0,1);
+		Gdx.gl.glClearColor(0.063f,0.043f,0.459f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		camera.update();
@@ -51,7 +52,8 @@ public class MainMenuScreen implements Screen {
 		
 		//Draw
 		game.batch.begin();
-		game.batch.draw(game.title, 300, 400, 400, 100);
+		//I think the menus should have a background image where all the static stuff is drawn on the background.
+		game.batch.draw(game.title, 300, 400, 400, 221);
 		game.batch.end();
 		
 		play.draw();

@@ -17,16 +17,16 @@ public class TaxE extends Game {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		
-		gva = new Texture(Gdx.files.internal("Text/GroupName.png"));
-		gva.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		how = new Texture(Gdx.files.internal("Text/How To.png"));
-		how.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		play = new Texture(Gdx.files.internal("Text/Play.png"));
-		play.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		quit = new Texture(Gdx.files.internal("Text/Quit.png"));
-		quit.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		title = new Texture(Gdx.files.internal("Text/TaxE.png"));
-		title.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		gva = new Texture(Gdx.files.internal("Text/GroupName.png"), true);
+		gva.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		how = new Texture(Gdx.files.internal("Text/How To.png"), true);
+		how.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		play = new Texture(Gdx.files.internal("Text/Play.png"), true);
+		play.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		quit = new Texture(Gdx.files.internal("Text/Quit.png"), true);
+		quit.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		title = new Texture(Gdx.files.internal("Text/TaxE.png"), true);
+		title.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		
 		this.setScreen(new MainMenuScreen(this));

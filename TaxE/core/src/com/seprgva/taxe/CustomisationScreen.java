@@ -10,18 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class CustomisationScreen implements Screen {
 	
 	final TaxE game;
-	
 	OrthographicCamera camera;
 	
 	//Should pass player as parameter as well, so we can have separate customisation
 	//screen for each player (once player class implemented)
-	public CustomisationScreen(final TaxE gam) {
-		game = gam;
-		
+	public CustomisationScreen(final TaxE gameInstance) {
+		game = gameInstance;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
-		
-		
 	}
 
 	@Override
