@@ -9,12 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaxE extends Game {
 	public SpriteBatch batch;
-<<<<<<< HEAD
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
-	selected, done, chooseAv, chooseName, player1Custom, player2Custom;
-=======
-	public Texture gva, how, play, quit, title, greenSquare, redSquare;
->>>>>>> FETCH_HEAD
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare;
 	public BitmapFont font;
 	public Player player1, player2;
 	
@@ -23,7 +19,7 @@ public class TaxE extends Game {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		
-		//Texts (could be reimplemented using fonts)
+		//Texts
 		gva = new Texture(Gdx.files.internal("Text/GroupName.png"), true);
 		gva.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		how = new Texture(Gdx.files.internal("Text/How To.png"), true);
@@ -58,9 +54,9 @@ public class TaxE extends Game {
 		player1 = new Player(1);
 		player2 = new Player(2);
 		
-		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"), true);
+		greenSquare = new Texture(Gdx.files.internal("Images/greenSquare.png"), true);
 		greenSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		redSquare = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"), true);
+		redSquare = new Texture(Gdx.files.internal("Images/redSquare.png"), true);
 		redSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		this.setScreen(new MainMenuScreen(this));
