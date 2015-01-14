@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaxE extends Game {
 	public SpriteBatch batch;
-	public Texture gva, how, play, quit, title, greenSquare;
+	public Texture gva, how, play, quit, title, greenSquare, redSquare;
 	public BitmapFont font;
 	
 	@Override
@@ -27,8 +27,11 @@ public class TaxE extends Game {
 		quit.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		title = new Texture(Gdx.files.internal("Text/TaxE.png"), true);
 		title.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"), true);
 		greenSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		redSquare = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"), true);
+		redSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		this.setScreen(new MainMenuScreen(this));
 	}

@@ -44,7 +44,7 @@ public class GameScreen implements Screen {
 		}
 		createTrain(5,5);
 		
-		testButton = new GameButton(game.greenSquare, 150, 200, game, camera);
+		testButton = new GameButton(game.greenSquare, game.redSquare, 150, 200, game, camera);
 	}
 
 	@Override
