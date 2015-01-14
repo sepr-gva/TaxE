@@ -9,14 +9,15 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameButton extends Rectangle{
 	
-	Texture texture;
+	Texture defaultTexture, clickedTexture;
 	TaxE game;
 	OrthographicCamera camera;
 	long time = TimeUtils.millis();
 	
-	GameButton(Texture texture, int x, int y, TaxE game, OrthographicCamera camera){
+	GameButton(Texture defaultTexture, Texture clickedTexture, int x, int y, TaxE game, OrthographicCamera camera){
 		this.camera = camera;
-		this.texture = texture;
+		this.defaultTexture = defaultTexture;
+		this.clickedTexture = clickedTexture;
 		this.x = x;
 		this.y = y;
 		this.width = 16;
@@ -60,14 +61,14 @@ public class GameButton extends Rectangle{
 	}
 	
 	public void draw(){
-		game.batch.begin();
+		//game.batch.begin();
 		if (isPressed()){
-			game.batch.draw(this.texture, this.x, this.y, this.width, this.height);
+			game.batch.draw(this.clickedTexture, this.x, this.y, this.width, this.height);
 		}
 		else{
-			game.batch.draw(this.texture, this.x, this.y, this.width, this.height);
+			game.batch.draw(this.defaultTexture, this.x, this.y, this.width, this.height);
 		}
-		game.batch.end();
+		//game.batch.end();
 		
 	}
 
