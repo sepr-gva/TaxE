@@ -30,6 +30,9 @@ public class GameScreen implements Screen {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
 		
+		System.out.println(game.player1.companyName);
+		System.out.println(game.player2.companyName);
+		
 		//Map is currently set to 20x20
 		gameMap = new Map();
 		
@@ -56,6 +59,8 @@ public class GameScreen implements Screen {
 		
 		//Draw
 		game.batch.begin();
+		game.batch.draw(game.player1.avatar, 500, 500, 100, 100);
+		game.batch.draw(game.player2.avatar, 600, 500, 100, 100);
 		game.font.draw(game.batch, "Implement game here", 150, 200);
 		
 		//Only for testing purposes

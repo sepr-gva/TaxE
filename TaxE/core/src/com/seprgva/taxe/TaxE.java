@@ -9,14 +9,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaxE extends Game {
 	public SpriteBatch batch;
-	public Texture gva, how, play, quit, title;
+	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom;
 	public BitmapFont font;
+	public Player player1, player2;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		
+		//Texts (could be reimplemented using fonts)
 		gva = new Texture(Gdx.files.internal("Text/GroupName.png"), true);
 		gva.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		how = new Texture(Gdx.files.internal("Text/How To.png"), true);
@@ -27,6 +30,29 @@ public class TaxE extends Game {
 		quit.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		title = new Texture(Gdx.files.internal("Text/TaxE.png"), true);
 		title.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		done = new Texture(Gdx.files.internal("Text/Done.png"), true);
+		done.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		player1Custom = new Texture(Gdx.files.internal("Text/Player1Custom.png"), true);
+		player1Custom.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		player2Custom = new Texture(Gdx.files.internal("Text/Player2Custom.png"), true);
+		player2Custom.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		chooseAv = new Texture(Gdx.files.internal("Text/ChooseAvatar.png"), true);
+		chooseAv.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		chooseName = new Texture(Gdx.files.internal("Text/ChooseName.png"), true);
+		chooseName.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		//Images
+		blackAvatar = new Texture(Gdx.files.internal("Images/BlackAvatar.png"), true);
+		blackAvatar.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		femaleAvatar = new Texture(Gdx.files.internal("Images/FemaleAvatar.png"), true);
+		femaleAvatar.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		maleAvatar = new Texture(Gdx.files.internal("Images/MaleAvatar.png"), true);
+		maleAvatar.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		selected = new Texture(Gdx.files.internal("Images/Selected.png"), true);
+		selected.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		player1 = new Player(1);
+		player2 = new Player(2);
 		
 		
 		this.setScreen(new MainMenuScreen(this));

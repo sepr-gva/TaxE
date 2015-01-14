@@ -27,7 +27,7 @@ public class MainMenuScreen implements Screen {
 	public void update(){
 		//Should the main menu be disposed on setting a new screen? We can always make a new one on a back button press
 		if (play.isPressed()){
-			game.setScreen(new CustomisationScreen(game));
+			game.setScreen(new CustomisationScreen(game, game.player1));
 		}
 		if (how.isPressed()){
 			game.setScreen(new HowToScreen(game));
