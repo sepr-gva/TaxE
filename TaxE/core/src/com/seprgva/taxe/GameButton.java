@@ -60,14 +60,14 @@ public class GameButton extends Rectangle{
 	}
 	
 	public void draw(){
-		game.batch.begin();
+		//game.batch.begin();
 		if (isPressed()){
 			game.batch.draw(this.texture, this.x, this.y, this.width, this.height);
 		}
 		else{
 			game.batch.draw(this.texture, this.x, this.y, this.width, this.height);
 		}
-		game.batch.end();
+		//game.batch.end();
 		
 	}
 
