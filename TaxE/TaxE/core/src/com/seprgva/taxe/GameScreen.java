@@ -94,7 +94,6 @@ public class GameScreen implements Screen {
 			for(int x = 0; x <gameMap.xSize; x++){
 				createTiles(x, y);
 				Rectangle tile = tiles.peek();
-				
 				tileBatch.draw(greenSquare, tile.x, tile.y);
 			}
 		}

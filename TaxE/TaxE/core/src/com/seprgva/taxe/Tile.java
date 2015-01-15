@@ -1,6 +1,8 @@
 package com.seprgva.taxe;
 
-public class Tile
+import com.badlogic.gdx.math.Rectangle;
+
+public class Tile extends Rectangle
 {
 	//Tile is concrete as it represents a blank tile
 	public int xPosition;
