@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 
 import java.util.ArrayList;
 
@@ -15,10 +16,10 @@ public class GameScreen implements Screen {
 	
 	final TaxE game;
 	private Texture greenSquare;
-	private Rectangle tile;
+	//private Rectangle tile;
 	
 	private SpriteBatch tileBatch;
-	
+	private Array<Rectangle> tiles;
 	
 	OrthographicCamera camera;
 	Map gameMap;
@@ -30,6 +31,14 @@ public class GameScreen implements Screen {
 		Train newTrain = new Train(trainID, gameMap.mapArray[X][Y]);
 		trainList.add(newTrain);
 		trainID++;
+	}
+	private void createTiles(int row, int col) {
+		Rectangle tile = new Rectangle();
+		tile.x = 32*col;
+		tile.y = 32*row;
+		tile.width = 64;
+		tile.height = 64;
+		tiles.add(tile);
 	}
 	//equivalent of create() method
 	public GameScreen(final TaxE gameInstance) {
@@ -46,12 +55,14 @@ public class GameScreen implements Screen {
 		//Map is currently set to 20x20
 		gameMap = new Map();
 		
-		//let's attempt to draw some blank tiles
+		/*let's attempt to draw some blank tiles
 		tile = new Rectangle();
 		tile.x = 16;
 		tile.y = 16;
 		tile.width = 32;
 		tile.height = 32;
+		*/
+		tiles = new Array<Rectangle>();
 		
 		//Placing two cities on the map
 		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
@@ -73,13 +84,27 @@ public class GameScreen implements Screen {
 		camera.update();
 		//Make sure the coordinate systems match
 		
-		//
+		
 		tileBatch.setProjectionMatrix(camera.combined);
 		tileBatch.begin();
-		tileBatch.draw(greenSquare, tile.x, tile.y);
+		
+		//for(Rectangle tile: tiles) {
+			
+		for(int y = 0; y < gameMap.ySize; y++){
+			for(int x = 0; x <gameMap.xSize; x++){
+				createTiles(x, y);
+				Rectangle tile = tiles.peek();
+				
+				tileBatch.draw(greenSquare, tile.x, tile.y);
+			}
+		}
+			
+			
+		    //tileBatch.draw(greenSquare, tile.x, tile.y);
+		//}
 		tileBatch.end();
 		
-		//
+		
 		game.batch.setProjectionMatrix(camera.combined);
 		
 		//Draw
