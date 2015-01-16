@@ -25,7 +25,6 @@ public class GameScreen implements Screen {
 	Map gameMap;
 	int trainID = 0;
 	ArrayList<Train> trainList = new ArrayList<Train>();
-	GameButton testButton;
 	
 	private void createTrain(int X, int Y)
 	{
@@ -70,7 +69,6 @@ public class GameScreen implements Screen {
 		}
 		createTrain(5,5);
 		
-		testButton = new GameButton(game.greenSquare, game.redSquare, 150, 200, game, camera);
 	}
 
 	@Override
@@ -122,7 +120,6 @@ public class GameScreen implements Screen {
 		game.font.draw(game.batch, gameMap.mapArray[5][5].toString(), 150, 160);
 		game.font.draw(game.batch, gameMap.mapArray[5][10].toString(), 150, 140);
 		game.font.draw(game.batch, trainList.get(0).toString(), 150, 120);
-		testButton.draw();
 		
 		if (Gdx.input.isKeyPressed(Keys.T))
 		{
