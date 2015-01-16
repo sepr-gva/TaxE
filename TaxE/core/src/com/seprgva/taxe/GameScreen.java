@@ -1,12 +1,14 @@
 package com.seprgva.taxe;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
@@ -39,6 +41,7 @@ public class GameScreen implements Screen {
 		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
+		camera.update();
 		
 		System.out.println(game.player1.companyName);
 		System.out.println(game.player2.companyName);
@@ -77,6 +80,7 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClearColor(0,0,0.2f,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		handleInput();
 		camera.update();
 		//Make sure the coordinate systems match
 		
@@ -129,6 +133,22 @@ public class GameScreen implements Screen {
 		game.batch.end();
 		
 	}
+	
+
+    private void handleInput() {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            camera.translate(-3, 0, 0);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            camera.translate(3, 0, 0);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            camera.translate(0, -3, 0);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            camera.translate(0, 3, 0);
+        }
+    }
 
 	@Override
 	public void resize(int width, int height) {

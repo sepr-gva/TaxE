@@ -8,8 +8,8 @@ public class Map
 	
 	public Map()
 	{
-		xSize = 20;
-		ySize = 20;
+		xSize = 40;
+		ySize = 40;
 		mapArray = new Tile[xSize][ySize];
 		this.initialise();
 	}
