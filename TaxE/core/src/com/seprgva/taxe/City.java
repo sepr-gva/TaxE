@@ -17,7 +17,7 @@ public class City extends Tile
 	public String toString()
 	{
 		String returnString;
-		returnString = "Tile at position " + xPosition + ", " + yPosition + " is city: " + cityName + ".";
+		returnString = "Tile at position " + this.x + ", " + this.y + " is city: " + cityName + ".";
 		
 		return returnString;
 	}

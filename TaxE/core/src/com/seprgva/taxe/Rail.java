@@ -15,7 +15,7 @@ public class Rail extends Tile
 	public String toString()
 	{
 		String returnString = "";
-		returnString = "Tile at position " + xPosition + ", " + yPosition + " is a rail";
+		returnString = "Tile at position " + this.x + ", " + this.y + " is a rail";
 		
 		return returnString;
 	}

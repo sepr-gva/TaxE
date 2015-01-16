@@ -20,7 +20,7 @@ public class Train
 	@Override
 	public String toString()
 	{
-		String returnString = "Train with ID " + identifier + " is at location " + currentLocation.xPosition + ", " + currentLocation.yPosition;
+		String returnString = "Train with ID " + identifier + " is at location " + currentLocation.x + ", " + currentLocation.y;
 		return returnString;
 	}
 }

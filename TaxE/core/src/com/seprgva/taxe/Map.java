@@ -32,8 +32,6 @@ public class Map
 			for (int j=0; j<ySize; j++)
 			{
 				Tile tempTile = new Tile(i, j, "blank");
-				tempTile.x = i*32;
-				tempTile.y = j*32;
 				tempTile.width = 32;
 				tempTile.height = 32;
 				

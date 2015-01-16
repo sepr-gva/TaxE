@@ -51,16 +51,8 @@ public class GameScreen implements Screen {
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
 		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"));
 		
-		//Map is currently set to 20x20
+		//Map is currently set to 40x40
 		gameMap = new Map();
-		
-		/*let's attempt to draw some blank tiles
-		tile = new Rectangle();
-		tile.x = 16;
-		tile.y = 16;
-		tile.width = 32;
-		tile.height = 32;
-		*/
 		
 		//Placing two cities on the map
 		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
@@ -71,7 +63,6 @@ public class GameScreen implements Screen {
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
 		createTrain(5,5);
-		
 	}
 
 	@Override
@@ -82,34 +73,26 @@ public class GameScreen implements Screen {
 		
 		handleInput();
 		camera.update();
-		//Make sure the coordinate systems match
-		
-		
+
 		tileBatch.setProjectionMatrix(camera.combined);
 		tileBatch.begin();
-		
-		//for(Rectangle tile: tiles) {
-			
+
 		for(int y = 0; y < gameMap.ySize; y++){
 			for(int x = 0; x <gameMap.xSize; x++){
 				Tile tile = gameMap.mapArray[x][y];
 				
 				if(tile.tileType == "rail"){
 						//Tile tile = gameMap.mapArray[x][y];
-						tileBatch.draw(greySquare, tile.x, tile.y);
+						tileBatch.draw(greySquare, (tile.x)*32, (tile.y)*32);
 				}
 				else{
-					tileBatch.draw(greenSquare, tile.x, tile.y);
+					tileBatch.draw(greenSquare, (tile.x)*32, (tile.y)*32);
 				}
 			}
 		}
-			
-			
-		    //tileBatch.draw(greenSquare, tile.x, tile.y);
-		//}
+
 		tileBatch.end();
-		
-		
+				
 		game.batch.setProjectionMatrix(camera.combined);
 		
 		//Draw
@@ -134,7 +117,6 @@ public class GameScreen implements Screen {
 		
 	}
 	
-
     private void handleInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             camera.translate(-3, 0, 0);
@@ -185,6 +167,4 @@ public class GameScreen implements Screen {
 		// TODO Auto-generated method stub
 		
 	}
-	
-
 }
