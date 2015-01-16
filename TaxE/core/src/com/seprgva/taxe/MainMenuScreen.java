@@ -1,6 +1,7 @@
 package com.seprgva.taxe;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -35,6 +36,11 @@ public class MainMenuScreen implements Screen {
 		if (quit.isPressed()){
 			Gdx.app.exit();
 		}
+		if (Gdx.input.isKeyPressed(Keys.ENTER)){
+			game.player1.avatar = game.blackAvatar;
+			game.player2.avatar = game.femaleAvatar;
+			game.setScreen(new GameScreen(game));
+		}
 	}
 
 	@Override
@@ -51,6 +57,7 @@ public class MainMenuScreen implements Screen {
 		game.batch.begin();
 		//I think the menus should have a background image where all the static stuff is drawn on the background.
 		game.batch.draw(game.title, 300, 400, 400, 221);
+		game.font.draw(game.batch, "enter to skip customisation", 20, 20);
 		game.batch.end();
 		
 		play.draw();

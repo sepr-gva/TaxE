@@ -28,10 +28,11 @@ public class GameScreen implements Screen {
 	int trainID = 0;
 	ArrayList<Train> trainList = new ArrayList<Train>();
 	
-	private void createTrain(int X, int Y)
+	private void createTrain(int X, int Y, Player player)
 	{
-		Train newTrain = new Train(trainID, gameMap.mapArray[X][Y]);
+		Train newTrain = new Train(trainID, gameMap.mapArray[X][Y], player);
 		trainList.add(newTrain);
+		player.trains.add(newTrain);
 		trainID++;
 	}
 
@@ -43,8 +44,6 @@ public class GameScreen implements Screen {
 		camera.setToOrtho(false, 1000, 625);
 		camera.update();
 		
-		System.out.println(game.player1.companyName);
-		System.out.println(game.player2.companyName);
 		tileBatch = new SpriteBatch();
 		
 		//load some textures
@@ -62,7 +61,14 @@ public class GameScreen implements Screen {
 		{
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
+<<<<<<< HEAD
 		createTrain(5,5);
+=======
+		createTrain(5,4,game.player1);
+		createTrain(12,4,game.player2);
+		createTrain(15, 10, game.player2);
+		
+>>>>>>> a50d48ccac2e1add827359fcd34a8c71a2323096
 	}
 
 	@Override
@@ -108,9 +114,17 @@ public class GameScreen implements Screen {
 		game.font.draw(game.batch, gameMap.mapArray[5][10].toString(), 150, 140);
 		game.font.draw(game.batch, trainList.get(0).toString(), 150, 120);
 		
+		//draw player trains
+		for (Train train : game.player1.trains){
+			game.batch.draw(game.redSquare, train.currentLocation.x, train.currentLocation.y, train.currentLocation.width, train.currentLocation.height);
+		}
+		for (Train train : game.player2.trains){
+			game.batch.draw(game.blueSquare, train.currentLocation.x, train.currentLocation.y, train.currentLocation.width, train.currentLocation.height);
+		}
+		
 		if (Gdx.input.isKeyPressed(Keys.T))
 		{
-			trainList.get(0).traverse(gameMap.mapArray[5][10]);
+			trainList.get(0).traverse(gameMap.mapArray[5][15]);
 		}
 		
 		game.batch.end();
