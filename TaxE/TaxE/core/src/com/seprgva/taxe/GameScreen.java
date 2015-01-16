@@ -16,10 +16,10 @@ public class GameScreen implements Screen {
 	
 	final TaxE game;
 	private Texture greenSquare;
+	private Texture greySquare;
 	//private Rectangle tile;
 	
 	private SpriteBatch tileBatch;
-	private Array<Rectangle> tiles;
 	
 	OrthographicCamera camera;
 	Map gameMap;
@@ -32,14 +32,7 @@ public class GameScreen implements Screen {
 		trainList.add(newTrain);
 		trainID++;
 	}
-	private void createTiles(int row, int col) {
-		Rectangle tile = new Rectangle();
-		tile.x = 32*col;
-		tile.y = 32*row;
-		tile.width = 64;
-		tile.height = 64;
-		tiles.add(tile);
-	}
+
 	//equivalent of create() method
 	public GameScreen(final TaxE gameInstance) {
 		game = gameInstance;
@@ -51,6 +44,7 @@ public class GameScreen implements Screen {
 		
 		//load some textures
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
+		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"));
 		
 		//Map is currently set to 20x20
 		gameMap = new Map();
@@ -62,7 +56,6 @@ public class GameScreen implements Screen {
 		tile.width = 32;
 		tile.height = 32;
 		*/
-		tiles = new Array<Rectangle>();
 		
 		//Placing two cities on the map
 		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
@@ -92,9 +85,15 @@ public class GameScreen implements Screen {
 			
 		for(int y = 0; y < gameMap.ySize; y++){
 			for(int x = 0; x <gameMap.xSize; x++){
-				createTiles(x, y);
-				Rectangle tile = tiles.peek();
-				tileBatch.draw(greenSquare, tile.x, tile.y);
+				Tile tile = gameMap.mapArray[x][y];
+				
+				if(tile.tileType == "rail"){
+						//Tile tile = gameMap.mapArray[x][y];
+						tileBatch.draw(greySquare, tile.x, tile.y);
+				}
+				else{
+					tileBatch.draw(greenSquare, tile.x, tile.y);
+				}
 			}
 		}
 			

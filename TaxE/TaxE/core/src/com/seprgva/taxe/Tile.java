@@ -15,6 +15,9 @@ public class Tile extends Rectangle
 		xPosition = xCoord;
 		yPosition = yCoord;
 		tileType = type;
+		
+		this.x = xCoord*32;
+		this.y = yCoord*32;
 	}
 	
 	@Override
