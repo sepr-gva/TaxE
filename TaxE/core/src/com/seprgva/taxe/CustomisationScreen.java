@@ -1,12 +1,10 @@
 package com.seprgva.taxe;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class CustomisationScreen implements Screen {
 	
@@ -17,8 +15,9 @@ public class CustomisationScreen implements Screen {
 	String companyName = "";
 	Player player;
 	
-	//Should pass player as parameter as well, so we can have separate customisation
-	//screen for each player (once player class implemented)
+	//Things will need to be moved and rescaled to make it look better
+	//Also might add pop up if people forget to choose avatar/name
+	
 	public CustomisationScreen(final TaxE gameInstance, Player player) {
 		this.player = player;
 		game = gameInstance;
@@ -50,7 +49,7 @@ public class CustomisationScreen implements Screen {
 		name.draw();
 		done.draw();
 		
-		//Draw (Aspect ratios will need fixing)
+		//Draw
 		game.batch.begin();
 		if (player.playerNumber == 1){
 			game.batch.draw(game.player1Custom, 200, 500, 600, 80);
