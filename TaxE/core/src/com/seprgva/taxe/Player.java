@@ -14,8 +14,6 @@ public class Player {
 	
 	public Player(int num){
 		this.playerNumber = num;
-		this.trains = new Array<Train>();
-		this.companyName = "";
 	}
 
 }

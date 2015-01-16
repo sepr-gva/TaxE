@@ -10,8 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class TaxE extends Game {
 	public SpriteBatch batch;
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
-	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare,
-	blueSquare;
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare;
 	public BitmapFont font;
 	public Player player1, player2;
 	
@@ -59,8 +58,6 @@ public class TaxE extends Game {
 		greenSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		redSquare = new Texture(Gdx.files.internal("Images/redSquare.png"), true);
 		redSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		blueSquare = new Texture(Gdx.files.internal("Images/BlueSquare.png"), true);
-		blueSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		this.setScreen(new MainMenuScreen(this));
 	}
