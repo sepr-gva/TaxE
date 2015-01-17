@@ -28,9 +28,9 @@ public class GameScreen implements Screen {
 	int trainID = 0;
 	ArrayList<Train> trainList = new ArrayList<Train>();
 	
-	private void createTrain(int X, int Y)
+	private void createTrain(int X, int Y, Player player)
 	{
-		Train newTrain = new Train(trainID, gameMap.mapArray[X][Y]);
+		Train newTrain = new Train(trainID, gameMap.mapArray[X][Y], player);
 		trainList.add(newTrain);
 		trainID++;
 	}
@@ -43,8 +43,6 @@ public class GameScreen implements Screen {
 		camera.setToOrtho(false, 1000, 625);
 		camera.update();
 		
-		System.out.println(game.player1.companyName);
-		System.out.println(game.player2.companyName);
 		tileBatch = new SpriteBatch();
 		
 		//load some textures
@@ -62,7 +60,10 @@ public class GameScreen implements Screen {
 		{
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
-		createTrain(5,5);
+
+		createTrain(5,4,game.player1);
+		createTrain(12,4,game.player2);
+		createTrain(15, 10, game.player2);
 	}
 
 	@Override

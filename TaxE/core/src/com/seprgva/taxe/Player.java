@@ -7,13 +7,15 @@ public class Player {
 	
 	// Can't remember all the attributes for player, add the rest
 	//(This is just to implement customisation)
-	String companyName;
+	String companyName = "";
 	Texture avatar;
 	Array<Train> trains;
-	int playerNumber, money, reputation;
+	int playerNumber, money, reputation, score;
+	Array<Goal> goals;
 	
 	public Player(int num){
 		this.playerNumber = num;
+		this.goals = new Array<Goal>();
 	}
 
 }
