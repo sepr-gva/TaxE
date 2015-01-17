@@ -82,7 +82,7 @@ public class GameScreen implements Screen {
 			for(int x = 0; x <gameMap.xSize; x++){
 				Tile tile = gameMap.mapArray[x][y];
 				
-				if(tile.tileType == "rail"){
+				if(tile instanceof Rail){
 						//Tile tile = gameMap.mapArray[x][y];
 						tileBatch.draw(greySquare, (tile.x)*32, (tile.y)*32);
 				}
