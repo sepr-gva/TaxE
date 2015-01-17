@@ -26,12 +26,22 @@ public class Map
 	
 	private void initialise()
 	{
-		//Sets up mapArray with empty tiles.
+		//Set up the map to have alternate player 1 and 2 buildable tiles
+		int count = 0;
 		for (int i=0; i<xSize; i++)
 		{
 			for (int j=0; j<ySize; j++)
 			{
-				Tile tempTile = new Tile(i, j);
+				String type;
+				
+				if ((count & 1) == 0){
+					type = "player1Build";			
+				}
+				else{
+					type = "player2Build";
+				}
+				
+				Tile tempTile = new Tile(i, j, type);
 				tempTile.width = 32;
 				tempTile.height = 32;
 				
