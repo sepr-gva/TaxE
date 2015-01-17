@@ -7,7 +7,7 @@ public class Rail extends Tile
 	
 	public Rail(int xCoord, int yCoord)
 	{
-		super(xCoord, yCoord);
+		super(xCoord, yCoord, "Rail");
 	}
 	
 	@Override
