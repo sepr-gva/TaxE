@@ -22,6 +22,7 @@ public class HowToScreen implements Screen {
 	public void update(){
 		if (Gdx.input.isTouched()){
 			game.setScreen(new MainMenuScreen(game));
+			this.dispose();
 		}
 	}
 	

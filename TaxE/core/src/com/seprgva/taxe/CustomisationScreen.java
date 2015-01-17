@@ -59,9 +59,11 @@ public class CustomisationScreen implements Screen {
 					player.companyName = companyName;
 					if (player.playerNumber == 1){
 						game.setScreen(new CustomisationScreen(game, game.player2));
+						this.dispose();
 					}
 					else{
 						game.setScreen(new GameScreen(game));
+						this.dispose();
 					}
 				}
 			}
@@ -71,9 +73,11 @@ public class CustomisationScreen implements Screen {
 					player.companyName = companyName;
 					if (player.playerNumber == 1){
 						game.setScreen(new CustomisationScreen(game, game.player2));
+						this.dispose();
 					}
 					else{
 						game.setScreen(new GameScreen(game));
+						this.dispose();
 					}
 				}
 			}
@@ -83,18 +87,23 @@ public class CustomisationScreen implements Screen {
 					player.companyName = companyName;
 					if (player.playerNumber == 1){
 						game.setScreen(new CustomisationScreen(game, game.player2));
+						this.dispose();
 					}
 					else{
 						game.setScreen(new GameScreen(game));
+						this.dispose();
 					}
 				}
 			}
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.ENTER)){
+			game.player1.companyName = "Bob's trains";
+			game.player2.companyName = "Sally's trains";
 			game.player1.avatar = game.blackAvatar;
 			game.player2.avatar = game.femaleAvatar;
 			game.setScreen(new GameScreen(game));
+			this.dispose();
 		}
 	}
 	

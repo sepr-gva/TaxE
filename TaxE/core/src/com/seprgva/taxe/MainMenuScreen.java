@@ -11,26 +11,24 @@ public class MainMenuScreen implements Screen {
 	public OrthographicCamera camera;
 	MenuButton play, how, quit;
 	
-	public MainMenuScreen(final TaxE gam) {
-		game = gam;
-		
+	public MainMenuScreen(final TaxE gameInstance) {
+		game = gameInstance;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
 		play = new MenuButton(game.play, 435, 300, 129, 80, game, camera);
 		how = new MenuButton(game.how, 319, 200, 362, 80, game, camera);
 		quit = new MenuButton(game.quit, 437, 100, 126, 80, game, camera);
-		
-		
-		
 	}
 	
 	public void update(){
 		//Should the main menu be disposed on setting a new screen? We can always make a new one on a back button press
 		if (play.isPressed()){
 			game.setScreen(new CustomisationScreen(game, game.player1));
+			this.dispose();
 		}
 		if (how.isPressed()){
 			game.setScreen(new HowToScreen(game));
+			this.dispose();
 		}
 		if (quit.isPressed()){
 			Gdx.app.exit();

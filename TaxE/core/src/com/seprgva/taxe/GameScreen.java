@@ -79,7 +79,8 @@ public class GameScreen implements Screen {
 		
 		handleInput();
 		playCamera.update();
-
+		
+		//Sprite batch for map projected onto playCamera
 		tileBatch.setProjectionMatrix(playCamera.combined);
 		tileBatch.begin();
 
@@ -96,17 +97,18 @@ public class GameScreen implements Screen {
 				}
 			}
 		}
-
 		tileBatch.end();
-				
+		
+		//Sprite batch for everything else projected onto uiCamera
 		game.batch.setProjectionMatrix(uiCamera.combined);
 		
-		//Draw
 		game.batch.begin();
-		game.batch.draw(game.player1.avatar, 500, 500, 100, 100);
-		game.batch.draw(game.player2.avatar, 600, 500, 100, 100);
-		game.font.draw(game.batch, "Player 1 name:" + game.player1.companyName + ", Player 2 naem:" + game.player2.companyName, 450, 400);
-		game.font.draw(game.batch, "Implement game here", 150, 200);
+		game.batch.draw(game.player1.avatar, 900, 575, 50, 50);
+		game.batch.draw(game.player2.avatar, 950, 575, 50, 50);
+		
+		//Implementing this properly will require a maximum length for company name
+		game.font.draw(game.batch, "Player 1 name: " + game.player1.companyName, 700, 615);
+		game.font.draw(game.batch, "Player 2 name: " + game.player2.companyName, 700, 595);
 		
 		//Only for testing purposes
 		game.font.draw(game.batch, gameMap.toString(), 150, 180);
@@ -119,8 +121,7 @@ public class GameScreen implements Screen {
 			trainList.get(0).traverse(gameMap.mapArray[5][10]);
 		}
 		
-		game.batch.end();
-		
+		game.batch.end();	
 	}
 	
     private void handleInput() {
