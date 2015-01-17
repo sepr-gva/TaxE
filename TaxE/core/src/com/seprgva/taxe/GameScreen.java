@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class GameScreen implements Screen {
 	
 	final TaxE game;
-	private Texture greenSquare;
-	private Texture greySquare;
+	private Texture greenSquare, greySquare, player1Build, player2Build;
+	
 	//private Rectangle tile;
 	
 	private SpriteBatch tileBatch;
@@ -53,6 +53,8 @@ public class GameScreen implements Screen {
 		//load some textures
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
 		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"));
+		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"));
+		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"));
 		
 		//Map is currently set to 40x40
 		gameMap = new Map();
@@ -93,7 +95,16 @@ public class GameScreen implements Screen {
 						tileBatch.draw(greySquare, (tile.x)*32, (tile.y)*32);
 				}
 				else{
-					tileBatch.draw(greenSquare, (tile.x)*32, (tile.y)*32);
+					
+					if(tile.tileType == "player1Build"){
+						tileBatch.draw(player1Build, (tile.x)*32, (tile.y)*32);
+					}
+					else if(tile.tileType == "player2Build"){
+						tileBatch.draw(player2Build, (tile.x)*32, (tile.y)*32);
+					}
+					else{
+						tileBatch.draw(greenSquare, (tile.x)*32, (tile.y)*32);
+					}
 				}
 			}
 		}
