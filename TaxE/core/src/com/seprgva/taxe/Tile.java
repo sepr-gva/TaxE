@@ -8,12 +8,9 @@ public class Tile extends Rectangle
 	Tile[] neighbours = new Tile[4];	//Should be able to calculate neighbours using tile coordinates as a unique ID.
 	public String tileType;
 	
-	public Tile(int xCoord, int yCoord, String type)
+	public Tile(int xCoord, int yCoord)
 	{
-		tileType = type;
-		
-		this.x = xCoord;
-		this.y = yCoord;
+		super(xCoord, yCoord, 32f, 32f);
 	}
 	
 	@Override

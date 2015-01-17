@@ -11,7 +11,7 @@ public class City extends Tile
 	
 	public City(int xCoord, int yCoord, String name)
 	{
-		super(xCoord, yCoord, "city");
+		super(xCoord, yCoord);
 		cityName = name;
 		trainsInStation = new Array<Train>();
 	}
