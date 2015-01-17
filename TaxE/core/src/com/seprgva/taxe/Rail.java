@@ -4,7 +4,6 @@ public class Rail extends Tile
 {
 	Rail prevRail = null;
 	Rail nextRail = null;
-	boolean junction;
 	
 	public Rail(int xCoord, int yCoord)
 	{

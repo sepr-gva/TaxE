@@ -23,7 +23,8 @@ public class GameScreen implements Screen {
 	
 	private SpriteBatch tileBatch;
 	
-	OrthographicCamera camera;
+	OrthographicCamera playCamera;
+	OrthographicCamera uiCamera;
 	Map gameMap;
 	int trainID = 0;
 	ArrayList<Train> trainList = new ArrayList<Train>();
@@ -39,9 +40,13 @@ public class GameScreen implements Screen {
 	public GameScreen(final TaxE gameInstance) {
 		game = gameInstance;
 		
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 1000, 625);
-		camera.update();
+		playCamera = new OrthographicCamera();
+		playCamera.setToOrtho(false, 1000, 625);
+		playCamera.update();
+		
+		uiCamera = new OrthographicCamera();
+		uiCamera.setToOrtho(false, 1000, 625);
+		uiCamera.update();
 		
 		tileBatch = new SpriteBatch();
 		
@@ -61,8 +66,8 @@ public class GameScreen implements Screen {
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
 
-		createTrain(5,4,game.player1);
-		createTrain(12,4,game.player2);
+		createTrain(5, 4, game.player1);
+		createTrain(12, 4, game.player2);
 		createTrain(15, 10, game.player2);
 	}
 
@@ -73,9 +78,9 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		handleInput();
-		camera.update();
+		playCamera.update();
 
-		tileBatch.setProjectionMatrix(camera.combined);
+		tileBatch.setProjectionMatrix(playCamera.combined);
 		tileBatch.begin();
 
 		for(int y = 0; y < gameMap.ySize; y++){
@@ -94,7 +99,7 @@ public class GameScreen implements Screen {
 
 		tileBatch.end();
 				
-		game.batch.setProjectionMatrix(camera.combined);
+		game.batch.setProjectionMatrix(uiCamera.combined);
 		
 		//Draw
 		game.batch.begin();
@@ -120,16 +125,16 @@ public class GameScreen implements Screen {
 	
     private void handleInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            camera.translate(-3, 0, 0);
+            playCamera.translate(-3, 0, 0);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            camera.translate(3, 0, 0);
+            playCamera.translate(3, 0, 0);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            camera.translate(0, -3, 0);
+            playCamera.translate(0, -3, 0);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            camera.translate(0, 3, 0);
+            playCamera.translate(0, 3, 0);
         }
     }
 
