@@ -60,6 +60,10 @@ public class GameScreen implements Screen {
 		tileBatch = new SpriteBatch();
 		
 		//load some textures - should we do this here or when opening the game?
+		
+		//Jordan: We should probably do it here but it clutters space, doing it in
+		//TaxE is fine
+		
 		//greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
 		//greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"));
 		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"));
@@ -111,7 +115,7 @@ public class GameScreen implements Screen {
 					}
 					else if(tile instanceof City){
 						City cityTile = (City) tile;
-						tileBatch.draw(game.greenSquare, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.brownSquare, (tile.x)*32, (tile.y)*32);
 						game.font.draw(tileBatch, cityTile.cityIdentifier, ((tile.x)*32)+1, ((tile.y)*32)+24);
 					}
 				}
