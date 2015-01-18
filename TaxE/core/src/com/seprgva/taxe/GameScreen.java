@@ -61,8 +61,8 @@ public class GameScreen implements Screen {
 		
 		//Placing two cities on the map
 		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
-		gameMap.mapArray[5][5] = new City(5,5, "London");
-		gameMap.mapArray[5][10] = new City(5,10, "York");
+		gameMap.mapArray[5][5] = new City(5,5, "London", "LON");
+		gameMap.mapArray[5][10] = new City(5,10, "York", "YRK");
 		for (int i = 6; i <= 9; i++)
 		{
 			gameMap.mapArray[5][i] = new Rail(5, i);
@@ -102,8 +102,10 @@ public class GameScreen implements Screen {
 					else if(tile.tileType == "player2Build"){
 						tileBatch.draw(player2Build, (tile.x)*32, (tile.y)*32);
 					}
-					else{
+					else if(tile instanceof City){
+						City cityTile = (City) tile;
 						tileBatch.draw(greenSquare, (tile.x)*32, (tile.y)*32);
+						game.font.draw(tileBatch, cityTile.cityIdentifier, ((tile.x)*32)+1, ((tile.y)*32)+24);
 					}
 				}
 			}
@@ -137,16 +139,16 @@ public class GameScreen implements Screen {
 	
     private void handleInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            playCamera.translate(-3, 0, 0);
+            playCamera.translate(-5, 0, 0);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            playCamera.translate(3, 0, 0);
+            playCamera.translate(5, 0, 0);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-            playCamera.translate(0, -3, 0);
+            playCamera.translate(0, -5, 0);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-            playCamera.translate(0, 3, 0);
+            playCamera.translate(0, 5, 0);
         }
     }
 
