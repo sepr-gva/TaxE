@@ -1,7 +1,8 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.Array;
 
 public class Player {
 	
@@ -9,14 +10,14 @@ public class Player {
 	//(This is just to implement customisation)
 	String companyName = "";
 	Texture avatar;
-	Array<Train> trains;
+	ArrayList<Train> trains;
 	int playerNumber, money, reputation, score;
-	Array<Goal> goals;
+	ArrayList<Goal> goals;
 	
 	public Player(int num){
 		this.playerNumber = num;
-		this.goals = new Array<Goal>();
-		this.trains = new Array<Train>();
+		this.goals = new ArrayList<Goal>();
+		this.trains = new ArrayList<Train>();
 	}
 
 }

@@ -1,10 +1,7 @@
 package com.seprgva.taxe;
 
 import java.util.ArrayList;
-import java.util.Random;
-
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Array;
 
 public class Goal {
 	
@@ -15,6 +12,8 @@ public class Goal {
 	ArrayList<Train> trains;
 	TaxE game;
 	
+	//Simple random goal generated, no check for whether it is achievable
+	//Will be made smarter when map fully implemented
 	public Goal(Player player, TaxE gam){
 		this.game = gam;
 		this.turnsLeft = MathUtils.random(4, 7);
@@ -48,7 +47,7 @@ public class Goal {
 			}
 		}
 		else{
-			player.goals.removeValue(this, true);
+			player.goals.remove(this);
 		}
 	}
 	
@@ -59,12 +58,12 @@ public class Goal {
 					player.money += this.reward;
 					train.passengers -= this.passengers;
 					player.score += this.reward / 100 * this.passengers;
-					player.goals.removeValue(this, true);
+					player.goals.remove(this);
 				}
 			}
 		}
 		else{
-			player.goals.removeValue(this, true);
+			player.goals.remove(this);
 		}
 	}
 

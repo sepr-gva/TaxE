@@ -13,7 +13,9 @@ public class TaxE extends Game {
 	public SpriteBatch batch;
 	
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
-	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare;
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
+	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
+	empty, ld, lu, rd, ru, junction, lrd, lru, udl, udr, lr, ud;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -73,6 +75,33 @@ public class TaxE extends Game {
 		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"), true);
 		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"), true);
 		brownSquare = new Texture(Gdx.files.internal("gameGraphics/brownSquare.png"), true);
+		
+		
+		//Tile Textures
+		empty = new Texture(Gdx.files.internal("gameGraphics/emptyTile"));
+		empty.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		ld = new Texture(Gdx.files.internal("gameGraphics/railCurvedLD"));
+		ld.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		lu = new Texture(Gdx.files.internal("gameGraphics/railCurvedLU"));
+		lu.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		rd = new Texture(Gdx.files.internal("gameGraphics/railCurvedRD"));
+		rd.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		ru = new Texture(Gdx.files.internal("gameGraphics/railCurvedRU"));
+		ru.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		junction = new Texture(Gdx.files.internal("gameGraphics/railJunction"));
+		junction.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		lrd = new Texture(Gdx.files.internal("gameGraphics/railJunctionLRD"));
+		lrd.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		lru = new Texture(Gdx.files.internal("gameGraphics/railJunctionLRU"));
+		lru.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		udl = new Texture(Gdx.files.internal("gameGraphics/railJunctionUDL"));
+		udl.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		udr = new Texture(Gdx.files.internal("gameGraphics/railJunctionUDR"));
+		udr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		lr = new Texture(Gdx.files.internal("gameGraphics/railLR"));
+		lr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		ud = new Texture(Gdx.files.internal("gameGraphics/railUD"));
+		ud.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		//Map generation
 		//Map is currently set to 40x40

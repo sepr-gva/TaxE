@@ -2,6 +2,7 @@ package com.seprgva.taxe;
 
 public class Rail extends Tile
 {
+	
 	Rail prevRail = null;
 	Rail nextRail = null;
 	

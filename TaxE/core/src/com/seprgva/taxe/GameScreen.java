@@ -6,12 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Array;
-import java.util.ArrayList;
 
 public class GameScreen implements Screen {
 	
@@ -152,8 +147,10 @@ public class GameScreen implements Screen {
 		{
 			game.trainList.get(0).traverse(game.gameMap.mapArray[5][10]);
 		}
+		
+		// Give players up to 3 goals as a test by pressing their corresponding number
 		if (Gdx.input.isKeyPressed(Keys.NUM_1)){
-			if (game.player1.goals.size < 4){
+			if (game.player1.goals.size() < 3){
 				new Goal(game.player1, game);
 				for (Goal goal : game.player1.goals){
 				System.out.println(goal.description);
@@ -162,7 +159,7 @@ public class GameScreen implements Screen {
 			}
 		}
 		if (Gdx.input.isKeyPressed(Keys.NUM_2)){
-			if (game.player2.goals.size < 4){
+			if (game.player2.goals.size() < 3){
 				new Goal(game.player2, game);
 				for (Goal goal : game.player2.goals){
 					System.out.println(goal.description);
