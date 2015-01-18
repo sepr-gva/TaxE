@@ -11,7 +11,7 @@ public class CustomisationScreen implements Screen {
 	
 	final TaxE game;
 	OrthographicCamera camera;
-	GeneralButton male, female, black, done, name;
+	MenuButton male, female, black, done, name;
 	boolean b = false, m = false, f = false;
 	String companyName = "";
 	Player player;
@@ -113,11 +113,11 @@ public class CustomisationScreen implements Screen {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
 		
-		male = new GeneralButton(game.maleAvatar, 250, 300, 100, 100, game, camera);
-		female = new GeneralButton(game.femaleAvatar, 450, 300, 100, 100, game, camera);
-		black = new GeneralButton(game.blackAvatar, 650, 300, 100, 100, game, camera);
-		name = new GeneralButton(game.chooseName, 200, 150, 600, 130, game, camera);
-		done = new GeneralButton(game.done, 425, 50, 150, 80, game, camera);
+		male = new MenuButton(game.maleAvatar, 250, 300, 100, 100, game, camera);
+		female = new MenuButton(game.femaleAvatar, 450, 300, 100, 100, game, camera);
+		black = new MenuButton(game.blackAvatar, 650, 300, 100, 100, game, camera);
+		name = new MenuButton(game.chooseName, 200, 150, 600, 130, game, camera);
+		done = new MenuButton(game.done, 425, 50, 150, 80, game, camera);
 		
 		
 	}
