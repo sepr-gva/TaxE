@@ -12,41 +12,17 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
-import java.util.ArrayList;
-
 public class GameScreen implements Screen {
 	
 	final TaxE game;
-	//private Texture greenSquare, greySquare, 
-	private Texture player1Build, player2Build;
-	
-	//private Rectangle tile;
 	
 	private SpriteBatch tileBatch;
 	
 	OrthographicCamera playCamera;
 	OrthographicCamera uiCamera;
-	Map gameMap;
-	int trainID = 0;
-	ArrayList<Train> trainList = new ArrayList<Train>();
-	
-	private void createTrain(int X, int Y, Player owner)
-	{
-		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
-		Tile tileForTrain = gameMap.mapArray[X][Y];
-		if (tileForTrain instanceof City){
-			City cityForTrain = (City) tileForTrain;
-			Train newTrain = new Train(trainID, gameMap.mapArray[X][Y], owner);
-			trainList.add(newTrain);
-			cityForTrain.trainsInStation.add(newTrain);
-			owner.trains.add(newTrain);
-			gameMap.mapArray[X][Y] = cityForTrain;
-			trainID++; //This needs to be implemented properly at some point
-		}
-	}
 
 	//equivalent of create() method
-	public GameScreen(final TaxE gameInstance) {
+	public GameScreen(final TaxE gameInstance, int currentPhase) {
 		game = gameInstance;
 		
 		playCamera = new OrthographicCamera();
@@ -59,25 +35,23 @@ public class GameScreen implements Screen {
 		
 		tileBatch = new SpriteBatch();
 		
-		//load some textures - should we do this here or when opening the game?
-		//greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
-		//greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"));
-		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"));
-		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"));
-		
-		//Map is currently set to 40x40
-		gameMap = new Map();
-		
-		//Placing two cities on the map
-		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
-		gameMap.mapArray[5][5] = new City(5,5, "London", "LON");
-		gameMap.mapArray[5][10] = new City(5,10, "York", "YRK");
-		for (int i = 6; i <= 9; i++)
-		{
-			gameMap.mapArray[5][i] = new Rail(5, i);
-		}
-
+		//Test train
 		createTrain(5, 5, game.player2);
+	}
+	
+	private void createTrain(int X, int Y, Player owner)
+	{
+		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
+		Tile tileForTrain = game.gameMap.mapArray[X][Y];
+		if (tileForTrain instanceof City){
+			City cityForTrain = (City) tileForTrain;
+			Train newTrain = new Train(game.trainID, game.gameMap.mapArray[X][Y], owner);
+			game.trainList.add(newTrain);
+			cityForTrain.trainsInStation.add(newTrain);
+			owner.trains.add(newTrain);
+			game.gameMap.mapArray[X][Y] = cityForTrain;
+			game.trainID++; //This needs to be implemented properly at some point
+		}
 	}
 
 	@Override
@@ -92,10 +66,11 @@ public class GameScreen implements Screen {
 		//Sprite batch for map projected onto playCamera
 		tileBatch.setProjectionMatrix(playCamera.combined);
 		tileBatch.begin();
-
-		for(int y = 0; y < gameMap.ySize; y++){
-			for(int x = 0; x < gameMap.xSize; x++){
-				Tile tile = gameMap.mapArray[x][y];
+		
+		//Drawing map tiles
+		for(int y = 0; y < game.gameMap.ySize; y++){
+			for(int x = 0; x < game.gameMap.xSize; x++){
+				Tile tile = game.gameMap.mapArray[x][y];
 				
 				if(tile instanceof Rail){
 						//Tile tile = gameMap.mapArray[x][y];
@@ -104,10 +79,10 @@ public class GameScreen implements Screen {
 				else{
 					
 					if(tile.tileType == "player1Build"){
-						tileBatch.draw(player1Build, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.player1Build, (tile.x)*32, (tile.y)*32);
 					}
 					else if(tile.tileType == "player2Build"){
-						tileBatch.draw(player2Build, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.player2Build, (tile.x)*32, (tile.y)*32);
 					}
 					else if(tile instanceof City){
 						City cityTile = (City) tile;
@@ -117,19 +92,18 @@ public class GameScreen implements Screen {
 				}
 			}
 		}
-		
-		for(int trains = 0; trains < trainList.size(); trains++){
+	
+		//Drawing trains to the screen
+		for(int trains = 0; trains < game.trainList.size(); trains++){
 			//The train list is quite a convoluted data structure...but I don't think there's anything wrong with that.
-			Train selectedTrain = trainList.get(trains);
+			Train selectedTrain = game.trainList.get(trains);
 			if (selectedTrain.owner.playerNumber == 1){
 				tileBatch.draw(game.tempTrain1, (selectedTrain.currentLocation.x)*32,(selectedTrain.currentLocation.y)*32);
 			}
 			else {
 				tileBatch.draw(game.tempTrain2, (selectedTrain.currentLocation.x)*32,(selectedTrain.currentLocation.y)*32);
-			}
-			
+			}	
 		}
-		
 		tileBatch.end();
 		
 		//Sprite batch for everything else projected onto uiCamera
@@ -142,15 +116,6 @@ public class GameScreen implements Screen {
 		//Implementing this properly will require a maximum length for company name
 		game.font.draw(game.batch, "Player 1 name: " + game.player1.companyName, 700, 615);
 		game.font.draw(game.batch, "Player 2 name: " + game.player2.companyName, 700, 595);
-
-		
-		//Only for testing purposes
-		game.font.draw(game.batch, trainList.get(0).toString(), 150, 120);
-		
-		if (Gdx.input.isKeyPressed(Keys.T))
-		{
-			trainList.get(0).traverse(gameMap.mapArray[5][10]);
-		}
 		
 		game.batch.end();	
 	}
@@ -168,6 +133,10 @@ public class GameScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             playCamera.translate(0, 5, 0);
         }
+		if (Gdx.input.isKeyPressed(Keys.T))
+		{
+			game.trainList.get(0).traverse(game.gameMap.mapArray[5][10]);
+		}
     }
 
 	@Override

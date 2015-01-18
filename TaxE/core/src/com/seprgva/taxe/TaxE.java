@@ -1,5 +1,7 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,9 +12,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class TaxE extends Game {
 	public SpriteBatch batch;
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
-	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain1, tempTrain2;
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build;
 	public BitmapFont font;
 	public Player player1, player2;
+	Map gameMap;
+	int trainID = 0;
+	ArrayList<Train> trainList = new ArrayList<Train>();
 	
 	@Override
 	public void create () {
@@ -54,17 +59,26 @@ public class TaxE extends Game {
 		player1 = new Player(1);
 		player2 = new Player(2);
 		
-		//in-game graphics
+		//In-game graphics
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"), true);
-		greenSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		redSquare = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"), true);
-		redSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"), true);
-		greySquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		tempTrain1 = new Texture(Gdx.files.internal("gameGraphics/tempTrain1.png"), true);
-		tempTrain1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		tempTrain2 = new Texture(Gdx.files.internal("gameGraphics/tempTrain2.png"), true);
-		tempTrain2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"));
+		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"));
+		
+		//Map generation
+		//Map is currently set to 40x40
+		gameMap = new Map();
+		
+		//Test cities and rail
+		gameMap.mapArray[5][5] = new City(5,5, "London", "LON");
+		gameMap.mapArray[5][10] = new City(5,10, "York", "YRK");
+		for (int i = 6; i <= 9; i++)
+		{
+			gameMap.mapArray[5][i] = new Rail(5, i);
+		}
 		
 		this.setScreen(new MainMenuScreen(this));
 	}
