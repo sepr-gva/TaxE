@@ -76,7 +76,7 @@ public class GameScreen implements Screen {
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
 
-		createTrain(5, 5, game.player1);
+		createTrain(5, 5, game.player2);
 	}
 
 	@Override
@@ -119,7 +119,14 @@ public class GameScreen implements Screen {
 		
 		for(int trains = 0; trains < trainList.size(); trains++){
 			//The train list is quite a convoluted data structure...but I don't think there's anything wrong with that.
-			tileBatch.draw(game.tempTrain, (trainList.get(trains).currentLocation.x)*32,(trainList.get(trains).currentLocation.y)*32);
+			Train selectedTrain = trainList.get(trains);
+			if (selectedTrain.owner.playerNumber == 1){
+				tileBatch.draw(game.tempTrain1, (selectedTrain.currentLocation.x)*32,(selectedTrain.currentLocation.y)*32);
+			}
+			else {
+				tileBatch.draw(game.tempTrain2, (selectedTrain.currentLocation.x)*32,(selectedTrain.currentLocation.y)*32);
+			}
+			
 		}
 		
 		tileBatch.end();

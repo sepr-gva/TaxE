@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class TaxE extends Game {
 	public SpriteBatch batch;
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
-	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain;
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain1, tempTrain2;
 	public BitmapFont font;
 	public Player player1, player2;
 	
@@ -61,8 +61,10 @@ public class TaxE extends Game {
 		redSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"), true);
 		greySquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		tempTrain = new Texture(Gdx.files.internal("gameGraphics/tempTrain.png"), true);
-		tempTrain.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		tempTrain1 = new Texture(Gdx.files.internal("gameGraphics/tempTrain1.png"), true);
+		tempTrain1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		tempTrain2 = new Texture(Gdx.files.internal("gameGraphics/tempTrain2.png"), true);
+		tempTrain2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		this.setScreen(new MainMenuScreen(this));
 	}
