@@ -10,23 +10,13 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class GeneralButton extends Rectangle {
 	
-	Texture defaultTexture, clickedTexture;
+	Texture texture;
 	OrthographicCamera camera;
 	long time = TimeUtils.millis();
 	SpriteBatch buttonBatch;
 	
-	public GeneralButton(Texture defaultTexture, Texture clickedTexture, int x, int y, int width, int height, OrthographicCamera camera){
-		this.defaultTexture = defaultTexture;
-		this.clickedTexture = clickedTexture;
-		this.init(x, y, width, height, camera);
-	}
-	
 	public GeneralButton(Texture texture, int x, int y, int width, int height, OrthographicCamera camera){
-		this.defaultTexture = this.clickedTexture = texture;
-		this.init(x, y, width, height, camera);
-	}
-	
-	private void init(int x, int y, int width, int height, OrthographicCamera camera) {
+		this.texture = texture;
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -34,7 +24,6 @@ public class GeneralButton extends Rectangle {
 		this.camera = camera;
 		
 		buttonBatch = new SpriteBatch();
-		buttonBatch.setProjectionMatrix(camera.combined);
 	}
 	
 	public void changeX(int x){
@@ -63,14 +52,8 @@ public class GeneralButton extends Rectangle {
 	
 	public void draw(){
 		buttonBatch.begin();
-		if (isPressed()){
-			buttonBatch.draw(this.clickedTexture, this.x, this.y, this.width, this.height);
-		}
-		else{
-			buttonBatch.draw(this.defaultTexture, this.x, this.y, this.width, this.height);
-		}
+		buttonBatch.draw(texture, x, y, width, height);
 		buttonBatch.end();
-		
 	}
 	
 	public boolean isPressed(){

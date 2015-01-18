@@ -17,8 +17,6 @@ public class GameScreen implements Screen {
 	OrthographicCamera playCamera;
 	OrthographicCamera uiCamera;
 
-	GeneralButton nextPhaseButton;
-	
 	//equivalent of create() method
 	public GameScreen(final TaxE gameInstance, int currentPhase) {
 		game = gameInstance;
@@ -30,8 +28,6 @@ public class GameScreen implements Screen {
 		uiCamera = new OrthographicCamera();
 		uiCamera.setToOrtho(false, 1000, 625);
 		uiCamera.update();
-		
-		nextPhaseButton = new GeneralButton(game.nextPhase, game.nextPhaseClicked, 900, 25, 48, 48, uiCamera);
 		
 		tileBatch = new SpriteBatch();
 		
@@ -119,10 +115,7 @@ public class GameScreen implements Screen {
 		game.font.draw(game.batch, "Player 1 name: " + game.player1.companyName, 700, 615);
 		game.font.draw(game.batch, "Player 2 name: " + game.player2.companyName, 700, 595);
 		
-		game.batch.end();
-		
-		//Buttons generate their own batch that projects onto the camera passed as an argument
-		nextPhaseButton.draw();
+		game.batch.end();	
 	}
 	
     private void handleInput() {
