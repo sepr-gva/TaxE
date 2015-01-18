@@ -9,15 +9,15 @@ public class MainMenuScreen implements Screen {
 	
 	final TaxE game;
 	public OrthographicCamera camera;
-	MenuButton play, how, quit;
+	GeneralButton play, how, quit;
 	
 	public MainMenuScreen(final TaxE gameInstance) {
 		game = gameInstance;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
-		play = new MenuButton(game.play, 435, 300, 129, 80, game, camera);
-		how = new MenuButton(game.how, 319, 200, 362, 80, game, camera);
-		quit = new MenuButton(game.quit, 437, 100, 126, 80, game, camera);
+		play = new GeneralButton(game.play, 435, 300, 129, 80, game, camera);
+		how = new GeneralButton(game.how, 319, 200, 362, 80, game, camera);
+		quit = new GeneralButton(game.quit, 437, 100, 126, 80, game, camera);
 	}
 	
 	public void update(){
