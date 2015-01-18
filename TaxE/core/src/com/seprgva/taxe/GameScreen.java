@@ -11,17 +11,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class GameScreen implements Screen {
 	
 	final TaxE game;
-	
 	private SpriteBatch tileBatch;
-	
 	OrthographicCamera playCamera;
 	OrthographicCamera uiCamera;
-	
+	int gamePhase;
 	GeneralButton nextPhaseButton;
 
 	//equivalent of create() method
 	public GameScreen(final TaxE gameInstance, int currentPhase) {
 		game = gameInstance;
+		
+		gamePhase = currentPhase;
 		
 		playCamera = new OrthographicCamera();
 		playCamera.setToOrtho(false, 1000, 625);
@@ -35,10 +35,11 @@ public class GameScreen implements Screen {
 		
 		tileBatch = new SpriteBatch();
 		
-		if (currentPhase == 1) {
+		if (gamePhase == 1) {
 			createTrain(5, 4, game.player2);
 			createTrain(5, 33, game.player1);
 		}
+		System.out.println(gamePhase);
 	}
 	
 	private void createTrain(int X, int Y, Player owner)
@@ -169,7 +170,10 @@ public class GameScreen implements Screen {
 				}
 				System.out.println("");
 			}
-			
+		}
+		if (nextPhaseButton.isPressed()){
+			game.setScreen(new GameScreen(game, gamePhase+1));
+			this.dispose();
 		}
     }
 
