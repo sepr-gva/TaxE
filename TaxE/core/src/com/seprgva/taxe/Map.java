@@ -61,8 +61,21 @@ public class Map
 		
 		//Add the rail, this can be replaced with a procedural generation method
 		for(int i=0; i<3; i++){
+			//starting at the top left city
+			//move from cities location up one tile for three tiles
 			mapArray[5][ySize-(5-i)] = new Rail(5, ySize-(5-i));
 		}
+		for(int i=0; i<11; i++){
+			//starting from the right of where we left off
+			//move from that rail one tile right for 11 tiles
+			mapArray[6+i][ySize-3] = new Rail(6+i, ySize-3);
+		}
+		for(int i=0; i<3; i++){
+			//don't get confused by y-size, this just makes sure that mapArray matches
+			//what libgdx draws.
+			mapArray[16][ySize-(4+i)] = new Rail(16, ySize-(4+i));
+		}
+		
 		
 		
 		
