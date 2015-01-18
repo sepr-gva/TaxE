@@ -118,8 +118,6 @@ public class CustomisationScreen implements Screen {
 		black = new GeneralButton(game.blackAvatar, 650, 300, 100, 100, camera);
 		name = new GeneralButton(game.chooseName, 200, 150, 600, 130, camera);
 		done = new GeneralButton(game.done, 425, 50, 150, 80, camera);
-		
-		
 	}
 
 	@Override
