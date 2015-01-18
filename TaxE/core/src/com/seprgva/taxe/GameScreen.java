@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class GameScreen implements Screen {
 	
 	final TaxE game;
-	private Texture greenSquare, greySquare, player1Build, player2Build;
+	//private Texture greenSquare, greySquare, 
+	private Texture player1Build, player2Build;
 	
 	//private Rectangle tile;
 	
@@ -29,11 +30,18 @@ public class GameScreen implements Screen {
 	int trainID = 0;
 	ArrayList<Train> trainList = new ArrayList<Train>();
 	
-	private void createTrain(int X, int Y, Player player)
+	private void createTrain(int X, int Y, Player owner)
 	{
-		Train newTrain = new Train(trainID, gameMap.mapArray[X][Y], player);
-		trainList.add(newTrain);
-		trainID++;
+		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
+		Tile tileForTrain = gameMap.mapArray[X][Y];
+		if (tileForTrain instanceof City){
+			City cityForTrain = (City) tileForTrain;
+			Train newTrain = new Train(trainID, gameMap.mapArray[X][Y], owner);
+			trainList.add(newTrain);
+			cityForTrain.trainsInStation.add(newTrain);
+			gameMap.mapArray[X][Y] = cityForTrain;
+			trainID++; //This needs to be implemented properly at some point
+		}
 	}
 
 	//equivalent of create() method
@@ -50,9 +58,9 @@ public class GameScreen implements Screen {
 		
 		tileBatch = new SpriteBatch();
 		
-		//load some textures
-		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
-		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"));
+		//load some textures - should we do this here or when opening the game?
+		//greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
+		//greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"));
 		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"));
 		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"));
 		
@@ -68,9 +76,7 @@ public class GameScreen implements Screen {
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
 
-		createTrain(5, 4, game.player1);
-		createTrain(12, 4, game.player2);
-		createTrain(15, 10, game.player2);
+		createTrain(5, 5, game.player1);
 	}
 
 	@Override
@@ -87,12 +93,12 @@ public class GameScreen implements Screen {
 		tileBatch.begin();
 
 		for(int y = 0; y < gameMap.ySize; y++){
-			for(int x = 0; x <gameMap.xSize; x++){
+			for(int x = 0; x < gameMap.xSize; x++){
 				Tile tile = gameMap.mapArray[x][y];
 				
 				if(tile instanceof Rail){
 						//Tile tile = gameMap.mapArray[x][y];
-						tileBatch.draw(greySquare, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.greySquare, (tile.x)*32, (tile.y)*32);
 				}
 				else{
 					
@@ -104,12 +110,18 @@ public class GameScreen implements Screen {
 					}
 					else if(tile instanceof City){
 						City cityTile = (City) tile;
-						tileBatch.draw(greenSquare, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.greenSquare, (tile.x)*32, (tile.y)*32);
 						game.font.draw(tileBatch, cityTile.cityIdentifier, ((tile.x)*32)+1, ((tile.y)*32)+24);
 					}
 				}
 			}
 		}
+		
+		for(int trains = 0; trains < trainList.size(); trains++){
+			//The train list is quite a convoluted data structure...but I don't think there's anything wrong with that.
+			tileBatch.draw(game.tempTrain, (trainList.get(trains).currentLocation.x)*32,(trainList.get(trains).currentLocation.y)*32);
+		}
+		
 		tileBatch.end();
 		
 		//Sprite batch for everything else projected onto uiCamera
@@ -124,9 +136,6 @@ public class GameScreen implements Screen {
 		game.font.draw(game.batch, "Player 2 name: " + game.player2.companyName, 700, 595);
 		
 		//Only for testing purposes
-		game.font.draw(game.batch, gameMap.toString(), 150, 180);
-		game.font.draw(game.batch, gameMap.mapArray[5][5].toString(), 150, 160);
-		game.font.draw(game.batch, gameMap.mapArray[5][10].toString(), 150, 140);
 		game.font.draw(game.batch, trainList.get(0).toString(), 150, 120);
 		
 		if (Gdx.input.isKeyPressed(Keys.T))

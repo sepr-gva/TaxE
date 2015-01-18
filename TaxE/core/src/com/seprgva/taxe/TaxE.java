@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class TaxE extends Game {
 	public SpriteBatch batch;
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
-	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare;
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain;
 	public BitmapFont font;
 	public Player player1, player2;
 	
@@ -54,10 +54,15 @@ public class TaxE extends Game {
 		player1 = new Player(1);
 		player2 = new Player(2);
 		
-		greenSquare = new Texture(Gdx.files.internal("Images/greenSquare.png"), true);
+		//in-game graphics
+		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"), true);
 		greenSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		redSquare = new Texture(Gdx.files.internal("Images/redSquare.png"), true);
+		redSquare = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"), true);
 		redSquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"), true);
+		greySquare.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		tempTrain = new Texture(Gdx.files.internal("gameGraphics/tempTrain.png"), true);
+		tempTrain.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		this.setScreen(new MainMenuScreen(this));
 	}
