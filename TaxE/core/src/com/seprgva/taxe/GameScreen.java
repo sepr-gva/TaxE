@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.ArrayList;
@@ -172,7 +173,19 @@ public class GameScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             playCamera.translate(0, 5, 0);
         }
-    }
+        if (playCamera.position.x < 500){
+        	playCamera.position.x = 500;
+        }
+        if (playCamera.position.x > 748){
+        	playCamera.position.x = 748;
+        }
+        if (playCamera.position.y < 312.5){
+        	playCamera.position.y = (float)312.5;
+        }
+        if (playCamera.position.y > 936){
+        	playCamera.position.y = 936;
+        }
+        }
 
 	@Override
 	public void resize(int width, int height) {
