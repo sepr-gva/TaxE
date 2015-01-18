@@ -51,7 +51,9 @@ public class GeneralButton extends Rectangle {
 	}
 	
 	public void draw(){
+		buttonBatch.begin();
 		buttonBatch.draw(texture, x, y, width, height);
+		buttonBatch.end();
 	}
 	
 	public boolean isPressed(){

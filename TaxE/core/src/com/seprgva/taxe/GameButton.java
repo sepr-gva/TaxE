@@ -18,12 +18,14 @@ public class GameButton extends GeneralButton {
 	
 	@Override
 	public void draw(){
+		buttonBatch.begin();
 		if (isPressed()){
 			buttonBatch.draw(this.clickedTexture, this.x, this.y, this.width, this.height);
 		}
 		else{
 			buttonBatch.draw(this.texture, this.x, this.y, this.width, this.height);
 		}
+		buttonBatch.end();
 		
 	}
 
