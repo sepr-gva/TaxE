@@ -11,8 +11,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class TaxE extends Game {
 	public SpriteBatch batch;
+	
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
-	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build;
+	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare, redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare;
+
 	public BitmapFont font;
 	public Player player1, player2;
 	Map gameMap;
@@ -65,8 +67,9 @@ public class TaxE extends Game {
 		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"), true);
 		tempTrain1 = new Texture(Gdx.files.internal("gameGraphics/tempTrain1.png"), true);
 		tempTrain2 = new Texture(Gdx.files.internal("gameGraphics/tempTrain2.png"), true);
-		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"));
-		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"));
+		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"), true);
+		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"), true);
+		brownSquare = new Texture(Gdx.files.internal("gameGraphics/brownSquare.png"), true);
 		
 		//Map generation
 		//Map is currently set to 40x40

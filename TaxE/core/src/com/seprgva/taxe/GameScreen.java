@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+import java.util.ArrayList;
 
 public class GameScreen implements Screen {
 	
@@ -35,7 +36,6 @@ public class GameScreen implements Screen {
 		
 		tileBatch = new SpriteBatch();
 		
-		//Test train
 		createTrain(5, 5, game.player2);
 	}
 	
@@ -86,7 +86,7 @@ public class GameScreen implements Screen {
 					}
 					else if(tile instanceof City){
 						City cityTile = (City) tile;
-						tileBatch.draw(game.greenSquare, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.brownSquare, (tile.x)*32, (tile.y)*32);
 						game.font.draw(tileBatch, cityTile.cityIdentifier, ((tile.x)*32)+1, ((tile.y)*32)+24);
 					}
 				}
@@ -137,6 +137,18 @@ public class GameScreen implements Screen {
 		{
 			game.trainList.get(0).traverse(game.gameMap.mapArray[5][10]);
 		}
+        if (playCamera.position.x < 500){
+        	playCamera.position.x = 500;
+        }
+        if (playCamera.position.x > 748){
+        	playCamera.position.x = 748;
+        }
+        if (playCamera.position.y < 312.5){
+        	playCamera.position.y = (float)312.5;
+        }
+        if (playCamera.position.y > 936){
+        	playCamera.position.y = 936;
+        }
     }
 
 	@Override
