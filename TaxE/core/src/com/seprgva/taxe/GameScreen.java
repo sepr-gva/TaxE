@@ -123,32 +123,32 @@ public class GameScreen implements Screen {
     private void handleInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             playCamera.translate(-5, 0, 0);
+            if (playCamera.position.x < 500){
+            	playCamera.position.x = 500;
+            }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             playCamera.translate(5, 0, 0);
+            if (playCamera.position.x > 748){
+            	playCamera.position.x = 748;
+            }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             playCamera.translate(0, -5, 0);
+            if (playCamera.position.y < 312.5){
+            	playCamera.position.y = (float)312.5;
+            }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             playCamera.translate(0, 5, 0);
+            if (playCamera.position.y > 936){
+            	playCamera.position.y = 936;
+            }
         }
 		if (Gdx.input.isKeyPressed(Keys.T))
 		{
 			game.trainList.get(0).traverse(game.gameMap.mapArray[5][10]);
 		}
-        if (playCamera.position.x < 500){
-        	playCamera.position.x = 500;
-        }
-        if (playCamera.position.x > 748){
-        	playCamera.position.x = 748;
-        }
-        if (playCamera.position.y < 312.5){
-        	playCamera.position.y = (float)312.5;
-        }
-        if (playCamera.position.y > 936){
-        	playCamera.position.y = 936;
-        }
     }
 
 	@Override
