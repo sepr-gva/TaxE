@@ -1,0 +1,8 @@
+Things to do:
+	- Add buttons to the play space (buying trains and traversing trains)
+	- Rail that links up correctly and can be drawn in correct orientation
+	- Cities that you can click on and buy trains in
+	- Being able to take a turn
+	- Giving resources at the beginning of turns + when completing goals
+	- "Random goals" - 0 goals => give one, less than 3 => maybe
+	- Being able to traverse trains
