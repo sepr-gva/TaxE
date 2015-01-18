@@ -24,6 +24,7 @@ public class GeneralButton extends Rectangle {
 		this.camera = camera;
 		
 		buttonBatch = new SpriteBatch();
+		buttonBatch.setProjectionMatrix(camera.combined);
 	}
 	
 	public void changeX(int x){

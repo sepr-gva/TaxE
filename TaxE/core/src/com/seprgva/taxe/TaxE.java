@@ -15,7 +15,7 @@ public class TaxE extends Game {
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
-	emptyRed, emptyBlue, ld, lu, rd, ru, junction, lrd, lru, udl, udr, lr, ud;
+	emptyRed, emptyBlue, ld, lu, rd, ru, junction, lrd, lru, udl, udr, lr, ud, nextPhase;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -75,6 +75,7 @@ public class TaxE extends Game {
 		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"), true);
 		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"), true);
 		brownSquare = new Texture(Gdx.files.internal("gameGraphics/brownSquare.png"), true);
+		nextPhase = new Texture(Gdx.files.internal("gameGraphics/nextPhase.png"), true);
 		
 		
 		//Tile Textures
