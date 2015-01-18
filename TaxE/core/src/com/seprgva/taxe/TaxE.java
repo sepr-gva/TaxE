@@ -15,7 +15,7 @@ public class TaxE extends Game {
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
-	emptyRed, emptyBlue, ld, lu, rd, ru, junction, lrd, lru, udl, udr, lr, ud;
+	emptyRed, emptyBlue, ld, lu, rd, ru, junction, lrd, lru, udl, udr, lr, ud, nextPhase, nextPhaseClicked;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -67,6 +67,7 @@ public class TaxE extends Game {
 		player2 = new Player(2);
 		
 		//In-game graphics
+		//These will have to be purged at some point (save resources)
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"), true);
 		redSquare = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"), true);
 		greySquare = new Texture(Gdx.files.internal("gameGraphics/greySquare.png"), true);
@@ -75,7 +76,8 @@ public class TaxE extends Game {
 		player1Build = new Texture(Gdx.files.internal("gameGraphics/player1build.png"), true);
 		player2Build = new Texture(Gdx.files.internal("gameGraphics/player2build.png"), true);
 		brownSquare = new Texture(Gdx.files.internal("gameGraphics/brownSquare.png"), true);
-		
+		nextPhase = new Texture(Gdx.files.internal("gameGraphics/nextPhase.png"), true);
+		nextPhaseClicked = new Texture(Gdx.files.internal("gameGraphics/nextPhaseClicked.png"), true);
 		
 		//Tile Textures
 		emptyRed = new Texture(Gdx.files.internal("gameGraphics/emptyTileRed.png"), true);

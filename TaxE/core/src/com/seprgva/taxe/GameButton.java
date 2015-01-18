@@ -9,24 +9,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameButton extends GeneralButton {
 	
-	Texture clickedTexture;
-	
 	GameButton(Texture defaultTexture, Texture clickedTexture, int x, int y, OrthographicCamera camera){
-		super(defaultTexture, x, y, 16, 16, camera);
-		this.clickedTexture = clickedTexture;
+		super(defaultTexture, clickedTexture, x, y, 16, 16, camera);
 	}
-	
-	@Override
-	public void draw(){
-		buttonBatch.begin();
-		if (isPressed()){
-			buttonBatch.draw(this.clickedTexture, this.x, this.y, this.width, this.height);
-		}
-		else{
-			buttonBatch.draw(this.texture, this.x, this.y, this.width, this.height);
-		}
-		buttonBatch.end();
-		
-	}
-
 }
