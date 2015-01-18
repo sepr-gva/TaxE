@@ -75,14 +75,6 @@ public class TaxE extends Game {
 		//Map is currently set to 40x40
 		gameMap = new Map();
 		
-		//Test cities and rail
-		gameMap.mapArray[5][5] = new City(5,5, "London", "LON");
-		gameMap.mapArray[5][10] = new City(5,10, "York", "YRK");
-		for (int i = 6; i <= 9; i++)
-		{
-			gameMap.mapArray[5][i] = new Rail(5, i);
-		}
-		
 		this.setScreen(new MainMenuScreen(this));
 	}
 

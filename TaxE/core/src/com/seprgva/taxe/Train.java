@@ -17,7 +17,9 @@ public class Train
 	
 	public void traverse(Tile destination)
 	{
-		currentLocation = destination;
+		if (destination instanceof City){
+			currentLocation = destination;
+		}
 	}
 	
 	@Override

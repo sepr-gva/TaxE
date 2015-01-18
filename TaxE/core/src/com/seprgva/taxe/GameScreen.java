@@ -36,7 +36,8 @@ public class GameScreen implements Screen {
 		
 		tileBatch = new SpriteBatch();
 		
-		createTrain(5, 5, game.player2);
+		createTrain(5, 4, game.player2);
+		createTrain(5, 33, game.player1);
 	}
 	
 	private void createTrain(int X, int Y, Player owner)
