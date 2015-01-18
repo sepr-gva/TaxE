@@ -72,15 +72,15 @@ public class GameScreen implements Screen {
 				
 				if(tile instanceof Rail){
 						//Tile tile = gameMap.mapArray[x][y];
-						tileBatch.draw(game.greySquare, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.ud, (tile.x)*32, (tile.y)*32, tile.width, tile.height);
 				}
 				else{
 					
 					if(tile.tileType == "player1Build"){
-						tileBatch.draw(game.player1Build, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.emptyRed, (tile.x)*32, (tile.y)*32, tile.width, tile.height);
 					}
 					else if(tile.tileType == "player2Build"){
-						tileBatch.draw(game.player2Build, (tile.x)*32, (tile.y)*32);
+						tileBatch.draw(game.emptyBlue, (tile.x)*32, (tile.y)*32, tile.width, tile.height);
 					}
 					else if(tile instanceof City){
 						City cityTile = (City) tile;
