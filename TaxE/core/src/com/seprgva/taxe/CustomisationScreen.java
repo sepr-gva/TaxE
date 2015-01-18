@@ -113,11 +113,11 @@ public class CustomisationScreen implements Screen {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
 		
-		male = new GeneralButton(game.maleAvatar, 250, 300, 100, 100, game, camera);
-		female = new GeneralButton(game.femaleAvatar, 450, 300, 100, 100, game, camera);
-		black = new GeneralButton(game.blackAvatar, 650, 300, 100, 100, game, camera);
-		name = new GeneralButton(game.chooseName, 200, 150, 600, 130, game, camera);
-		done = new GeneralButton(game.done, 425, 50, 150, 80, game, camera);
+		male = new GeneralButton(game.maleAvatar, 250, 300, 100, 100, camera);
+		female = new GeneralButton(game.femaleAvatar, 450, 300, 100, 100, camera);
+		black = new GeneralButton(game.blackAvatar, 650, 300, 100, 100, camera);
+		name = new GeneralButton(game.chooseName, 200, 150, 600, 130, camera);
+		done = new GeneralButton(game.done, 425, 50, 150, 80, camera);
 		
 		
 	}

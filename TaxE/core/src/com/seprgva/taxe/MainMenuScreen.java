@@ -15,9 +15,9 @@ public class MainMenuScreen implements Screen {
 		game = gameInstance;
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1000, 625);
-		play = new GeneralButton(game.play, 435, 300, 129, 80, game, camera);
-		how = new GeneralButton(game.how, 319, 200, 362, 80, game, camera);
-		quit = new GeneralButton(game.quit, 437, 100, 126, 80, game, camera);
+		play = new GeneralButton(game.play, 435, 300, 129, 80, camera);
+		how = new GeneralButton(game.how, 319, 200, 362, 80, camera);
+		quit = new GeneralButton(game.quit, 437, 100, 126, 80, camera);
 	}
 	
 	public void update(){
