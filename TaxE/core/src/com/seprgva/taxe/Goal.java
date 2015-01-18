@@ -1,25 +1,36 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 public class Goal {
 	
-	int turnsLeft, reward, passengers, points;
+	int turnsLeft, reward, passengers;
 	Player player;
 	String description;
 	City start, end;
-	Array<Train> trains;
+	ArrayList<Train> trains;
+	TaxE game;
 	
-	public Goal(String des, City start, City end, int pas, int turns, int reward, int points, Player player){
-		this.description = des;
-		this.start = start;
-		this.end = end;
-		this.passengers = pas;
-		this.turnsLeft = turns;
-		this.reward = reward;
+	public Goal(Player player, TaxE gam){
+		this.game = gam;
+		this.turnsLeft = MathUtils.random(4, 7);
+		int s = MathUtils.random(0, game.gameMap.cityList.size() - 1);
+		int e = MathUtils.random(0, game.gameMap.cityList.size() - 1);
+		while (s == e){
+			e = MathUtils.random(0, game.gameMap.cityList.size() - 1);
+		}
+		this.start = game.gameMap.cityList.get(s);
+		this.end = game.gameMap.cityList.get(e);
+		this.passengers = MathUtils.random(100, 200);
+		this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
+				" to " + this.end.cityName + " in " + this.turnsLeft + " turns.      " + player.companyName;
+		this.reward = this.passengers * 10;
 		this.player = player;
-		this.points = points;
-		trains = new Array<Train>();
+		trains = new ArrayList<Train>();
 		player.goals.add(this);
 	}
 	
@@ -28,11 +39,16 @@ public class Goal {
 	//And take one turn away from every goals turnsLeft (maybe reduce reward)
 	
 	public void addTrain(){
-		for (Train train : player.trains){
-			if (start.trainsInStation.contains(train, true)){
-				this.trains.add(train);
-				train.passengers += this.passengers;
+		if (turnsLeft > 0){
+			for (Train train : player.trains){
+				if (start.trainsInStation.contains(train, true)){
+					this.trains.add(train);
+					train.passengers += this.passengers;
+				}
 			}
+		}
+		else{
+			player.goals.removeValue(this, true);
 		}
 	}
 	
@@ -42,7 +58,7 @@ public class Goal {
 				if (end.trainsInStation.contains(train, true)){
 					player.money += this.reward;
 					train.passengers -= this.passengers;
-					player.score += this.points;
+					player.score += this.reward / 100 * this.passengers;
 					player.goals.removeValue(this, true);
 				}
 			}

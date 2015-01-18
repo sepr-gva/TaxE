@@ -150,6 +150,25 @@ public class GameScreen implements Screen {
 		{
 			game.trainList.get(0).traverse(game.gameMap.mapArray[5][10]);
 		}
+		if (Gdx.input.isKeyPressed(Keys.NUM_1)){
+			if (game.player1.goals.size < 4){
+				new Goal(game.player1, game);
+				for (Goal goal : game.player1.goals){
+				System.out.println(goal.description);
+				}
+				System.out.println("");
+			}
+		}
+		if (Gdx.input.isKeyPressed(Keys.NUM_2)){
+			if (game.player2.goals.size < 4){
+				new Goal(game.player2, game);
+				for (Goal goal : game.player2.goals){
+					System.out.println(goal.description);
+				}
+				System.out.println("");
+			}
+			
+		}
     }
 
 	@Override

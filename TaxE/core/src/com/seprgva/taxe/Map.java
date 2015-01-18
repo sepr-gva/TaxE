@@ -1,10 +1,14 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+
 public class Map 
 {
 	public int xSize;
 	public int ySize;
 	public Tile[][] mapArray;
+	
+	ArrayList<City> cityList = new ArrayList<City>();
 	
 	public Map()
 	{
@@ -51,13 +55,27 @@ public class Map
 			}
 		}
 		//Add the cities
-		mapArray[5][ySize-6] = new City(5,ySize-6, "City 1", "Ci1");
-		mapArray[34][ySize-6] = new City(34,ySize-6, "City 2", "Ci2");
-		mapArray[12][ySize-13] = new City(12,ySize-13, "City 3", "Ci3");
-		mapArray[19][ySize-20] = new City(19,ySize-20, "City 4", "Ci4");
-		mapArray[27][ySize-28] = new City(27,ySize-28, "City 5", "Ci5");
-		mapArray[5][ySize-35] = new City(5,ySize-35, "City 6", "Ci6");
-		mapArray[34][ySize-35] = new City(34,ySize-35, "City 7", "Ci7");
+		City city = new City(5,ySize-6, "City 1", "Ci1");
+		cityList.add(city);
+		mapArray[5][ySize-6] = city;
+		city = new City(34,ySize-6, "City 2", "Ci2");
+		cityList.add(city);
+		mapArray[34][ySize-6] = city;
+		city = new City(12,ySize-13, "City 3", "Ci3");
+		cityList.add(city);
+		mapArray[12][ySize-13] = city;
+		city = new City(19,ySize-20, "City 4", "Ci4");
+		cityList.add(city);
+		mapArray[19][ySize-20] = city;
+		city = new City(27,ySize-28, "City 5", "Ci5");
+		cityList.add(city);
+		mapArray[27][ySize-28] = city;
+		city = new City(5,ySize-35, "City 6", "Ci6");
+		cityList.add(city);
+		mapArray[5][ySize-35] = city;
+		city = new City(34,ySize-35, "City 7", "Ci7");
+		cityList.add(city);
+		mapArray[34][ySize-35] = city;
 		
 		//Add the rail, this can be replaced with a procedural generation method
 		for(int i=0; i<3; i++){

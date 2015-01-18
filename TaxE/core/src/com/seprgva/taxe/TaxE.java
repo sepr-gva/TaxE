@@ -20,6 +20,7 @@ public class TaxE extends Game {
 	Map gameMap;
 	int trainID = 0;
 	ArrayList<Train> trainList = new ArrayList<Train>();
+	ArrayList<City> cityList = new ArrayList<City>();
 	
 	@Override
 	public void create () {
@@ -58,6 +59,8 @@ public class TaxE extends Game {
 		selected = new Texture(Gdx.files.internal("Images/Selected.png"), true);
 		selected.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
+		
+		//Initialise players
 		player1 = new Player(1);
 		player2 = new Player(2);
 		
