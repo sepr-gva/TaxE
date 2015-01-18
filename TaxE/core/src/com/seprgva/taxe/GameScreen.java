@@ -8,11 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Array;
-
 import java.util.ArrayList;
 
 public class GameScreen implements Screen {
@@ -75,13 +70,14 @@ public class GameScreen implements Screen {
 		
 		//Placing two cities on the map
 		//For now, this has to be done by replacing the appropriate blank tiles with city tiles
+		
 		gameMap.mapArray[5][5] = new City(5,5, "London", "LON");
 		gameMap.mapArray[5][10] = new City(5,10, "York", "YRK");
 		for (int i = 6; i <= 9; i++)
 		{
 			gameMap.mapArray[5][i] = new Rail(5, i);
 		}
-
+		
 		createTrain(5, 5, game.player2);
 	}
 
