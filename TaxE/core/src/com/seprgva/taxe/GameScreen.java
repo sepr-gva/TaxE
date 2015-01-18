@@ -39,6 +39,7 @@ public class GameScreen implements Screen {
 			Train newTrain = new Train(trainID, gameMap.mapArray[X][Y], owner);
 			trainList.add(newTrain);
 			cityForTrain.trainsInStation.add(newTrain);
+			owner.trains.add(newTrain);
 			gameMap.mapArray[X][Y] = cityForTrain;
 			trainID++; //This needs to be implemented properly at some point
 		}
@@ -141,6 +142,7 @@ public class GameScreen implements Screen {
 		//Implementing this properly will require a maximum length for company name
 		game.font.draw(game.batch, "Player 1 name: " + game.player1.companyName, 700, 615);
 		game.font.draw(game.batch, "Player 2 name: " + game.player2.companyName, 700, 595);
+
 		
 		//Only for testing purposes
 		game.font.draw(game.batch, trainList.get(0).toString(), 150, 120);

@@ -16,6 +16,7 @@ public class Player {
 	public Player(int num){
 		this.playerNumber = num;
 		this.goals = new Array<Goal>();
+		this.trains = new Array<Train>();
 	}
 
 }
