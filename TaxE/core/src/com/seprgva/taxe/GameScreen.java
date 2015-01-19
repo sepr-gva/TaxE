@@ -47,33 +47,42 @@ public class GameScreen implements Screen {
 	private void handleInput() {
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
 			baseStage.getCamera().translate(5,0,0);
+			cityStage.getCamera().translate(5,0,0);
 			if (baseStage.getCamera().position.x > maxX)
 			{
+				cityStage.getCamera().position.x = maxX;
 				baseStage.getCamera().position.x = maxX;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
 			baseStage.getCamera().translate(-5,0,0);
+			cityStage.getCamera().translate(-5,0,0);
 			if (baseStage.getCamera().position.x < origX)
 			{
+				cityStage.getCamera().position.x = origX;
 				baseStage.getCamera().position.x = origX;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
 			baseStage.getCamera().translate(0,-5,0);
+			cityStage.getCamera().translate(0,-5,0);
 			if (baseStage.getCamera().position.y < origY)
 			{
+				cityStage.getCamera().position.y = origY;
 				baseStage.getCamera().position.y = origY;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+			cityStage.getCamera().translate(0,5,0);
 			baseStage.getCamera().translate(0,5,0);
 			if (baseStage.getCamera().position.y > maxY)
 			{
+				cityStage.getCamera().position.y = maxY;
 				baseStage.getCamera().position.y = maxY;
 			}
 		}
 		baseStage.getCamera().update();
+		cityStage.getCamera().update();
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_1)){
 			if (game.player1.goals.size() < 3){
 	        	new Goal(game.player1, game);
