@@ -21,6 +21,7 @@ public class GameScreen implements Screen {
 	public GameScreen(final TaxE gameInstance, int currentPhase) {
 		game = gameInstance;
 		gamePhase = currentPhase;
+		System.out.println(gamePhase);
 		baseStage = new Stage(new ScreenViewport());
 		cityStage = new Stage(new ScreenViewport());
 		
@@ -36,6 +37,7 @@ public class GameScreen implements Screen {
 		}
 	    
 		if ((gamePhase == 1) || (gamePhase == 2)){
+			//Set-up phase
 			Gdx.input.setInputProcessor(baseStage);
 		}
 		else{
@@ -87,6 +89,8 @@ public class GameScreen implements Screen {
 		}
 		baseStage.getCamera().update();
 		cityStage.getCamera().update();
+		
+		//Test goals
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_1)){
 			if (game.player1.goals.size() < 3){
 	        	new Goal(game.player1, game);
@@ -96,7 +100,7 @@ public class GameScreen implements Screen {
 	        	System.out.println();
 			}
         }
-		else if (Gdx.input.isKeyJustPressed(Keys.NUM_2)){
+		if (Gdx.input.isKeyJustPressed(Keys.NUM_2)){
 			if (game.player2.goals.size() < 3){
 	        	new Goal(game.player2, game);
 	        	for (Goal goal : game.player2.goals){
@@ -105,6 +109,11 @@ public class GameScreen implements Screen {
 	        	System.out.println();
 			}
         }
+		
+		//Test phase progression
+		if ((gamePhase < 4) && (Gdx.input.isKeyJustPressed(Keys.ENTER))){
+			game.setScreen(new GameScreen(game, gamePhase+1));
+		}
 	}
 
 	@Override
