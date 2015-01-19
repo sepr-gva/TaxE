@@ -41,13 +41,14 @@ public class Map
 		for (int i=0; i<xSize; i++){
 			
 			for (int j=0; j<ySize; j++){
-				
 				Tile tempTile = new Tile(i*32, j*32, game.greenSquare, game.redSquare, true);	
-				mapArray[i][j] = tempTile;
-				
-				
+				mapArray[i][j] = tempTile;			
 			}
 		}
+		City city = new City(32,32, "City 1", "Ci1", game.brownSquare);
+		mapArray[32][32] = city;
+		game.cityList.add(city);
+		
 		/*
 		//Add the cities
 		City city = new City(5,ySize-6, "City 1", "Ci1");

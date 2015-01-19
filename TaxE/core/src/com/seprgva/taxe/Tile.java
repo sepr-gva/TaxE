@@ -35,7 +35,6 @@ public class Tile extends Actor
 				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 					currentTexture = hoverTexture; 
 				}
-
 				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 					currentTexture = defaultTexture;
 				}

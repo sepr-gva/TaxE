@@ -22,7 +22,6 @@ public class City extends Tile
 		cityName = name;
 		cityIdentifier = identifier;
 		trainsInStation = new Array<Train>();
-		//this.camera = camera;
 	}
 	
 	@Override
