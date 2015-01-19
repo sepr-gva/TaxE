@@ -69,7 +69,7 @@ public class GameScreen implements Screen {
 			}
 		}
 		stage.getCamera().update();
-		if (Gdx.input.isKeyPressed(Keys.NUM_1)){
+		if (Gdx.input.isKeyJustPressed(Keys.NUM_1)){
 			if (game.player1.goals.size() < 3){
 	        	new Goal(game.player1, game);
 	        	for (Goal goal : game.player1.goals){
@@ -78,7 +78,7 @@ public class GameScreen implements Screen {
 	        	System.out.println();
 			}
         }
-		else if (Gdx.input.isKeyPressed(Keys.NUM_2)){
+		else if (Gdx.input.isKeyJustPressed(Keys.NUM_2)){
 			if (game.player2.goals.size() < 3){
 	        	new Goal(game.player2, game);
 	        	for (Goal goal : game.player2.goals){
