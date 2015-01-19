@@ -14,9 +14,6 @@ public class GameScreen implements Screen {
 	
 	private Stage stage;
 	
-	Texture texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
-	Tile tile;
-	
 	//equivalent of create
 	public GameScreen(final TaxE gameInstance, int currentPhase) {
 		game = gameInstance;
