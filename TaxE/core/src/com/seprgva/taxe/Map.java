@@ -49,14 +49,14 @@ public class Map
 		mapArray[32][32] = city;
 		game.cityList.add(city);
 		
-		/*
 		//Add the cities
-		City city = new City(5,ySize-6, "City 1", "Ci1");
-		cityList.add(city);
+		city = new City(5,ySize-6, "City 2", "Ci1", game.brownSquare);
+		game.cityList.add(city);
 		mapArray[5][ySize-6] = city;
-		city = new City(34,ySize-6, "City 2", "Ci2");
-		cityList.add(city);
+		city = new City(34,ySize-6, "City 3", "Ci2", game.brownSquare);
+		game.cityList.add(city);
 		mapArray[34][ySize-6] = city;
+		/*
 		city = new City(12,ySize-13, "City 3", "Ci3");
 		cityList.add(city);
 		mapArray[12][ySize-13] = city;

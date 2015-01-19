@@ -2,6 +2,7 @@ package com.seprgva.taxe;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -69,6 +70,24 @@ public class GameScreen implements Screen {
 		}
 		System.out.println(stage.getCamera().position.x + ", " + stage.getCamera().position.y);
 		stage.getCamera().update();
+		if (Gdx.input.isKeyPressed(Keys.NUM_1)){
+			if (game.player1.goals.size() < 3){
+	        	new Goal(game.player1, game);
+	        	for (Goal goal : game.player1.goals){
+	        		System.out.println(goal.description);
+	        	}
+	        	System.out.println();
+			}
+        }
+		else if (Gdx.input.isKeyPressed(Keys.NUM_2)){
+			if (game.player2.goals.size() < 3){
+	        	new Goal(game.player2, game);
+	        	for (Goal goal : game.player2.goals){
+	        		System.out.println(goal.description);
+	        	}
+	        	System.out.println();
+			}
+        }
 	}
 
 	@Override
@@ -78,6 +97,9 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
+        
+        handleInput();
+        
 
 	}
 

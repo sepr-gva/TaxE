@@ -17,6 +17,11 @@ public class Goal {
 	public Goal(Player player, TaxE gam){
 		this.game = gam;
 		this.turnsLeft = MathUtils.random(4, 7);
+		int v = MathUtils.random(0,2);
+		boolean via = false;
+		if (v == 0){
+			via = true;
+		}
 		int s = MathUtils.random(0, game.cityList.size() - 1);
 		int e = MathUtils.random(0, game.cityList.size() - 1);
 		while (s == e){
@@ -24,9 +29,18 @@ public class Goal {
 		}
 		this.start = game.cityList.get(s);
 		this.end = game.cityList.get(e);
-		this.passengers = MathUtils.random(100, 200);
-		this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
-				" to " + this.end.cityName + " in " + this.turnsLeft + " turns.      " + player.companyName;
+		this.passengers = 100;
+		if (via == true){
+			while (v == e || v == s){
+				v = MathUtils.random(0, game.cityList.size() - 1);
+			}
+			this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
+					" to " + this.end.cityName + " via " + game.cityList.get(v).cityName + " in " + this.turnsLeft + " turns.      " + player.companyName;
+		}
+		else{
+			this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
+					" to " + this.end.cityName + " in " + this.turnsLeft + " turns.      " + player.companyName;
+		}
 		this.reward = this.passengers * 10;
 		this.player = player;
 		trains = new ArrayList<Train>();
