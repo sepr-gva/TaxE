@@ -4,8 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -16,6 +19,7 @@ public class GameScreen implements Screen {
 	
 	private Stage baseStage, cityStage;
 	private float origX, origY, maxX, maxY;
+	OrthographicCamera uiCamera;
 	
 	//equivalent of create
 	public GameScreen(final TaxE gameInstance, int currentPhase) {
@@ -24,6 +28,9 @@ public class GameScreen implements Screen {
 		System.out.println(gamePhase);
 		baseStage = new Stage(new ScreenViewport());
 		cityStage = new Stage(new ScreenViewport());
+		uiCamera = new OrthographicCamera();
+		uiCamera.setToOrtho(false, 1000, 625);
+		uiCamera.update();
 		
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
@@ -146,6 +153,27 @@ public class GameScreen implements Screen {
         baseStage.draw();
         cityStage.act(delta);
         cityStage.draw();
+        
+        game.batch.setProjectionMatrix(uiCamera.combined);
+		
+		game.batch.begin();
+		game.batch.draw(game.player1.avatar, 900, 525, 100, 100);
+		game.batch.draw(game.player2.avatar, 0, 525, 100, 100);
+		
+		//Implementing this properly will require a maximum length for company name
+		game.font.draw(game.batch, game.player1.companyName, 10, 515);
+		game.font.draw(game.batch, "Gold: " + game.player1.money, 10, 500);
+		game.font.draw(game.batch, "Passengers delivered: " + game.player1.safePass, 10, 485);
+		
+		game.font.draw(game.batch, game.player2.companyName, 990 - ((game.font.getBounds(game.player2.companyName).width)), 515);
+		String string = "Gold: " + game.player1.money;
+		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 500);
+		string = "Passengers delivered: " + game.player2.safePass;
+		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 485);
+		
+		game.batch.end();
+        
+        
         
         handleInput();
 
