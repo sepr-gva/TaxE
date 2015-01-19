@@ -46,6 +46,8 @@ public class Map
 				
 				Tile tempTile = new Tile(i*32, j*32, texture);	
 				mapArray[i][j] = tempTile;
+				
+				
 			}
 		}
 		/*

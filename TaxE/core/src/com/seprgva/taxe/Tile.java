@@ -1,8 +1,11 @@
 package com.seprgva.taxe;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Tile extends Actor
 {
@@ -17,6 +20,16 @@ public class Tile extends Actor
 	{
 		texture = sprite;
 		setBounds(x, y,texture.getWidth(),texture.getHeight());
+		
+		addListener(new InputListener() {
+		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+		    	texture = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"));
+		    }
+
+		    public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+		    	texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
+		    }
+		});
 	}
 	
 	@Override
