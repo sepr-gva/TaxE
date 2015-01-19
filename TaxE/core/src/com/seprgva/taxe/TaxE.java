@@ -15,7 +15,7 @@ public class TaxE extends Game {
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
-	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, udl, ulr, udr, lr, ud, nextPhase, city;
+	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, udl, ulr, udr, lr, ud, nextPhase, city, cityHover;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -104,6 +104,8 @@ public class TaxE extends Game {
 		ud.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		city = new Texture(Gdx.files.internal("gameGraphics/city96.png"), true);
 		city.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		cityHover = new Texture(Gdx.files.internal("gameGraphics/citySelected.png"), true);
+		cityHover.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		//Map generation
 		//Map is currently set to 40x40

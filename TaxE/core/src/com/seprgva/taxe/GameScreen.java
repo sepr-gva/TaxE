@@ -14,61 +14,66 @@ public class GameScreen implements Screen {
 	TaxE game;
 	int gamePhase;
 	
-	private Stage stage;
+	private Stage baseStage, cityStage;
 	private float origX, origY, maxX, maxY;
-	
-	Texture texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
-	Tile tile;
 	
 	//equivalent of create
 	public GameScreen(final TaxE gameInstance, int currentPhase) {
 		game = gameInstance;
 		gamePhase = currentPhase;
-		stage = new Stage(new ScreenViewport());
+		baseStage = new Stage(new ScreenViewport());
+		cityStage = new Stage(new ScreenViewport());
 		
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
-				stage.addActor(game.gameMap.getTile(i,j));
+				if (game.gameMap.getTile(i, j) instanceof City){
+					cityStage.addActor(game.gameMap.getTile(i, j));
+				}
+				else{
+					baseStage.addActor(game.gameMap.getTile(i,j));
+				}
 			}
 		}
-	    Gdx.input.setInputProcessor(stage);
 	    
-	    origX = stage.getCamera().position.x;
-	    origY = stage.getCamera().position.y;
+		//Gdx.input.setInputProcessor(baseStage);
+		Gdx.input.setInputProcessor(cityStage);
+	    
+	    origX = baseStage.getCamera().position.x;
+	    origY = baseStage.getCamera().position.y;
 	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
 	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
 	}
 	
 	private void handleInput() {
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-			stage.getCamera().translate(5,0,0);
-			if (stage.getCamera().position.x > maxX)
+			baseStage.getCamera().translate(5,0,0);
+			if (baseStage.getCamera().position.x > maxX)
 			{
-				stage.getCamera().position.x = maxX;
+				baseStage.getCamera().position.x = maxX;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-			stage.getCamera().translate(-5,0,0);
-			if (stage.getCamera().position.x < origX)
+			baseStage.getCamera().translate(-5,0,0);
+			if (baseStage.getCamera().position.x < origX)
 			{
-				stage.getCamera().position.x = origX;
+				baseStage.getCamera().position.x = origX;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-			stage.getCamera().translate(0,-5,0);
-			if (stage.getCamera().position.y < origY)
+			baseStage.getCamera().translate(0,-5,0);
+			if (baseStage.getCamera().position.y < origY)
 			{
-				stage.getCamera().position.y = origY;
+				baseStage.getCamera().position.y = origY;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)){
-			stage.getCamera().translate(0,5,0);
-			if (stage.getCamera().position.y > maxY)
+			baseStage.getCamera().translate(0,5,0);
+			if (baseStage.getCamera().position.y > maxY)
 			{
-				stage.getCamera().position.y = maxY;
+				baseStage.getCamera().position.y = maxY;
 			}
 		}
-		stage.getCamera().update();
+		baseStage.getCamera().update();
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_1)){
 			if (game.player1.goals.size() < 3){
 	        	new Goal(game.player1, game);
@@ -94,17 +99,18 @@ public class GameScreen implements Screen {
 		handleInput();
 		
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(delta);
-        stage.draw();
+        baseStage.act(delta);
+        baseStage.draw();
+        cityStage.act(delta);
+        cityStage.draw();
         
         handleInput();
-        
 
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);	
+		baseStage.getViewport().update(width, height, true);	
 	}
 
 	@Override
@@ -133,7 +139,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		stage.dispose();	
+		baseStage.dispose();	
 		
 	}
 	

@@ -16,34 +16,35 @@ public class Tile extends Actor
 	Texture defaultTexture, hoverTexture, currentTexture;
 	public boolean started = false;
 	public boolean blank = false;
+	int xCoord, yCoord;
 	
 	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank)
 	{
+		xCoord = x;
+		yCoord = y;
 		defaultTexture = sprite;
 		hoverTexture = hoverSprite;
 		currentTexture = defaultTexture;
-		setBounds(x, y, currentTexture.getWidth(), currentTexture.getHeight());
+		//setBounds(x, y, currentTexture.getWidth(), currentTexture.getHeight());
 		blank = isblank;
-		hoverHandler();
 	}
 	
-	private void hoverHandler()
+	protected void hoverHandler()
 	{
-		if(blank == true){
-			
-			addListener(new InputListener() {
-				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-					currentTexture = hoverTexture; 
-				}
-				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-					currentTexture = defaultTexture;
-				}
-			});
-		}
+		addListener(new InputListener() {
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				currentTexture = hoverTexture;
+			}
+			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				currentTexture = defaultTexture;
+			}
+		});
 	}
 	
 	@Override
     public void draw(Batch batch, float alpha){
+		hoverHandler();
+		setBounds(xCoord, yCoord, currentTexture.getWidth(), currentTexture.getHeight());
         batch.draw(currentTexture, getX(), getY());
     }
 	

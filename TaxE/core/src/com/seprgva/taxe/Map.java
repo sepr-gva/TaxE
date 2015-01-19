@@ -36,7 +36,7 @@ public class Map
 	}
 	
 	private void createCity(int i, int j, String cityName, String cityID){
-		City city = new City(i*32, j*32, cityName, cityID, game.city);
+		City city = new City((i*32)-32, (j*32)-32, cityName, cityID, game.city, game.cityHover);
 		mapArray[i][j] = city;
 		game.cityList.add(city);
 	}
