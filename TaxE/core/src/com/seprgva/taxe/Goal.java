@@ -14,8 +14,8 @@ public class Goal {
 	
 	//Simple random goal generated, no check for whether it is achievable
 	//Will be made smarter when map fully implemented
-	public Goal(Player player, TaxE gam){
-			this.game = gam;
+	public Goal(Player player, TaxE gameInstance){
+			this.game = gameInstance;
 			this.turnsLeft = MathUtils.random(4, 7);
 			int v = MathUtils.random(0,2);
 			boolean via = false;
