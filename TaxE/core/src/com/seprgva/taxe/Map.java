@@ -10,13 +10,11 @@ public class Map
 	public int xSize;
 	public int ySize;
 	public Tile[][] mapArray;
+	TaxE game;
 	
-	Texture texture = new Texture(Gdx.files.internal("gameGraphics/emptyTile32.png"));
-	
-	ArrayList<City> cityList = new ArrayList<City>();
-	
-	public Map()
+	public Map(final TaxE gameInstance)
 	{
+		game = gameInstance;
 		xSize = 39;
 		ySize = 39;
 		mapArray = new Tile[xSize][ySize];
@@ -43,13 +41,14 @@ public class Map
 		for (int i=0; i<xSize; i++){
 			
 			for (int j=0; j<ySize; j++){
-				
-				Tile tempTile = new Tile(i*32, j*32, texture, true);	
-				mapArray[i][j] = tempTile;
-				
-				
+				Tile tempTile = new Tile(i*32, j*32, game.greenSquare, game.redSquare, true);	
+				mapArray[i][j] = tempTile;			
 			}
 		}
+		City city = new City(32,32, "City 1", "Ci1", game.brownSquare);
+		mapArray[32][32] = city;
+		game.cityList.add(city);
+		
 		/*
 		//Add the cities
 		City city = new City(5,ySize-6, "City 1", "Ci1");

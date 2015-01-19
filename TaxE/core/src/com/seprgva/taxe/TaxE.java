@@ -114,7 +114,7 @@ public class TaxE extends Game {
 		
 		//Map generation
 		//Map is currently set to 40x40
-		gameMap = new Map();
+		gameMap = new Map(this);
 		
 		this.setScreen(new MainMenuScreen(this));
 	}
