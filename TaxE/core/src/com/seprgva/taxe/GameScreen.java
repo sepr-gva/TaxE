@@ -35,8 +35,8 @@ public class GameScreen implements Screen {
 			}
 		}
 	    
-		//Gdx.input.setInputProcessor(baseStage);
-		Gdx.input.setInputProcessor(cityStage);
+		Gdx.input.setInputProcessor(baseStage);
+		//Gdx.input.setInputProcessor(cityStage);
 	    
 	    origX = baseStage.getCamera().position.x;
 	    origY = baseStage.getCamera().position.y;

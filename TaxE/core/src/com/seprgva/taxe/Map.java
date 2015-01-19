@@ -31,6 +31,16 @@ public class Map
 		return returnString;
 	}
 	
+	private void createRoute(int[][] listOfRails){
+		int railX, railY;
+		for (int[] rail : listOfRails){
+			railX = rail[0];
+			railY = rail[1];
+			Rail newRail = new Rail(railX*32, railY*32, game.ud);
+			mapArray[railX][railY] = newRail;
+		}
+	}
+	
 	public Tile getTile(int x, int y){
 		return mapArray[x][y];
 	}
@@ -53,6 +63,10 @@ public class Map
 		}
 		
 		createCity(2,2, "City 1", "CY1");
+		
+		//Test rail - iterating was easier than writing loads of code.
+		int[][] testRoute = {{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9}};
+		createRoute(testRoute);
 		
 		/*
 		City city = new City(32,32, "City 1", "Ci1", game.brownSquare);
