@@ -22,7 +22,7 @@ public class Tile extends Actor
 		defaultTexture = sprite;
 		hoverTexture = hoverSprite;
 		currentTexture = defaultTexture;
-		setBounds(x, y,currentTexture.getWidth(),currentTexture.getHeight());
+		setBounds(x, y, currentTexture.getWidth(), currentTexture.getHeight());
 		blank = isblank;
 		hoverHandler();
 	}

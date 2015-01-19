@@ -47,7 +47,7 @@ public class Map
 		for (int i=0; i<xSize; i++){
 			
 			for (int j=0; j<ySize; j++){
-				Tile tempTile = new Tile(i*32, j*32, game.emptyTile, game.redSquare, true);	
+				Tile tempTile = new Tile(i*32, j*32, game.emptyTile, game.emptyTileHover, true);	
 				mapArray[i][j] = tempTile;			
 			}
 		}

@@ -15,7 +15,7 @@ public class TaxE extends Game {
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
-	emptyTile, ld, lu, rd, ru, junction, udl, ulr, udr, lr, ud, nextPhase, city;
+	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, udl, ulr, udr, lr, ud, nextPhase, city;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -81,6 +81,7 @@ public class TaxE extends Game {
 		//Tile Textures
 		emptyTile = new Texture(Gdx.files.internal("gameGraphics/emptyTile.png"), true);
 		emptyTile.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		emptyTileHover = new Texture(Gdx.files.internal("gameGraphics/emptyTileHover.png"), true);
 		ld = new Texture(Gdx.files.internal("gameGraphics/railLD.png"), true);
 		ld.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		lu = new Texture(Gdx.files.internal("gameGraphics/railLU.png"), true);
