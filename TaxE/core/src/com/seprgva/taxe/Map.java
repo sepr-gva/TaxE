@@ -2,11 +2,16 @@ package com.seprgva.taxe;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 public class Map 
 {
 	public int xSize;
 	public int ySize;
 	public Tile[][] mapArray;
+	
+	Texture texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
 	
 	ArrayList<City> cityList = new ArrayList<City>();
 	
@@ -28,32 +33,22 @@ public class Map
 		return returnString;
 	}
 	
+	public Tile getTile(int x, int y){
+		return mapArray[x][y];
+	}
+	
 	private void initialise()
 	{
 		//Set up the map to have alternate player 1 and 2 buildable tiles
-		int count = 0;
-		for (int i=0; i<xSize; i++)
-		{
-			for (int j=0; j<ySize; j++)
-			{
-				String type;
+		for (int i=0; i<xSize; i++){
+			
+			for (int j=0; j<ySize; j++){
 				
-				if ((count & 1) == 0){
-					type = "player1Build";			
-				}
-				else{
-					type = "player2Build";
-				}
-				
-				Tile tempTile = new Tile(i, j, type);
-				tempTile.width = 32;
-				tempTile.height = 32;
-				
+				Tile tempTile = new Tile(i*32, j*32, texture);	
 				mapArray[i][j] = tempTile;
-				
-				count++;
 			}
 		}
+		/*
 		//Add the cities
 		City city = new City(5,ySize-6, "City 1", "Ci1");
 		cityList.add(city);
@@ -95,7 +90,7 @@ public class Map
 		}
 		
 		
-		
+		*/
 		
 		
 	}

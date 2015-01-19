@@ -1,21 +1,26 @@
 package com.seprgva.taxe;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 public class Rail extends Tile
 {
 	
 	Rail prevRail = null;
 	Rail nextRail = null;
 	
-	public Rail(int xCoord, int yCoord)
+	static Texture texture = new Texture(Gdx.files.internal("gameGraphics/railUD.png"));
+	
+	public Rail(int x, int y)
 	{
-		super(xCoord, yCoord, "Rail");
+		super(x, y, texture);
 	}
 	
 	@Override
 	public String toString()
 	{
 		String returnString = "";
-		returnString = "Tile at position " + this.x + ", " + this.y + " is a rail";
+		returnString = "Tile at position " + this.getX() + ", " + this.getY() + " is a rail";
 		
 		return returnString;
 	}

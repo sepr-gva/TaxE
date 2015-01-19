@@ -1,25 +1,34 @@
 package com.seprgva.taxe;
 
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class Tile extends Rectangle
+public class Tile extends Actor
 {
 	//Tile is concrete as it represents a blank tile
-	Tile[] neighbours = new Tile[4];	//Should be able to calculate neighbours using tile coordinates as a unique ID.
-	public String tileType;
+	//Tile[] neighbours = new Tile[4];	//Should be able to calculate neighbours using tile coordinates as a unique ID.
+	//public String tileType;
 	
-	public Tile(int xCoord, int yCoord, String type)
+	Texture texture;
+	public boolean started = false;
+	
+	public Tile(int x, int y, Texture sprite)
 	{
-		super(xCoord, yCoord, 32f, 32f);
-		
-		this.tileType = type;
+		texture = sprite;
+		setBounds(x, y,texture.getWidth(),texture.getHeight());
 	}
+	
+	@Override
+    public void draw(Batch batch, float alpha){
+        batch.draw(texture, this.getX(),getY());
+    }
 	
 	@Override
 	public String toString()
 	{
-		String returnString = "";
-		returnString = "Tile at position " + this.x + ", " + this.y + " is empty.";
+		String returnString;
+		returnString = "Tile at position " + this.getX() + ", " + this.getY() + " is empty.";
 	
 		return returnString;
 	}

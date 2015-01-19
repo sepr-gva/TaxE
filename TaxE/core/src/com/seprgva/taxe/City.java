@@ -2,6 +2,7 @@ package com.seprgva.taxe;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -14,11 +15,14 @@ public class City extends Tile
 	Rail prevRail = null;
 	Array<Train> trainsInStation;
 	OrthographicCamera camera;
-	long time = TimeUtils.millis();
 	
-	public City(int xCoord, int yCoord, String name, String identifier)
+	long time = TimeUtils.millis();
+	static Texture texture = new Texture(Gdx.files.internal("gameGraphics/cityTile.png"));
+	
+	public City(int x, int y, String name, String identifier)
 	{
-		super(xCoord, yCoord, "City");
+		super(x, y, texture);
+		
 		cityName = name;
 		cityIdentifier = identifier;
 		trainsInStation = new Array<Train>();
@@ -29,12 +33,13 @@ public class City extends Tile
 	public String toString()
 	{
 		String returnString;
-		returnString = "Tile at position " + this.x + ", " + this.y + " is city: " + cityName + ".";
+		returnString = "Tile at position " + this.getX() + ", " + this.getY() + " is city: " + cityName + ".";
 		
 		return returnString;
 	}
 	
 	public boolean isPressed(){
+		/*
 		if (Gdx.input.isTouched() && TimeUtils.millis() - time > 300){
 			Vector3 touchPos = new Vector3();
 			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -50,6 +55,8 @@ public class City extends Tile
 		else{
 			return false;
 		}
+		*/
+		return false;
 	}
 	
 }
