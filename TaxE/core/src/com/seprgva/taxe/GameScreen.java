@@ -157,20 +157,20 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(uiCamera.combined);
 		
 		game.batch.begin();
+		//Draw player1's avatar top left and player2's top right
 		game.batch.draw(game.player1.avatar, 900, 525, 100, 100);
 		game.batch.draw(game.player2.avatar, 0, 525, 100, 100);
-		
-		//Implementing this properly will require a maximum length for company name
+		//Draw player1's company name, gold and passengers delivered
 		game.font.draw(game.batch, game.player1.companyName, 10, 515);
 		game.font.draw(game.batch, "Gold: " + game.player1.money, 10, 500);
 		game.font.draw(game.batch, "Passengers delivered: " + game.player1.safePass, 10, 485);
-		
+		//Draw player1's company name, gold and passengers delivered
+		//uses font.getBounds() to align from the right
 		game.font.draw(game.batch, game.player2.companyName, 990 - ((game.font.getBounds(game.player2.companyName).width)), 515);
 		String string = "Gold: " + game.player1.money;
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 500);
 		string = "Passengers delivered: " + game.player2.safePass;
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 485);
-		
 		game.batch.end();
         
         

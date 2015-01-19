@@ -70,7 +70,8 @@ public class Goal {
 			for (Train train : this.trains){
 				if (end.trainsInStation.contains(train, true)){
 					player.money += this.reward;
-					train.passengers -= this.passengers;
+					player.safePass += train.passengers;
+					train.passengers = 0;
 					player.score += this.reward / 100 * this.passengers;
 					player.goals.remove(this);
 				}
