@@ -11,7 +11,7 @@ public class Map
 	public int ySize;
 	public Tile[][] mapArray;
 	
-	Texture texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
+	Texture texture = new Texture(Gdx.files.internal("gameGraphics/emptyTile32.png"));
 	
 	ArrayList<City> cityList = new ArrayList<City>();
 	
