@@ -1,6 +1,7 @@
 package com.seprgva.taxe;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +14,7 @@ public class GameScreen implements Screen {
 	int gamePhase;
 	
 	private Stage stage;
+	private float origX, origY, maxX, maxY;
 	
 	Texture texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
 	Tile tile;
@@ -28,12 +30,50 @@ public class GameScreen implements Screen {
 				stage.addActor(game.gameMap.getTile(i,j));
 			}
 		}
-		
 	    Gdx.input.setInputProcessor(stage);
+	    
+	    origX = stage.getCamera().position.x;
+	    origY = stage.getCamera().position.y;
+	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
+	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
+	}
+	
+	private void handleInput() {
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+			stage.getCamera().translate(5,0,0);
+			if (stage.getCamera().position.x > maxX)
+			{
+				stage.getCamera().position.x = maxX;
+			}
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+			stage.getCamera().translate(-5,0,0);
+			if (stage.getCamera().position.x < origX)
+			{
+				stage.getCamera().position.x = origX;
+			}
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+			stage.getCamera().translate(0,-5,0);
+			if (stage.getCamera().position.y < origY)
+			{
+				stage.getCamera().position.y = origY;
+			}
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+			stage.getCamera().translate(0,5,0);
+			if (stage.getCamera().position.y > maxY)
+			{
+				stage.getCamera().position.y = maxY;
+			}
+		}
+		System.out.println(stage.getCamera().position.x + ", " + stage.getCamera().position.y);
+		stage.getCamera().update();
 	}
 
 	@Override
 	public void render(float delta) {
+		handleInput();
 		
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
