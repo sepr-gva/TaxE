@@ -1,15 +1,23 @@
 package com.seprgva.taxe;
 
-public class Train
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
+public class Train extends Actor
 {
 	int identifier;
 	Tile currentLocation;
+	Texture trainTexture;
 	Player owner;
 	int passengers = 0;
-	//Player owner;
+	int xCoord, yCoord;
 	
-	public Train(int ID, Tile startingLocation, Player player)
+	public Train(int ID, Tile startingLocation, Player player, int x, int y, Texture sprite)
 	{
+		trainTexture = sprite;
+		xCoord = x;
+		yCoord = y;
 		identifier = ID;
 		currentLocation = startingLocation;
 		owner = player;
@@ -21,6 +29,12 @@ public class Train
 			currentLocation = destination;
 		}
 	}
+	
+	@Override
+    public void draw(Batch batch, float alpha){
+		setBounds(xCoord, yCoord, trainTexture.getWidth(), trainTexture.getHeight());
+        batch.draw(trainTexture, getX(), getY());
+    }
 	
 	@Override
 	public String toString()

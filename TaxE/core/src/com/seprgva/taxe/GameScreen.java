@@ -52,10 +52,14 @@ public class GameScreen implements Screen {
 			Gdx.input.setInputProcessor(cityStage);
 		}
 		
-		if (gamePhase == 1){
+		if (gamePhase == 1){ 
 			createTrain(2,2,game.player1);
 			createTrain(2,10,game.player2);
 		}
+	    
+	    for (Train train: game.trainList){
+	    	baseStage.addActor(train);
+	    }
 	    
 	    origX = baseStage.getCamera().position.x;
 	    origY = baseStage.getCamera().position.y;
@@ -65,11 +69,18 @@ public class GameScreen implements Screen {
 	
 	private void createTrain(int X, int Y, Player owner)
 	{
+		Texture trainTexture;
+		if (owner.playerNumber == 1){
+			trainTexture = game.tempTrain1;
+		}
+		else{
+			trainTexture = game.tempTrain2;
+		}
 		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
 		Tile tileForTrain = game.gameMap.mapArray[X][Y];
 		if (tileForTrain instanceof City){
 			City cityForTrain = (City) tileForTrain;
-			Train newTrain = new Train(game.trainID, game.gameMap.mapArray[X][Y], owner);
+			Train newTrain = new Train(game.trainID, game.gameMap.mapArray[X][Y], owner, X*32, Y*32, trainTexture);
 			game.trainList.add(newTrain);
 			cityForTrain.trainsInStation.add(newTrain);
 			owner.trains.add(newTrain);
