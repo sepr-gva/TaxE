@@ -17,13 +17,13 @@ public class Goal {
 	public Goal(Player player, TaxE gam){
 		this.game = gam;
 		this.turnsLeft = MathUtils.random(4, 7);
-		int s = MathUtils.random(0, game.cityList.size() - 1);
-		int e = MathUtils.random(0, game.cityList.size() - 1);
+		int s = MathUtils.random(0, game.gameMap.cityList.size() - 1);
+		int e = MathUtils.random(0, game.gameMap.cityList.size() - 1);
 		while (s == e){
-			e = MathUtils.random(0, game.cityList.size() - 1);
+			e = MathUtils.random(0, game.gameMap.cityList.size() - 1);
 		}
-		this.start = game.cityList.get(s);
-		this.end = game.cityList.get(e);
+		this.start = game.gameMap.cityList.get(s);
+		this.end = game.gameMap.cityList.get(e);
 		this.passengers = MathUtils.random(100, 200);
 		this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
 				" to " + this.end.cityName + " in " + this.turnsLeft + " turns.      " + player.companyName;

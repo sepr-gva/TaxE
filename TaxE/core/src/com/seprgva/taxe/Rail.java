@@ -8,9 +8,11 @@ public class Rail extends Tile
 	Rail prevRail = null;
 	Rail nextRail = null;
 	
-	public Rail(int x, int y, Texture railTexture)
+	static Texture texture = new Texture(Gdx.files.internal("gameGraphics/railUD.png"));
+	
+	public Rail(int x, int y)
 	{
-		super(x, y, railTexture, railTexture, false);
+		super(x, y, texture, false);
 	}
 	
 	@Override

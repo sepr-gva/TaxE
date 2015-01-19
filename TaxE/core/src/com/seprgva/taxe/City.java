@@ -13,15 +13,19 @@ public class City extends Tile
 	Rail nextRail = null;
 	Rail prevRail = null;
 	Array<Train> trainsInStation;
+	OrthographicCamera camera;
 	
 	long time = TimeUtils.millis();
+	static Texture texture = new Texture(Gdx.files.internal("gameGraphics/cityTile.png"));
 	
-	public City(int x, int y, String name, String identifier, Texture cityTexture)
+	public City(int x, int y, String name, String identifier)
 	{
-		super(x, y, cityTexture, cityTexture, false);
+		super(x, y, texture, false);
+		
 		cityName = name;
 		cityIdentifier = identifier;
 		trainsInStation = new Array<Train>();
+		//this.camera = camera;
 	}
 	
 	@Override
