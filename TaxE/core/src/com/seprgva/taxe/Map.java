@@ -63,6 +63,7 @@ public class Map
 		}
 		
 		createCity(2,2, "City 1", "CY1");
+		createCity(2,10, "City 2", "CY2");
 		
 		//Test rail - iterating was easier than writing loads of code.
 		int[][] testRoute = {{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9}};

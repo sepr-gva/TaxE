@@ -41,13 +41,34 @@ public class GameScreen implements Screen {
 			Gdx.input.setInputProcessor(baseStage);
 		}
 		else{
+			//Deployment phase
 			Gdx.input.setInputProcessor(cityStage);
+		}
+		
+		if (gamePhase == 1){
+			createTrain(2,2,game.player1);
+			createTrain(2,10,game.player2);
 		}
 	    
 	    origX = baseStage.getCamera().position.x;
 	    origY = baseStage.getCamera().position.y;
 	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
 	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
+	}
+	
+	private void createTrain(int X, int Y, Player owner)
+	{
+		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
+		Tile tileForTrain = game.gameMap.mapArray[X][Y];
+		if (tileForTrain instanceof City){
+			City cityForTrain = (City) tileForTrain;
+			Train newTrain = new Train(game.trainID, game.gameMap.mapArray[X][Y], owner);
+			game.trainList.add(newTrain);
+			cityForTrain.trainsInStation.add(newTrain);
+			owner.trains.add(newTrain);
+			game.gameMap.mapArray[X][Y] = cityForTrain;
+			game.trainID++; //This needs to be implemented properly at some point
+		}
 	}
 	
 	private void handleInput() {
