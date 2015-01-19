@@ -68,7 +68,6 @@ public class GameScreen implements Screen {
 				stage.getCamera().position.y = maxY;
 			}
 		}
-		System.out.println(stage.getCamera().position.x + ", " + stage.getCamera().position.y);
 		stage.getCamera().update();
 		if (Gdx.input.isKeyPressed(Keys.NUM_1)){
 			if (game.player1.goals.size() < 3){
