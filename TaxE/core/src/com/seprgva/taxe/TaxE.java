@@ -15,8 +15,7 @@ public class TaxE extends Game {
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
-	empty1, empty2, ld, lu, rd, ru, junction, udl, ulr, udr, lr, ud, nextPhase,
-	emptyTile, emptyHover;
+	emptyTile, ld, lu, rd, ru, junction, udl, ulr, udr, lr, ud, nextPhase, city;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -80,10 +79,8 @@ public class TaxE extends Game {
 		
 		
 		//Tile Textures
-		empty1 = new Texture(Gdx.files.internal("gameGraphics/emptyTile1.png"), true);
-		empty1.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
-		empty2 = new Texture(Gdx.files.internal("gameGraphics/emptyTile2.png"), true);
-		empty2.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		emptyTile = new Texture(Gdx.files.internal("gameGraphics/emptyTile.png"), true);
+		emptyTile.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		ld = new Texture(Gdx.files.internal("gameGraphics/railLD.png"), true);
 		ld.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		lu = new Texture(Gdx.files.internal("gameGraphics/railLU.png"), true);
@@ -104,10 +101,8 @@ public class TaxE extends Game {
 		lr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		ud = new Texture(Gdx.files.internal("gameGraphics/railUD.png"), true);
 		ud.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
-		emptyTile = new Texture(Gdx.files.internal("gameGraphics/grassTile1.png"), true);
-		emptyTile.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
-		emptyHover = new Texture(Gdx.files.internal("gameGraphics/grassTile2.png"), true);
-		emptyHover.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		city = new Texture(Gdx.files.internal("gameGraphics/city96.png"), true);
+		city.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		//Map generation
 		//Map is currently set to 40x40

@@ -35,16 +35,26 @@ public class Map
 		return mapArray[x][y];
 	}
 	
+	private void createCity(int i, int j, String cityName, String cityID){
+		City city = new City(i*32, j*32, cityName, cityID, game.city);
+		mapArray[i][j] = city;
+		game.cityList.add(city);
+	}
+	
 	private void initialise()
 	{
 		//Set up the map to have alternate player 1 and 2 buildable tiles
 		for (int i=0; i<xSize; i++){
 			
 			for (int j=0; j<ySize; j++){
-				Tile tempTile = new Tile(i*32, j*32, game.greenSquare, game.redSquare, true);	
+				Tile tempTile = new Tile(i*32, j*32, game.emptyTile, game.redSquare, true);	
 				mapArray[i][j] = tempTile;			
 			}
 		}
+		
+		createCity(2,2, "City 1", "CY1");
+		
+		/*
 		City city = new City(32,32, "City 1", "Ci1", game.brownSquare);
 		mapArray[32][32] = city;
 		game.cityList.add(city);
@@ -56,6 +66,8 @@ public class Map
 		city = new City(34,ySize-6, "City 3", "Ci2", game.brownSquare);
 		game.cityList.add(city);
 		mapArray[34][ySize-6] = city;
+		*/
+		
 		/*
 		city = new City(12,ySize-13, "City 3", "Ci3");
 		cityList.add(city);
