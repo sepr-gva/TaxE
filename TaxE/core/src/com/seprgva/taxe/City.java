@@ -20,7 +20,7 @@ public class City extends Tile
 	
 	public City(int x, int y, String name, String identifier)
 	{
-		super(x, y, texture);
+		super(x, y, texture, false);
 		
 		cityName = name;
 		cityIdentifier = identifier;

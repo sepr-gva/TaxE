@@ -15,21 +15,26 @@ public class Tile extends Actor
 	
 	Texture texture;
 	public boolean started = false;
+	public boolean blank = false;
 	
-	public Tile(int x, int y, Texture sprite)
+	public Tile(int x, int y, Texture sprite, boolean isblank)
 	{
 		texture = sprite;
 		setBounds(x, y,texture.getWidth(),texture.getHeight());
+		blank = isblank;
 		
-		addListener(new InputListener() {
-		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-		    	texture = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"));
-		    }
+		if(blank == true){
+			
+			addListener(new InputListener() {
+				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+					texture = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"));
+				}
 
-		    public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-		    	texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
-		    }
-		});
+				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+					texture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
+				}
+			});
+		}
 	}
 	
 	@Override

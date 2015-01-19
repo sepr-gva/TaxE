@@ -44,7 +44,7 @@ public class Map
 			
 			for (int j=0; j<ySize; j++){
 				
-				Tile tempTile = new Tile(i*32, j*32, texture);	
+				Tile tempTile = new Tile(i*32, j*32, texture, true);	
 				mapArray[i][j] = tempTile;
 				
 				

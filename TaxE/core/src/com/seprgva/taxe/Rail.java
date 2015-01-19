@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Rail extends Tile
 {
-	
 	Rail prevRail = null;
 	Rail nextRail = null;
 	
@@ -13,7 +12,7 @@ public class Rail extends Tile
 	
 	public Rail(int x, int y)
 	{
-		super(x, y, texture);
+		super(x, y, texture, false);
 	}
 	
 	@Override
