@@ -13,15 +13,16 @@ public class Tile extends Actor
 	//Tile[] neighbours = new Tile[4];	//Should be able to calculate neighbours using tile coordinates as a unique ID.
 	//public String tileType;
 	
-	Texture defaultTexture, hoverTexture;
+	Texture defaultTexture, hoverTexture, currentTexture;
 	public boolean started = false;
 	public boolean blank = false;
 	
 	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank)
 	{
 		defaultTexture = sprite;
-		hoverTexture = hoverSprite; 
-		setBounds(x, y,defaultTexture.getWidth(),defaultTexture.getHeight());
+		hoverTexture = hoverSprite;
+		currentTexture = defaultTexture;
+		setBounds(x, y,currentTexture.getWidth(),currentTexture.getHeight());
 		blank = isblank;
 		hoverHandler();
 	}
@@ -32,11 +33,11 @@ public class Tile extends Actor
 			
 			addListener(new InputListener() {
 				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-					defaultTexture = new Texture(Gdx.files.internal("gameGraphics/redSquare.png"));
+					currentTexture = hoverTexture; 
 				}
 
 				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-					defaultTexture = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"));
+					currentTexture = defaultTexture;
 				}
 			});
 		}
@@ -44,14 +45,14 @@ public class Tile extends Actor
 	
 	@Override
     public void draw(Batch batch, float alpha){
-        batch.draw(defaultTexture, this.getX(),getY());
+        batch.draw(currentTexture, getX(), getY());
     }
 	
 	@Override
 	public String toString()
 	{
 		String returnString;
-		returnString = "Tile at position " + this.getX() + ", " + this.getY() + " is empty.";
+		returnString = "Tile at position " + getX() + ", " + getY() + " is empty.";
 	
 		return returnString;
 	}
