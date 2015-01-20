@@ -17,16 +17,17 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class GameScreen implements Screen {
 	
 	TaxE game;
-	int gameNo, turnNo;
+	int phaseNo, turnNo;
 	
 	private Stage baseStage, cityStage;
 	private float origX, origY, maxX, maxY;
 	OrthographicCamera uiCamera;
+	GeneralButton nextPhaseButton;
 	
 	//equivalent of create
 	public GameScreen(final TaxE gameInstance, int currentPhase, int turnNumber) {
 		game = gameInstance;
-		gameNo = currentPhase;
+		phaseNo = currentPhase;
 		turnNo = turnNumber;
 		baseStage = new Stage(new ScreenViewport());
 		cityStage = new Stage(new ScreenViewport());
@@ -39,7 +40,9 @@ public class GameScreen implements Screen {
 	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
 	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
 	    
-	    System.out.println("Turn no: " + turnNo + ". Phase: " + gameNo);
+	    nextPhaseButton = new GeneralButton(game.nextPhase, 942, 10, 48, 48, uiCamera);
+	    
+	    System.out.println("Turn no: " + turnNo + ". Phase: " + phaseNo);
 		
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
@@ -52,7 +55,7 @@ public class GameScreen implements Screen {
 			}
 		}
 	    
-		if ((gameNo == 1) || (gameNo == 2)){
+		if ((phaseNo == 1) || (phaseNo == 2)){
 			//Set-up phase
 			Gdx.input.setInputProcessor(baseStage);
 		}
@@ -61,7 +64,7 @@ public class GameScreen implements Screen {
 			Gdx.input.setInputProcessor(cityStage);
 		}
 		
-		if ((turnNo == 1) && (gameNo == 1)){ 
+		if ((turnNo == 1) && (phaseNo == 1)){ 
 			createTrain(2,2,game.player1);
 			createTrain(2,10,game.player2);
 		}
@@ -159,9 +162,9 @@ public class GameScreen implements Screen {
         }
 		
 		//Test phase progression
-		if (Gdx.input.isKeyJustPressed(Keys.ENTER)){
-			if (gameNo < 4){
-				game.setScreen(new GameScreen(game, gameNo+1, turnNo));
+		if (nextPhaseButton.isPressed()){
+			if (phaseNo < 4){
+				game.setScreen(new GameScreen(game, phaseNo+1, turnNo));
 			}
 			else{
 				game.setScreen(new GameScreen(game, 1, turnNo+1));
@@ -182,23 +185,27 @@ public class GameScreen implements Screen {
         game.batch.setProjectionMatrix(uiCamera.combined);
 		
 		game.batch.begin();
+		
 		//Draw player1's avatar top left and player2's top right
 		game.batch.draw(game.player1.avatar, 900, 525, 100, 100);
 		game.batch.draw(game.player2.avatar, 0, 525, 100, 100);
+		
 		//Draw player1's company name, gold and passengers delivered
 		game.font.draw(game.batch, game.player1.companyName, 10, 515);
 		game.font.draw(game.batch, "Gold: " + game.player1.money, 10, 500);
 		game.font.draw(game.batch, "Passengers delivered: " + game.player1.safePass, 10, 485);
-		//Draw player1's company name, gold and passengers delivered
+		
+		//Draw player2's company name, gold and passengers delivered
 		//uses font.getBounds() to align from the right
 		game.font.draw(game.batch, game.player2.companyName, 990 - ((game.font.getBounds(game.player2.companyName).width)), 515);
 		String string = "Gold: " + game.player1.money;
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 500);
 		string = "Passengers delivered: " + game.player2.safePass;
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 485);
+		
+		nextPhaseButton.draw();
+		
 		game.batch.end();
-        
-        
         
         handleInput();
 
