@@ -47,6 +47,7 @@ public class MainMenuScreen implements Screen {
 		
 		//Draw
 		game.batch.begin();
+		game.batch.draw(game.menuBackground, 0, 0, 1005, 630);
 		//I think the menus should have a background image where all the static stuff is drawn on the background.
 		game.batch.draw(game.title, 300, 400, 400, 221);
 		game.batch.end();

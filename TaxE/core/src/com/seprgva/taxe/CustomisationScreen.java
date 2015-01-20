@@ -130,14 +130,9 @@ public class CustomisationScreen implements Screen {
 		//Make sure the coordinate systems match
 		game.batch.setProjectionMatrix(camera.combined);
 		
-		male.draw();
-		female.draw();
-		black.draw();
-		name.draw();
-		done.draw();
-		
 		//Draw
 		game.batch.begin();
+		game.batch.draw(game.menuBackground, 0, 0, 1005, 630);
 		game.font.draw(game.batch, "Press Enter to skip customisation", 100, 100);
 		if (player.playerNumber == 1){
 			game.batch.draw(game.player1Custom, 200, 500, 600, 80);
@@ -156,6 +151,12 @@ public class CustomisationScreen implements Screen {
 			game.batch.draw(game.selected, black.x, black.y, black.width, black.height);
 		}
 		game.batch.end();
+		
+		male.draw();
+		female.draw();
+		black.draw();
+		name.draw();
+		done.draw();
 		
 		update();
 	}

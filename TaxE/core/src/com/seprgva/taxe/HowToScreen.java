@@ -37,6 +37,7 @@ public class HowToScreen implements Screen {
 		game.batch.setProjectionMatrix(camera.combined);
 		
 		game.batch.begin();
+		game.batch.draw(game.menuBackground, 0, 0, 1005, 630);
 		game.font.draw(game.batch, "Implement game manual here \n touch to go back", 100, 100);
 		game.batch.end();
 		

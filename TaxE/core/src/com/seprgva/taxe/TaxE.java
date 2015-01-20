@@ -16,7 +16,7 @@ public class TaxE extends Game {
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
 	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, udl, ulr, udr, dlr, lr, ud, nextPhase, 
-	city, cityHover, turret;
+	city, cityHover, turret, menuBackground;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -68,6 +68,8 @@ public class TaxE extends Game {
 		maleAvatar.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		selected = new Texture(Gdx.files.internal("Images/Selected.png"), true);
 		selected.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		menuBackground = new Texture(Gdx.files.internal("Images/menuBackground.png"), true);
+		menuBackground.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 				
 		//In-game graphics
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"), true);
