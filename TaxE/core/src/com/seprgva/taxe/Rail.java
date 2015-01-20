@@ -7,10 +7,12 @@ public class Rail extends Tile
 {
 	Rail prevRail = null;
 	Rail nextRail = null;
+	boolean inCity;
 	
-	public Rail(int x, int y, Texture railTexture)
+	public Rail(int x, int y, Texture railTexture, boolean inCityTest)
 	{
 		super(x, y, railTexture, railTexture, false);
+		inCity = inCityTest;
 	}
 	
 	@Override

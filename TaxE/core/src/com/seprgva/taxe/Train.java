@@ -23,7 +23,7 @@ public class Train extends Actor
 		owner = player;
 	}
 	
-	public void traverse(Tile destination)
+	public void traverse(Map map, Tile destination)
 	{
 		if (destination instanceof City){
 			currentLocation = destination;

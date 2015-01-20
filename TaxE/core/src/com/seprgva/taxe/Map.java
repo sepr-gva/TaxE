@@ -42,15 +42,21 @@ public class Map
 			y = tiles[1];
 			
 			if (mapArray[x][y] instanceof City){
-				break;
+				Rail cityRail = new Rail(x*32, y*32, null, true);
+				route.add(cityRail);
 			}
-			
-			Rail newRail = new Rail(x*32, y*32, game.ud);
-			route.add(newRail);
-			mapArray[x][y] = newRail;
+			else{
+				Rail newRail = new Rail(x*32, y*32, game.ud, false);
+				route.add(newRail);
+				mapArray[x][y] = newRail;
+			}
 		}
 		//Adds an ArrayList containing a route to an ArrayList of routes.
 		routeList.add(route);
+	}
+	
+	public void getRoute(City source, City destination){
+		
 	}
 	
 	public Tile getTile(int x, int y){
@@ -79,7 +85,7 @@ public class Map
 		
 		//Test rail - iterating was easier than writing loads of code.
 		//Also, at the moment, rails MUST be placed after cities.
-		int[][] testRoute = {{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9}};
+		int[][] testRoute = {{2,2},{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9},{2,10}};
 		createRoute(testRoute);
 		
 		/*
