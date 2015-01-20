@@ -3,6 +3,8 @@ package com.seprgva.taxe;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
@@ -22,6 +24,18 @@ public class City extends Tile
 		cityName = name;
 		cityIdentifier = identifier;
 		trainsInStation = new Array<Train>();
+		
+		addListener(new InputListener(){
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("down");
+				currentTexture = new Texture(Gdx.files.internal("gameGraphics/citySelected.png"), true);
+				System.out.println("got to here");
+				return true;
+			}
+			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("up");
+		    }
+		});
 	}
 	
 	@Override

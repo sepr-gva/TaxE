@@ -37,22 +37,16 @@ public class Tile extends Actor
 	
 	protected void inputHandler()
 	{
-		addListener(new InputListener() {
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				currentTexture = hoverTexture;
-			}
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				currentTexture = defaultTexture;
-			}
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("down");
-				currentTexture = gameMap.player1Tower;
-				return true;
-			}
-			public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("up");
-		    }
-		});
+		if(blank == true){
+			addListener(new InputListener() {
+				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+					currentTexture = hoverTexture;
+				}
+				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+					currentTexture = defaultTexture;
+				}
+			});
+		}
 	}
 	
 	public float[] getCoords(){
