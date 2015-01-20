@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 public class Map 
 {
@@ -13,12 +14,16 @@ public class Map
 	TaxE game;
 	ArrayList<ArrayList<Rail>> routeList = new ArrayList<ArrayList<Rail>>();
 	
+	Texture player1Tower;
+	
 	public Map(final TaxE gameInstance)
 	{
 		game = gameInstance;
 		xSize = 39;
 		ySize = 39;
 		mapArray = new Tile[xSize][ySize];
+		player1Tower = new Texture(Gdx.files.internal("gameGraphics/turretTile.png"));
+		player1Tower.setFilter(TextureFilter.MipMapNearestLinear, TextureFilter.Linear);
 		this.initialise();
 		//routeList = new ArrayList<ArrayList<Rail>>();
 	}

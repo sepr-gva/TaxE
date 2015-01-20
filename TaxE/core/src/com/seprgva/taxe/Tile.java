@@ -35,7 +35,7 @@ public class Tile extends Actor
 		neighbours = new Tile[4];
 	}
 	
-	protected void hoverHandler()
+	protected void inputHandler()
 	{
 		addListener(new InputListener() {
 			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -43,6 +43,9 @@ public class Tile extends Actor
 			}
 			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 				currentTexture = defaultTexture;
+			}
+			public void touchDown (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				currentTexture = gameMap.player1Tower;
 			}
 		});
 	}
@@ -54,7 +57,7 @@ public class Tile extends Actor
 	
 	@Override
     public void draw(Batch batch, float alpha){
-		hoverHandler();
+		inputHandler();
 		setBounds(xCoord, yCoord, currentTexture.getWidth(), currentTexture.getHeight());
         batch.draw(currentTexture, getX(), getY());
     }
