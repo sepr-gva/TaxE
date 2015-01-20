@@ -17,17 +17,17 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class GameScreen implements Screen {
 	
 	TaxE game;
-	int gamePhase;
+	int gameNo, turnNo;
 	
 	private Stage baseStage, cityStage;
 	private float origX, origY, maxX, maxY;
 	OrthographicCamera uiCamera;
 	
 	//equivalent of create
-	public GameScreen(final TaxE gameInstance, int currentPhase) {
+	public GameScreen(final TaxE gameInstance, int currentPhase, int turnNumber) {
 		game = gameInstance;
-		gamePhase = currentPhase;
-		System.out.println(gamePhase);
+		gameNo = currentPhase;
+		turnNo = turnNumber;
 		baseStage = new Stage(new ScreenViewport());
 		cityStage = new Stage(new ScreenViewport());
 		uiCamera = new OrthographicCamera();
@@ -38,6 +38,8 @@ public class GameScreen implements Screen {
 	    origY = baseStage.getCamera().position.y;
 	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
 	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
+	    
+	    System.out.println("Turn no: " + turnNo + ". Phase: " + gameNo);
 		
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
@@ -50,7 +52,7 @@ public class GameScreen implements Screen {
 			}
 		}
 	    
-		if ((gamePhase == 1) || (gamePhase == 2)){
+		if ((gameNo == 1) || (gameNo == 2)){
 			//Set-up phase
 			Gdx.input.setInputProcessor(baseStage);
 		}
@@ -59,7 +61,7 @@ public class GameScreen implements Screen {
 			Gdx.input.setInputProcessor(cityStage);
 		}
 		
-		if (gamePhase == 1){ 
+		if ((turnNo == 1) && (gameNo == 1)){ 
 			createTrain(2,2,game.player1);
 			createTrain(2,10,game.player2);
 		}
@@ -157,8 +159,13 @@ public class GameScreen implements Screen {
         }
 		
 		//Test phase progression
-		if ((gamePhase < 4) && (Gdx.input.isKeyJustPressed(Keys.ENTER))){
-			game.setScreen(new GameScreen(game, gamePhase+1));
+		if (Gdx.input.isKeyJustPressed(Keys.ENTER)){
+			if (gameNo < 4){
+				game.setScreen(new GameScreen(game, gameNo+1, turnNo));
+			}
+			else{
+				game.setScreen(new GameScreen(game, 1, turnNo+1));
+			}
 		}
 	}
 
