@@ -44,8 +44,9 @@ public class Tile extends Actor
 			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 				currentTexture = defaultTexture;
 			}
-			public void touchDown (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				currentTexture = gameMap.player1Tower;
+				return true;
 			}
 		});
 	}
