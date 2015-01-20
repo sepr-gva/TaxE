@@ -18,11 +18,15 @@ public class Tile extends Actor
 	public boolean blank = false;
 	int xCoord, yCoord;
 	Tile[] neighbours;
+	Map gameMap;
+	Player owner;
 	
-	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank)
+	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank, Player player, Map map)
 	{
 		xCoord = x;
 		yCoord = y;
+		gameMap = map;
+		owner = player;
 		defaultTexture = sprite;
 		hoverTexture = hoverSprite;
 		currentTexture = defaultTexture;

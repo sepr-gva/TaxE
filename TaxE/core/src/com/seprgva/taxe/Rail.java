@@ -1,8 +1,5 @@
 package com.seprgva.taxe;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Rail extends Tile
@@ -10,9 +7,9 @@ public class Rail extends Tile
 	
 	boolean inCity;
 	
-	public Rail(int x, int y, Texture railTexture, boolean inCityTest)
+	public Rail(int x, int y, Texture railTexture, boolean inCityTest, Map map)
 	{
-		super(x, y, railTexture, railTexture, false);
+		super(x, y, railTexture, railTexture, false, null, map);
 		inCity = inCityTest;
 	}
 	

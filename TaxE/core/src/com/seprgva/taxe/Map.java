@@ -41,10 +41,8 @@ public class Map
 			x = tiles[0];
 			y = tiles[1];
 
-			
-			
 			if (mapArray[x][y] instanceof City){
-				Rail cityRail = new Rail(x*32, y*32, null, true);
+				Rail cityRail = new Rail(x*32, y*32, null, true, this);
 				
 				cityRail.neighbours[0] = mapArray[x][y-1];
 				mapArray[x][y-1].neighbours[2] = cityRail;
@@ -57,7 +55,7 @@ public class Map
 				route.add(cityRail);
 			}
 			else{
-				Rail newRail = new Rail(x*32, y*32, game.ud, false);
+				Rail newRail = new Rail(x*32, y*32, game.ud, false, this);
 				newRail.neighbours[0] = mapArray[x][y-1];
 				mapArray[x][y-1].neighbours[2] = newRail;;
 				newRail.neighbours[1] = mapArray[x-1][y];
@@ -182,7 +180,7 @@ public class Map
 	}
 	
 	private void createCity(int i, int j, String cityName, String cityID){
-		City city = new City((i*32)-32, (j*32)-32, cityName, cityID, game.city, game.cityHover);
+		City city = new City((i*32)-32, (j*32)-32, cityName, cityID, game.city, game.cityHover, this);
 		mapArray[i][j] = city;
 		game.cityList.add(city);
 	}
@@ -193,7 +191,7 @@ public class Map
 		for (int i=0; i<xSize; i++){
 			
 			for (int j=0; j<ySize; j++){
-				Tile tempTile = new Tile(i*32, j*32, game.emptyTile, game.emptyTileHover, true);	
+				Tile tempTile = new Tile(i*32, j*32, game.emptyTile, game.emptyTileHover, true, null, this);	
 				mapArray[i][j] = tempTile;			
 			}
 		}

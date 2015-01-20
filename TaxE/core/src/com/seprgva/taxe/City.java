@@ -16,9 +16,9 @@ public class City extends Tile
 	
 	long time = TimeUtils.millis();
 	
-	public City(int x, int y, String name, String identifier, Texture cityTexture, Texture cityHoverTexture)
+	public City(int x, int y, String name, String identifier, Texture cityTexture, Texture cityHoverTexture, Map map)
 	{
-		super(x, y, cityTexture, cityHoverTexture, false);
+		super(x, y, cityTexture, cityHoverTexture, false, null, map);
 		cityName = name;
 		cityIdentifier = identifier;
 		trainsInStation = new Array<Train>();

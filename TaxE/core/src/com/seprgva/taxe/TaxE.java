@@ -15,7 +15,8 @@ public class TaxE extends Game {
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
-	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, udl, ulr, udr, dlr, lr, ud, nextPhase, city, cityHover;
+	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, udl, ulr, udr, dlr, lr, ud, nextPhase, 
+	city, cityHover, turret;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -91,7 +92,7 @@ public class TaxE extends Game {
 		rd.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		ru = new Texture(Gdx.files.internal("gameGraphics/railRU.png"), true);
 		ru.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
-		junction = new Texture(Gdx.files.internal("gameGraphics/rail4way.png"), true);
+		junction = new Texture(Gdx.files.internal("gameGraphics/rail4Way.png"), true);
 		junction.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		udl = new Texture(Gdx.files.internal("gameGraphics/railUDL.png"), true);
 		udl.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
@@ -109,6 +110,8 @@ public class TaxE extends Game {
 		city.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		cityHover = new Texture(Gdx.files.internal("gameGraphics/citySelected.png"), true);
 		cityHover.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		turret = new Texture(Gdx.files.internal("gameGraphics/turretTile.png"), true);
+		turret.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		//Map generation
 		//Map is currently set to 40x40
