@@ -36,23 +36,131 @@ public class Map
 	private void createRoute(int[][] listOfTiles){
 		int x, y;
 		ArrayList<Rail> route = new ArrayList<Rail>(); 
-		
+		int[] prevTile = {0,0};
 		for (int[] tiles : listOfTiles){
 			x = tiles[0];
 			y = tiles[1];
+
+			
 			
 			if (mapArray[x][y] instanceof City){
 				Rail cityRail = new Rail(x*32, y*32, null, true);
+				
+				cityRail.neighbours[0] = mapArray[x][y-1];
+				mapArray[x][y-1].neighbours[2] = cityRail;
+				cityRail.neighbours[1] = mapArray[x-1][y];
+				mapArray[x-1][y].neighbours[3] = cityRail;
+				cityRail.neighbours[2] = mapArray[x][y+1];
+				mapArray[x][y+1].neighbours[0] = cityRail;
+				cityRail.neighbours[3] = mapArray[x+1][y];
+				mapArray[x+1][y].neighbours[1] = cityRail;
 				route.add(cityRail);
 			}
 			else{
 				Rail newRail = new Rail(x*32, y*32, game.ud, false);
+				newRail.neighbours[0] = mapArray[x][y-1];
+				mapArray[x][y-1].neighbours[2] = newRail;;
+				newRail.neighbours[1] = mapArray[x-1][y];
+				mapArray[x-1][y].neighbours[3] = newRail;
+				newRail.neighbours[2] = mapArray[x][y+1];
+				mapArray[x][y+1].neighbours[0] = newRail;
+				newRail.neighbours[3] = mapArray[x+1][y];
+				mapArray[x+1][y].neighbours[1] = newRail;
 				route.add(newRail);
 				mapArray[x][y] = newRail;
 			}
+			prevTile = tiles;
 		}
 		//Adds an ArrayList containing a route to an ArrayList of routes.
 		routeList.add(route);
+	}
+	
+	private void chooseRailTextures(){
+		for (int i = 0; i < routeList.size(); i++){
+			for (Rail rail : routeList.get(i)){
+				if (rail.neighbours[0] instanceof Rail){
+					if (rail.neighbours[1] instanceof Rail){
+						rail.defaultTexture = game.ld;
+						rail.hoverTexture = game.ld;
+						rail.currentTexture = game.ld;
+						if (rail.neighbours[2] instanceof Rail){
+							rail.defaultTexture = game.udl;
+							rail.hoverTexture = game.udl;
+							rail.currentTexture = game.udl;
+							if (rail.neighbours[3] instanceof Rail){
+								rail.defaultTexture = game.junction;
+								rail.hoverTexture = game.junction;
+								rail.currentTexture = game.junction;
+							}
+						}
+						else if (rail.neighbours[3] instanceof Rail){
+							rail.defaultTexture = game.dlr;
+							rail.hoverTexture = game.dlr;
+							rail.currentTexture = game.junction;
+						}
+					}
+					else if (rail.neighbours[2] instanceof Rail){
+						rail.defaultTexture = game.ud;
+						rail.hoverTexture = game.ud;
+						rail.currentTexture = game.ud;
+						if (rail.neighbours[3] instanceof Rail){
+							rail.defaultTexture = game.udr;
+							rail.hoverTexture = game.udr;
+							rail.currentTexture = game.udr;
+						}
+					}
+					else if (rail.neighbours[3] instanceof Rail){
+						rail.defaultTexture = game.rd;
+						rail.hoverTexture = game.rd;
+						rail.currentTexture = game.rd;
+					}
+					else{
+						rail.defaultTexture = game.emptyTile;
+						rail.hoverTexture = game.emptyTile;
+						rail.currentTexture = game.emptyTile;
+					}
+				}
+				else if (rail.neighbours[1] instanceof Rail){
+					if (rail.neighbours[2] instanceof Rail){
+						rail.defaultTexture = game.lu;
+						rail.hoverTexture = game.lu;
+						rail.currentTexture = game.lu;
+						if (rail.neighbours[3] instanceof Rail){
+							rail.defaultTexture = game.ulr;
+							rail.hoverTexture = game.ulr;
+							rail.currentTexture = game.ulr;
+						}
+					}
+					else if(rail.neighbours[3] instanceof Rail){
+						rail.defaultTexture = game.lr;
+						rail.hoverTexture = game.lr;
+						rail.currentTexture = game.lr;
+					}
+					else{
+						rail.defaultTexture = game.emptyTile;
+						rail.hoverTexture = game.emptyTile;
+						rail.currentTexture = game.emptyTile;
+					}
+				}
+				else if (rail.neighbours[2] instanceof Rail){
+					if (rail.neighbours[3] instanceof Rail){
+						rail.defaultTexture = game.ru;
+						rail.hoverTexture = game.ru;
+						rail.currentTexture = game.ru;
+					}
+					else{
+						rail.defaultTexture = game.emptyTile;
+						rail.hoverTexture = game.emptyTile;
+						rail.currentTexture = game.emptyTile;
+					}
+				}
+				else{
+					rail.defaultTexture = game.emptyTile;
+					rail.hoverTexture = game.emptyTile;
+					rail.currentTexture = game.emptyTile;
+				}
+			}
+		}
 	}
 	
 	public ArrayList<Rail> getRoute(Tile source, Tile destination){
@@ -97,6 +205,9 @@ public class Map
 		//Also, at the moment, rails MUST be placed after cities.
 		int[][] testRoute = {{2,2},{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9},{2,10}};
 		createRoute(testRoute);
+		int [][] testRoute2 = {{10,10},{10,11},{10,12},{11,12},{12,12},{12,13}};
+		createRoute(testRoute2);
+		chooseRailTextures();
 		
 		/*
 		City city = new City(32,32, "City 1", "Ci1", game.brownSquare);

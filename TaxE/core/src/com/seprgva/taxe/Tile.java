@@ -17,6 +17,7 @@ public class Tile extends Actor
 	public boolean started = false;
 	public boolean blank = false;
 	int xCoord, yCoord;
+	Tile[] neighbours;
 	
 	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank)
 	{
@@ -27,6 +28,7 @@ public class Tile extends Actor
 		currentTexture = defaultTexture;
 		//setBounds(x, y, currentTexture.getWidth(), currentTexture.getHeight());
 		blank = isblank;
+		neighbours = new Tile[4];
 	}
 	
 	protected void hoverHandler()

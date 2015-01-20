@@ -1,10 +1,13 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Rail extends Tile
 {
+	
 	boolean inCity;
 	
 	public Rail(int x, int y, Texture railTexture, boolean inCityTest)
