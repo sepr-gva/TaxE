@@ -41,6 +41,11 @@ public class Tile extends Actor
 		});
 	}
 	
+	public float[] getCoords(){
+		float[] tileCoords = {xCoord,yCoord};
+		return tileCoords;
+	}
+	
 	@Override
     public void draw(Batch batch, float alpha){
 		hoverHandler();
@@ -52,7 +57,7 @@ public class Tile extends Actor
 	public String toString()
 	{
 		String returnString;
-		returnString = "Tile at position " + getX() + ", " + getY() + " is empty.";
+		returnString = "Tile at position " + xCoord + ", " + yCoord + " is empty.";
 	
 		return returnString;
 	}

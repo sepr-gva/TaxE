@@ -55,8 +55,18 @@ public class Map
 		routeList.add(route);
 	}
 	
-	public void getRoute(City source, City destination){
+	public ArrayList<Rail> getRoute(Tile source, Tile destination){
+		ArrayList<Rail> selectedRoute = new ArrayList<Rail>();
 		
+		if ((source instanceof City) && (destination instanceof City)){
+			for (ArrayList<Rail> route : routeList){
+				if ((route.get(0).getCoords() == source.getCoords()) && (route.get(route.size()-1).getCoords() == destination.getCoords())){
+					selectedRoute = route;
+				}
+			}
+		}
+		
+		return selectedRoute;
 	}
 	
 	public Tile getTile(int x, int y){

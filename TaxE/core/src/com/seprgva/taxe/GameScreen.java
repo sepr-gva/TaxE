@@ -1,5 +1,7 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
@@ -32,6 +34,11 @@ public class GameScreen implements Screen {
 		uiCamera.setToOrtho(false, 1000, 625);
 		uiCamera.update();
 		
+	    origX = baseStage.getCamera().position.x;
+	    origY = baseStage.getCamera().position.y;
+	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
+	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
+		
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
 				if (game.gameMap.getTile(i, j) instanceof City){
@@ -61,10 +68,10 @@ public class GameScreen implements Screen {
 	    	baseStage.addActor(train);
 	    }
 	    
-	    origX = baseStage.getCamera().position.x;
-	    origY = baseStage.getCamera().position.y;
-	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
-	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
+	    //ArrayList<Rail> testRoute = game.gameMap.getRoute(game.gameMap.mapArray[2][2],game.gameMap.mapArray[2][10]);
+	    //for (Rail rail: testRoute){
+	    //	System.out.println(rail.xCoord + ", " + rail.yCoord);
+	    //}
 	}
 	
 	private void createTrain(int X, int Y, Player owner)

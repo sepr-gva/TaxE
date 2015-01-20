@@ -20,7 +20,7 @@ public class TaxE extends Game {
 	public BitmapFont font;
 	public Player player1, player2;
 	Map gameMap;
-	int trainID;
+	int trainID, turnNo;
 	ArrayList<Train> trainList;
 	ArrayList<City> cityList;
 	
