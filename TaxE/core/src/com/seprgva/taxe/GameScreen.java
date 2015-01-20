@@ -59,9 +59,13 @@ public class GameScreen implements Screen {
 			//Set-up phase
 			Gdx.input.setInputProcessor(baseStage);
 		}
-		else{
+		else if ((phaseNo == 3) || (phaseNo == 4)){
 			//Deployment phase
 			Gdx.input.setInputProcessor(cityStage);
+		}
+		else {
+			//Movement phase
+			Gdx.input.setInputProcessor(null);
 		}
 		
 		if ((turnNo == 1) && (phaseNo == 1)){ 
@@ -163,7 +167,7 @@ public class GameScreen implements Screen {
 		
 		//Test phase progression
 		if (nextPhaseButton.isPressed()){
-			if (phaseNo < 4){
+			if (phaseNo < 5){
 				game.setScreen(new GameScreen(game, phaseNo+1, turnNo));
 			}
 			else{
