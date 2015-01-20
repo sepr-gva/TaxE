@@ -11,6 +11,7 @@ public class Map
 	public int ySize;
 	public Tile[][] mapArray;
 	TaxE game;
+	ArrayList<ArrayList<Rail>> routeList = new ArrayList<ArrayList<Rail>>();
 	
 	public Map(final TaxE gameInstance)
 	{
@@ -19,6 +20,7 @@ public class Map
 		ySize = 39;
 		mapArray = new Tile[xSize][ySize];
 		this.initialise();
+		//routeList = new ArrayList<ArrayList<Rail>>();
 	}
 	
 	@Override
@@ -31,14 +33,24 @@ public class Map
 		return returnString;
 	}
 	
-	private void createRoute(int[][] listOfRails){
-		int railX, railY;
-		for (int[] rail : listOfRails){
-			railX = rail[0];
-			railY = rail[1];
-			Rail newRail = new Rail(railX*32, railY*32, game.ud);
-			mapArray[railX][railY] = newRail;
+	private void createRoute(int[][] listOfTiles){
+		int x, y;
+		ArrayList<Rail> route = new ArrayList<Rail>(); 
+		
+		for (int[] tiles : listOfTiles){
+			x = tiles[0];
+			y = tiles[1];
+			
+			if (mapArray[x][y] instanceof City){
+				break;
+			}
+			
+			Rail newRail = new Rail(x*32, y*32, game.ud);
+			route.add(newRail);
+			mapArray[x][y] = newRail;
 		}
+		//Adds an ArrayList containing a route to an ArrayList of routes.
+		routeList.add(route);
 	}
 	
 	public Tile getTile(int x, int y){
@@ -66,6 +78,7 @@ public class Map
 		createCity(2,10, "City 2", "CY2");
 		
 		//Test rail - iterating was easier than writing loads of code.
+		//Also, at the moment, rails MUST be placed after cities.
 		int[][] testRoute = {{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9}};
 		createRoute(testRoute);
 		
