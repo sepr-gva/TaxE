@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class Tile extends Actor
 {
@@ -20,6 +21,7 @@ public class Tile extends Actor
 	Tile[] neighbours;
 	Map gameMap;
 	Player owner;
+	boolean junction = false, highlighted = false, selected = false;
 	
 	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank, Player player, Map map)
 	{
@@ -47,6 +49,7 @@ public class Tile extends Actor
 				}
 			});
 		}
+	
 	}
 	
 	public float[] getCoords(){
@@ -60,6 +63,10 @@ public class Tile extends Actor
 		setBounds(xCoord, yCoord, currentTexture.getWidth(), currentTexture.getHeight());
         batch.draw(currentTexture, getX(), getY());
     }
+	
+	public void changeTexture(Texture newTexture){
+		this.currentTexture = newTexture;
+	}
 	
 	@Override
 	public String toString()

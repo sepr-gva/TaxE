@@ -1,5 +1,7 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -12,6 +14,7 @@ public class Train extends Actor
 	Player owner;
 	int passengers = 0;
 	int xCoord, yCoord;
+	ArrayList<Tile> route;
 	
 	public Train(int ID, Tile startingLocation, Player player, int x, int y, Texture sprite)
 	{
@@ -21,6 +24,7 @@ public class Train extends Actor
 		identifier = ID;
 		currentLocation = startingLocation;
 		owner = player;
+		route = new ArrayList<Tile>();
 	}
 	
 	public void traverse(Map map, Tile destination)

@@ -59,13 +59,10 @@ public class GameScreen implements Screen {
 			//Set-up phase
 			Gdx.input.setInputProcessor(baseStage);
 		}
-		else if ((phaseNo == 3) || (phaseNo == 4)){
+		else{
 			//Deployment phase
 			Gdx.input.setInputProcessor(cityStage);
-		}
-		else {
-			//Movement phase
-			Gdx.input.setInputProcessor(null);
+			
 		}
 		
 		if ((turnNo == 1) && (phaseNo == 1)){ 
@@ -103,6 +100,151 @@ public class GameScreen implements Screen {
 			game.gameMap.mapArray[X][Y] = cityForTrain;
 			game.trainID++; //This needs to be implemented properly at some point
 		}
+	}
+	
+	public void highlight(Tile tile){
+		if (tile.currentTexture == game.city){
+			tile.changeTexture(game.cityblue);
+			tile.highlighted = true;
+		}
+		else if (tile.currentTexture == game.dlr){
+			tile.changeTexture(game.dlrblue);
+			tile.highlighted = true;
+		}
+		else if (tile.currentTexture == game.junction){
+			tile.changeTexture(game.junctionblue);
+			tile.highlighted = true;
+		}
+		else if (tile.currentTexture == game.udl){
+			tile.changeTexture(game.udlblue);
+			tile.highlighted = true;
+		}
+		else if (tile.currentTexture == game.udr){
+			tile.changeTexture(game.udrblue);
+			tile.highlighted = true;
+		}
+		else if (tile.currentTexture == game.ulr){
+			tile.changeTexture(game.ulrblue);
+			tile.highlighted = true;
+		}
+	}
+	
+	public void select(Tile tile){
+		if (tile.currentTexture == game.city){
+			tile.currentTexture = game.cityred;
+			tile.highlighted = false;
+		}
+		else if (tile.currentTexture == game.dlr){
+			tile.currentTexture = game.dlrred;
+			tile.highlighted = false;
+		}
+		else if (tile.currentTexture == game.junction){
+			tile.currentTexture = game.junctionred;
+			tile.highlighted = false;
+		}
+		else if (tile.currentTexture == game.udl){
+			tile.currentTexture = game.udlred;
+			tile.highlighted = false;
+		}
+		else if (tile.currentTexture == game.udr){
+			tile.currentTexture = game.udrred;
+			tile.highlighted = false;
+		}
+		else if (tile.currentTexture == game.ulr){
+			tile.currentTexture = game.ulrred;
+			tile.highlighted = false;
+		}
+	}
+	
+	
+	
+	public ArrayList<ArrayList<Tile>> isReachable(City city){
+		ArrayList<ArrayList<Tile>> possibleRoutes = new ArrayList<ArrayList<Tile>>();
+		ArrayList<Tile> route1 = new ArrayList<Tile>();
+		ArrayList<Tile> route2 = new ArrayList<Tile>();
+		ArrayList<Tile> route3 = new ArrayList<Tile>();
+		ArrayList<Tile> route4 = new ArrayList<Tile>();
+		Tile currentTile, prevTile, nextTile;
+		if (city.neighbours[0] instanceof Rail){
+			currentTile = city.neighbours[0];
+			prevTile = city;
+			nextTile = null;
+			while (currentTile instanceof Rail && currentTile.junction == false){
+				route1.add(currentTile);
+				for (Tile tile : currentTile.neighbours){
+					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+						nextTile = tile;
+						System.out.println(currentTile);
+					}
+				}
+				prevTile = currentTile;
+				currentTile = nextTile;
+			}
+			route1.add(currentTile);
+			highlight(currentTile);
+		}
+		if (city.neighbours[1] instanceof Rail){
+			currentTile = city.neighbours[1];
+			prevTile = city;
+			nextTile = null;
+			while (currentTile instanceof Rail && currentTile.junction == false){
+				route2.add(currentTile);
+				for (Tile tile : currentTile.neighbours){
+					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+						nextTile = tile;
+						System.out.println(currentTile);
+					}
+				}
+				prevTile = currentTile;
+				currentTile = nextTile;
+			}
+			route2.add(currentTile);
+			highlight(currentTile);
+		}
+		if (city.neighbours[2] instanceof Rail){
+			currentTile = city.neighbours[2];
+			prevTile = city;
+			nextTile = null;
+			while (currentTile instanceof Rail && currentTile.junction == false){
+				route3.add(currentTile);
+				for (Tile tile : currentTile.neighbours){
+					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+						nextTile = tile;
+						System.out.println(currentTile);
+					}
+				}
+				prevTile = currentTile;
+				currentTile = nextTile;
+			}
+			route3.add(currentTile);
+			highlight(currentTile);
+		}
+		if (city.neighbours[3] instanceof Rail){
+			currentTile = city.neighbours[3];
+			prevTile = city;
+			nextTile = null;
+			while (currentTile instanceof Rail && currentTile.junction == false){
+				route4.add(currentTile);
+				for (Tile tile : currentTile.neighbours){
+					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+						nextTile = tile;
+						System.out.println(currentTile);
+					}
+				}
+				prevTile = currentTile;
+				currentTile = nextTile;
+			}
+			route4.add(currentTile);
+			highlight(currentTile);
+		}
+		for (Tile tile : route3){
+			System.out.println(tile);
+		}
+		possibleRoutes.add(route1);
+		possibleRoutes.add(route2);
+		possibleRoutes.add(route3);
+		possibleRoutes.add(route4);
+		return possibleRoutes;
 	}
 	
 	private void handleInput() {
@@ -156,18 +298,11 @@ public class GameScreen implements Screen {
 			}
         }
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_2)){
-			if (game.player2.goals.size() < 3){
-	        	new Goal(game.player2, game);
-	        	for (Goal goal : game.player2.goals){
-	        		System.out.println(goal.description);
-	        	}
-	        	System.out.println();
-			}
         }
 		
 		//Test phase progression
 		if (nextPhaseButton.isPressed()){
-			if (phaseNo < 5){
+			if (phaseNo < 4){
 				game.setScreen(new GameScreen(game, phaseNo+1, turnNo));
 			}
 			else{

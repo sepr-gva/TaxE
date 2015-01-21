@@ -28,7 +28,7 @@ public class City extends Tile
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				System.out.println("down");
-				currentTexture = new Texture(Gdx.files.internal("gameGraphics/citySelected.png"), true);
+				selected = true;
 				System.out.println("got to here");
 				return true;
 			}
@@ -37,6 +37,7 @@ public class City extends Tile
 		    }
 		});
 	}
+
 	
 	@Override
 	public String toString()

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Map 
 {
@@ -45,19 +47,18 @@ public class Map
 		for (int[] tiles : listOfTiles){
 			x = tiles[0];
 			y = tiles[1];
-
 			if (mapArray[x][y] instanceof City){
-				Rail cityRail = new Rail(x*32, y*32, null, true, this);
-				
-				cityRail.neighbours[0] = mapArray[x][y-1];
-				mapArray[x][y-1].neighbours[2] = cityRail;
-				cityRail.neighbours[1] = mapArray[x-1][y];
-				mapArray[x-1][y].neighbours[3] = cityRail;
-				cityRail.neighbours[2] = mapArray[x][y+1];
-				mapArray[x][y+1].neighbours[0] = cityRail;
-				cityRail.neighbours[3] = mapArray[x+1][y];
-				mapArray[x+1][y].neighbours[1] = cityRail;
-				route.add(cityRail);
+//				Rail cityRail = new Rail(x*32, y*32, null, true, this);
+//				
+//				cityRail.neighbours[0] = mapArray[x][y-1];
+//				mapArray[x][y-1].neighbours[2] = cityRail;
+//				cityRail.neighbours[1] = mapArray[x-1][y];
+//				mapArray[x-1][y].neighbours[3] = cityRail;
+//				cityRail.neighbours[2] = mapArray[x][y+1];
+//				mapArray[x][y+1].neighbours[0] = cityRail;
+//				cityRail.neighbours[3] = mapArray[x+1][y];
+//				mapArray[x+1][y].neighbours[1] = cityRail;
+//				route.add(cityRail);
 			}
 			else{
 				Rail newRail = new Rail(x*32, y*32, game.ud, false, this);
@@ -70,8 +71,8 @@ public class Map
 				newRail.neighbours[3] = mapArray[x+1][y];
 				mapArray[x+1][y].neighbours[1] = newRail;
 				route.add(newRail);
-				mapArray[x][y] = newRail;
-			}
+				mapArray[x][y] = newRail;			
+				}
 			prevTile = tiles;
 		}
 		//Adds an ArrayList containing a route to an ArrayList of routes.
@@ -81,38 +82,46 @@ public class Map
 	private void chooseRailTextures(){
 		for (int i = 0; i < routeList.size(); i++){
 			for (Rail rail : routeList.get(i)){
-				if (rail.neighbours[0] instanceof Rail){
-					if (rail.neighbours[1] instanceof Rail){
+				if (rail.neighbours[0] instanceof Rail || rail.neighbours[0] instanceof City){
+					if (rail.neighbours[1] instanceof Rail || rail.neighbours[1] instanceof City){
 						rail.defaultTexture = game.ld;
 						rail.hoverTexture = game.ld;
 						rail.currentTexture = game.ld;
-						if (rail.neighbours[2] instanceof Rail){
+						if (rail.neighbours[2] instanceof Rail || rail.neighbours[2] instanceof City){
 							rail.defaultTexture = game.udl;
 							rail.hoverTexture = game.udl;
 							rail.currentTexture = game.udl;
-							if (rail.neighbours[3] instanceof Rail){
+							rail.junction = true;
+							rail.clickHandler();
+							if (rail.neighbours[3] instanceof Rail || rail.neighbours[3] instanceof City){
 								rail.defaultTexture = game.junction;
 								rail.hoverTexture = game.junction;
 								rail.currentTexture = game.junction;
+								rail.junction = true;
+								rail.clickHandler();
 							}
 						}
-						else if (rail.neighbours[3] instanceof Rail){
+						else if (rail.neighbours[3] instanceof Rail || rail.neighbours[3] instanceof City){
 							rail.defaultTexture = game.dlr;
 							rail.hoverTexture = game.dlr;
-							rail.currentTexture = game.junction;
+							rail.currentTexture = game.dlr;
+							rail.junction = true;
+							rail.clickHandler();
 						}
 					}
-					else if (rail.neighbours[2] instanceof Rail){
+					else if (rail.neighbours[2] instanceof Rail || rail.neighbours[2] instanceof City){
 						rail.defaultTexture = game.ud;
 						rail.hoverTexture = game.ud;
 						rail.currentTexture = game.ud;
-						if (rail.neighbours[3] instanceof Rail){
+						if (rail.neighbours[3] instanceof Rail || rail.neighbours[3] instanceof City){
 							rail.defaultTexture = game.udr;
 							rail.hoverTexture = game.udr;
 							rail.currentTexture = game.udr;
+							rail.junction = true;
+							rail.clickHandler();
 						}
 					}
-					else if (rail.neighbours[3] instanceof Rail){
+					else if (rail.neighbours[3] instanceof Rail || rail.neighbours[3] instanceof City){
 						rail.defaultTexture = game.rd;
 						rail.hoverTexture = game.rd;
 						rail.currentTexture = game.rd;
@@ -123,18 +132,20 @@ public class Map
 						rail.currentTexture = game.emptyTile;
 					}
 				}
-				else if (rail.neighbours[1] instanceof Rail){
-					if (rail.neighbours[2] instanceof Rail){
+				else if (rail.neighbours[1] instanceof Rail || rail.neighbours[1] instanceof City){
+					if (rail.neighbours[2] instanceof Rail || rail.neighbours[2] instanceof City){
 						rail.defaultTexture = game.lu;
 						rail.hoverTexture = game.lu;
 						rail.currentTexture = game.lu;
-						if (rail.neighbours[3] instanceof Rail){
+						if (rail.neighbours[3] instanceof Rail || rail.neighbours[3] instanceof City){
 							rail.defaultTexture = game.ulr;
 							rail.hoverTexture = game.ulr;
 							rail.currentTexture = game.ulr;
+							rail.junction = true;
+							rail.clickHandler();
 						}
 					}
-					else if(rail.neighbours[3] instanceof Rail){
+					else if(rail.neighbours[3] instanceof Rail || rail.neighbours[3] instanceof City){
 						rail.defaultTexture = game.lr;
 						rail.hoverTexture = game.lr;
 						rail.currentTexture = game.lr;
@@ -145,8 +156,8 @@ public class Map
 						rail.currentTexture = game.emptyTile;
 					}
 				}
-				else if (rail.neighbours[2] instanceof Rail){
-					if (rail.neighbours[3] instanceof Rail){
+				else if (rail.neighbours[2] instanceof Rail || rail.neighbours[2] instanceof City){
+					if (rail.neighbours[3] instanceof Rail || rail.neighbours[3] instanceof City){
 						rail.defaultTexture = game.ru;
 						rail.hoverTexture = game.ru;
 						rail.currentTexture = game.ru;
@@ -165,6 +176,8 @@ public class Map
 			}
 		}
 	}
+	
+	
 	
 	public ArrayList<Rail> getRoute(Tile source, Tile destination){
 		ArrayList<Rail> selectedRoute = new ArrayList<Rail>();
@@ -185,7 +198,7 @@ public class Map
 	}
 	
 	private void createCity(int i, int j, String cityName, String cityID){
-		City city = new City((i*32)-32, (j*32)-32, cityName, cityID, game.city, game.cityHover, this);
+		City city = new City((i*32)-32, (j*32)-32, cityName, cityID, game.city, game.cityblue, this);
 		mapArray[i][j] = city;
 		game.cityList.add(city);
 	}
@@ -203,14 +216,17 @@ public class Map
 		
 		createCity(2,2, "City 1", "CY1");
 		createCity(2,10, "City 2", "CY2");
+		createCity(6,6, "City 3", "CY3");
 		
 		//Test rail - iterating was easier than writing loads of code.
 		//Also, at the moment, rails MUST be placed after cities.
 		int[][] testRoute = {{2,2},{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9},{2,10}};
 		createRoute(testRoute);
-		int [][] testRoute2 = {{10,10},{10,11},{10,12},{11,12},{12,12},{12,13}};
+		int [][] testRoute2 = {{2,2},{3,2},{4,2},{5,2},{6,2},{6,3},{6,4},{6,5},{6,6}};
 		createRoute(testRoute2);
 		chooseRailTextures();
+		
+		System.out.println(mapArray[7][2]);
 		
 		/*
 		City city = new City(32,32, "City 1", "Ci1", game.brownSquare);

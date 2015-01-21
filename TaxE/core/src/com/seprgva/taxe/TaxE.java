@@ -15,8 +15,10 @@ public class TaxE extends Game {
 	public Texture gva, how, play, quit, title, blackAvatar, maleAvatar, femaleAvatar, 
 	selected, done, chooseAv, chooseName, player1Custom, player2Custom, greenSquare,
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
-	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, udl, ulr, udr, dlr, lr, ud, nextPhase, 
-	city, cityHover, turret, menuBackground;
+	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, junctionred, junctionblue, udl,
+	udlred, udlblue, ulr, ulrred, ulrblue, udr, udrred, udrblue, dlr, dlrred, dlrblue,
+	lr, ud, nextPhase, 
+	city, cityred, cityblue, turret, menuBackground;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -96,22 +98,44 @@ public class TaxE extends Game {
 		ru.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		junction = new Texture(Gdx.files.internal("gameGraphics/rail4Way.png"), true);
 		junction.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		junctionred = new Texture(Gdx.files.internal("gameGraphics/rail4WayRed.png"), true);
+		junctionred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		junctionblue = new Texture(Gdx.files.internal("gameGraphics/rail4WayBlue.png"), true);
+		junctionblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		udl = new Texture(Gdx.files.internal("gameGraphics/railUDL.png"), true);
 		udl.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		udlred = new Texture(Gdx.files.internal("gameGraphics/railUDLRed.png"), true);
+		udlred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		udlblue = new Texture(Gdx.files.internal("gameGraphics/railUDLBlue.png"), true);
+		udlblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		udr = new Texture(Gdx.files.internal("gameGraphics/railUDR.png"), true);
 		udr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		udrred = new Texture(Gdx.files.internal("gameGraphics/railUDRRed.png"), true);
+		udrred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		udrblue = new Texture(Gdx.files.internal("gameGraphics/railUDRBlue.png"), true);
+		udrblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		ulr = new Texture(Gdx.files.internal("gameGraphics/railULR.png"), true);
 		ulr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		ulrred = new Texture(Gdx.files.internal("gameGraphics/railULRRed.png"), true);
+		ulrred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		ulrblue = new Texture(Gdx.files.internal("gameGraphics/railULRBlue.png"), true);
+		ulrblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		dlr = new Texture(Gdx.files.internal("gameGraphics/railDLR.png"), true);
 		dlr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		dlrred = new Texture(Gdx.files.internal("gameGraphics/railDLRRed.png"), true);
+		dlrred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		dlrblue = new Texture(Gdx.files.internal("gameGraphics/railDLRBlue.png"), true);
+		dlrblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		lr = new Texture(Gdx.files.internal("gameGraphics/railLR.png"), true);
 		lr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		ud = new Texture(Gdx.files.internal("gameGraphics/railUD.png"), true);
 		ud.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		city = new Texture(Gdx.files.internal("gameGraphics/city96.png"), true);
 		city.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
-		cityHover = new Texture(Gdx.files.internal("gameGraphics/citySelected.png"), true);
-		cityHover.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		cityblue = new Texture(Gdx.files.internal("gameGraphics/citySelected.png"), true);
+		cityblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		cityred = new Texture(Gdx.files.internal("gameGraphics/cityHighlighted.png"), true);
+		cityred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		turret = new Texture(Gdx.files.internal("gameGraphics/turretTile.png"), true);
 		turret.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
