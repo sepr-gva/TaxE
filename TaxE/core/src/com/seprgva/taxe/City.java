@@ -83,6 +83,7 @@ public class City extends Tile
 												train.route.add(coords);
 											}
 										}
+										train.clear();
 										SequenceAction sequenceAction = new SequenceAction();
 										for (int[] array : train.route){
 											System.out.println("x coordinate: " + array[0]);
@@ -135,6 +136,7 @@ public class City extends Tile
 												train.route.add(coords);
 											}
 										}
+										train.clear();
 										SequenceAction sequenceAction = new SequenceAction();
 										for (int[] array : train.route){
 											System.out.println("x coordinate: " + array[0]);
