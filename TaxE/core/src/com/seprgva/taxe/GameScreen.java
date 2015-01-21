@@ -62,7 +62,7 @@ public class GameScreen implements Screen {
 			//Set-up phase
 			Gdx.input.setInputProcessor(baseStage);
 		}
-		else{
+		else if ((game.phaseNo == 3) || (game.phaseNo == 4)){
 			//Deployment phase
 			Gdx.input.setInputProcessor(cityStage);
 			Player player;
@@ -72,18 +72,17 @@ public class GameScreen implements Screen {
 			else{
 				player = game.player2;
 			}
-			for (City city : game.cityList){
-				city.highlighted = false;
-				city.currentTexture = city.defaultTexture;
-			}
 			for (Train train : player.trains){
 				train.possibleRoutes = isReachable(train.currentLocation);
 			}
 		}
+		else{
+			//Implement train movement here
+		}
 			
 		if ((turnNo == 1) && (game.phaseNo == 1)){ 
 			createTrain(3,4,game.player1);
-			createTrain(3,34,game.player2);
+			createTrain(35,34,game.player2);
 		}
 	    
 	    for (Train train: game.trainList){
@@ -182,11 +181,27 @@ public class GameScreen implements Screen {
 			currentTile = city.neighbours[0];
 			prevTile = city;
 			nextTile = null;
-			while (currentTile instanceof Rail && currentTile.junction == false){
+			while (currentTile instanceof Rail){
 				route1.add(currentTile);
-				for (Tile tile : currentTile.neighbours){
-					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
-						nextTile = tile;
+				if (currentTile.junction == false){
+					for (Tile tile : currentTile.neighbours){
+						if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+							nextTile = tile;
+						}
+					}
+				}
+				else{
+					if (prevTile == currentTile.neighbours[0]){
+						nextTile = currentTile.neighbours[2];
+					}
+					else if (prevTile == currentTile.neighbours[1]){
+						nextTile = currentTile.neighbours[3];
+					}
+					else if (prevTile == currentTile.neighbours[2]){
+						nextTile = currentTile.neighbours[0];
+					}
+					else if (prevTile == currentTile.neighbours[3]){
+						nextTile = currentTile.neighbours[1];
 					}
 				}
 				prevTile = currentTile;
@@ -199,11 +214,27 @@ public class GameScreen implements Screen {
 			currentTile = city.neighbours[1];
 			prevTile = city;
 			nextTile = null;
-			while (currentTile instanceof Rail && currentTile.junction == false){
+			while (currentTile instanceof Rail){
 				route2.add(currentTile);
-				for (Tile tile : currentTile.neighbours){
-					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
-						nextTile = tile;
+				if (currentTile.junction == false){
+					for (Tile tile : currentTile.neighbours){
+						if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+							nextTile = tile;
+						}
+					}
+				}
+				else{
+					if (prevTile == currentTile.neighbours[0]){
+						nextTile = currentTile.neighbours[2];
+					}
+					else if (prevTile == currentTile.neighbours[1]){
+						nextTile = currentTile.neighbours[3];
+					}
+					else if (prevTile == currentTile.neighbours[2]){
+						nextTile = currentTile.neighbours[0];
+					}
+					else if (prevTile == currentTile.neighbours[3]){
+						nextTile = currentTile.neighbours[1];
 					}
 				}
 				prevTile = currentTile;
@@ -216,11 +247,27 @@ public class GameScreen implements Screen {
 			currentTile = city.neighbours[2];
 			prevTile = city;
 			nextTile = null;
-			while (currentTile instanceof Rail && currentTile.junction == false){
+			while (currentTile instanceof Rail){
 				route3.add(currentTile);
-				for (Tile tile : currentTile.neighbours){
-					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
-						nextTile = tile;
+				if (currentTile.junction == false){
+					for (Tile tile : currentTile.neighbours){
+						if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+							nextTile = tile;
+						}
+					}
+				}
+				else{
+					if (prevTile == currentTile.neighbours[0]){
+						nextTile = currentTile.neighbours[2];
+					}
+					else if (prevTile == currentTile.neighbours[1]){
+						nextTile = currentTile.neighbours[3];
+					}
+					else if (prevTile == currentTile.neighbours[2]){
+						nextTile = currentTile.neighbours[0];
+					}
+					else if (prevTile == currentTile.neighbours[3]){
+						nextTile = currentTile.neighbours[1];
 					}
 				}
 				prevTile = currentTile;
@@ -233,11 +280,27 @@ public class GameScreen implements Screen {
 			currentTile = city.neighbours[3];
 			prevTile = city;
 			nextTile = null;
-			while (currentTile instanceof Rail && currentTile.junction == false){
+			while (currentTile instanceof Rail){
 				route4.add(currentTile);
-				for (Tile tile : currentTile.neighbours){
-					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
-						nextTile = tile;
+				if (currentTile.junction == false){
+					for (Tile tile : currentTile.neighbours){
+						if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
+							nextTile = tile;
+						}
+					}
+				}
+				else{
+					if (prevTile == currentTile.neighbours[0]){
+						nextTile = currentTile.neighbours[2];
+					}
+					else if (prevTile == currentTile.neighbours[1]){
+						nextTile = currentTile.neighbours[3];
+					}
+					else if (prevTile == currentTile.neighbours[2]){
+						nextTile = currentTile.neighbours[0];
+					}
+					else if (prevTile == currentTile.neighbours[3]){
+						nextTile = currentTile.neighbours[1];
 					}
 				}
 				prevTile = currentTile;
@@ -314,6 +377,10 @@ public class GameScreen implements Screen {
 		//Test phase progression
 		if (nextPhaseButton.isPressed()){
 			if (game.phaseNo < 5){
+				for (City city : game.cityList){
+					city.highlighted = false;
+					city.currentTexture = city.defaultTexture;
+				}
 				game.setScreen(new GameScreen(game, game.phaseNo+1, turnNo));
 			}
 			else{
@@ -358,6 +425,9 @@ public class GameScreen implements Screen {
 		game.batch.draw(game.player1.avatar, 900, 525, 100, 100);
 		game.batch.draw(game.player2.avatar, 0, 525, 100, 100);
 		
+		String string = "Phase number: " + game.phaseNo;
+		game.font.draw(game.batch, string, 500 - ((game.font.getBounds(string).width)/2), 600);
+		
 		//Draw player1's company name, gold and passengers delivered
 		game.font.draw(game.batch, game.player1.companyName, 10, 515);
 		game.font.draw(game.batch, "Gold: " + game.player1.money, 10, 500);
@@ -366,14 +436,14 @@ public class GameScreen implements Screen {
 		//Draw player2's company name, gold and passengers delivered
 		//uses font.getBounds() to align from the right
 		game.font.draw(game.batch, game.player2.companyName, 990 - ((game.font.getBounds(game.player2.companyName).width)), 515);
-		String string = "Gold: " + game.player1.money;
+		string = "Gold: " + game.player1.money;
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 500);
 		string = "Passengers delivered: " + game.player2.safePass;
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 485);
 		
-		nextPhaseButton.draw();
-		
 		game.batch.end();
+		
+		nextPhaseButton.draw();
         
         handleInput();
 

@@ -67,6 +67,7 @@ public class City extends Tile
 										System.out.println("x coordinate: " + array[0]);
 										System.out.println("y coordinate: " + array[1]);
 									}
+									train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 								}
 							}
 						}
@@ -102,6 +103,7 @@ public class City extends Tile
 										System.out.println(array[0]);
 										System.out.println(array[1]);
 									}
+									train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 								}
 							}
 						}
