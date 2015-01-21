@@ -24,6 +24,7 @@ public class Train extends Actor
 		yCoord = y;
 		identifier = ID;
 		currentLocation = startingLocation;
+		setBounds(xCoord, yCoord, trainTexture.getWidth(), trainTexture.getHeight());
 		owner = player;
 		route = new ArrayList<int[]>();
 		possibleRoutes = new ArrayList<ArrayList<Tile>>();
@@ -38,7 +39,6 @@ public class Train extends Actor
 	
 	@Override
     public void draw(Batch batch, float alpha){
-		setBounds(xCoord, yCoord, trainTexture.getWidth(), trainTexture.getHeight());
         batch.draw(trainTexture, getX(), getY());
     }
 	

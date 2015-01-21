@@ -398,23 +398,9 @@ public class GameScreen implements Screen {
         baseStage.draw();
         cityStage.act(delta);
         cityStage.draw();
-        if(game.phaseNo == 4){
-        	System.out.println("tested for game phase");
-        	for(Train train : game.trainList){
-        		System.out.println("running for each train");
-        		System.out.println(train.route);
-        		for(int[] location : train.route){
-        			System.out.println("creating actions");
-        			MoveToAction moveAction = new MoveToAction();
-        			moveAction.setPosition(location[0], location[1]);
-        			System.out.println(location[0]);
-        			System.out.println(location[1]);
-        			moveAction.setDuration(1f);
-        			train.addAction(moveAction);
-        		}
-        	}
+        if(game.phaseNo == 5){
+        	trainStage.act(delta);
         }
-        trainStage.act(delta);
         trainStage.draw();
         
         game.batch.setProjectionMatrix(uiCamera.combined);

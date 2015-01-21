@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
@@ -81,10 +83,18 @@ public class City extends Tile
 												train.route.add(coords);
 											}
 										}
+										SequenceAction sequenceAction = new SequenceAction();
 										for (int[] array : train.route){
 											System.out.println("x coordinate: " + array[0]);
 											System.out.println("y coordinate: " + array[1]);
+											
+											MoveToAction moveAction = new MoveToAction();
+										    moveAction.setPosition(array[0], array[1]);
+										    moveAction.setDuration(1f);
+										    sequenceAction.addAction(moveAction);
 										}
+										train.addAction(sequenceAction);
+										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 									}
 								}
@@ -125,10 +135,18 @@ public class City extends Tile
 												train.route.add(coords);
 											}
 										}
+										SequenceAction sequenceAction = new SequenceAction();
 										for (int[] array : train.route){
-											System.out.println(array[0]);
-											System.out.println(array[1]);
+											System.out.println("x coordinate: " + array[0]);
+											System.out.println("y coordinate: " + array[1]);
+											
+											MoveToAction moveAction = new MoveToAction();
+										    moveAction.setPosition(array[0], array[1]);
+										    moveAction.setDuration(1f);
+										    sequenceAction.addAction(moveAction);
 										}
+										train.addAction(sequenceAction);
+										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 									}
 								}
