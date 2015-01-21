@@ -95,7 +95,7 @@ public class City extends Tile
 										    sequenceAction.addAction(moveAction);
 										}
 										train.addAction(sequenceAction);
-										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
+										train.route.clear();
 										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 									}
 								}
@@ -148,7 +148,7 @@ public class City extends Tile
 										    sequenceAction.addAction(moveAction);
 										}
 										train.addAction(sequenceAction);
-										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
+										train.route.clear();
 										train.currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
 									}
 								}
@@ -172,7 +172,7 @@ public class City extends Tile
 			trainTexture = game.train1;
 		}
 		else{
-			trainTexture = game.train1;
+			trainTexture = game.train2;
 		}
 		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
 		Tile tileForTrain = game.gameMap.mapArray[X][Y];

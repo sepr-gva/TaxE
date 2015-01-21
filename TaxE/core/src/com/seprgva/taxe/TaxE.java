@@ -158,6 +158,8 @@ public class TaxE extends Game {
 		//Train Tiles
 		train1 = new Texture(Gdx.files.internal("gameGraphics/trainBlueUp.png"), true);
 		train1.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		train2 = new Texture(Gdx.files.internal("gameGraphics/trainRedUp.png"), true);
+		train2.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		
 		//Map generation
