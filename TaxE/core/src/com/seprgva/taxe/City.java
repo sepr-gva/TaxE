@@ -1,5 +1,7 @@
 package com.seprgva.taxe;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,9 +38,23 @@ public class City extends Tile
 					currentTexture = game.cityred;
 					if (game.phaseNo == 3){
 						Train train = game.player1.trains.get(0);
-						train.route = game.gameMap.getRoute(train.currentLocation, game.gameMap.mapArray[xCoord/32][yCoord/32]);
-						for (Tile tile : train.route){
-							System.out.println("" + tile);
+						for (ArrayList<Tile> route : train.possibleRoutes){
+							if (route.size() > 0){
+								if (route.get(route.size() - 1) == game.gameMap.mapArray[xCoord/32][yCoord/32]){
+									train.route = route;
+								}
+							}
+						}
+					}
+					else if (game.phaseNo == 4){
+						Train train = game.player2.trains.get(0);
+						for (ArrayList<Tile> route : train.possibleRoutes){
+							if (route.size() > 0){
+								if (route.get(route.size() - 1) == game.gameMap.mapArray[xCoord/32][yCoord/32]){
+									System.out.println(game.gameMap.mapArray[xCoord/32][yCoord/32]);
+									train.route = route;
+								}
+							}
 						}
 					}
 				}

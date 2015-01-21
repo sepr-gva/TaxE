@@ -15,6 +15,7 @@ public class Train extends Actor
 	int passengers = 0;
 	int xCoord, yCoord;
 	ArrayList<Tile> route;
+	ArrayList<ArrayList<Tile>> possibleRoutes;
 	
 	public Train(int ID, Tile startingLocation, Player player, int x, int y, Texture sprite)
 	{
@@ -25,6 +26,7 @@ public class Train extends Actor
 		currentLocation = startingLocation;
 		owner = player;
 		route = new ArrayList<Tile>();
+		possibleRoutes = new ArrayList<ArrayList<Tile>>();
 	}
 	
 	public void traverse(Map map, Tile destination)

@@ -70,8 +70,12 @@ public class GameScreen implements Screen {
 			else{
 				player = game.player2;
 			}
+			for (City city : game.cityList){
+				city.highlighted = false;
+				city.currentTexture = city.defaultTexture;
+			}
 			for (Train train : player.trains){
-				isReachable(train.currentLocation);
+				train.possibleRoutes = isReachable(train.currentLocation);
 			}
 			
 		}
@@ -185,7 +189,6 @@ public class GameScreen implements Screen {
 				for (Tile tile : currentTile.neighbours){
 					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
 						nextTile = tile;
-						System.out.println(currentTile);
 					}
 				}
 				prevTile = currentTile;
@@ -203,7 +206,6 @@ public class GameScreen implements Screen {
 				for (Tile tile : currentTile.neighbours){
 					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
 						nextTile = tile;
-						System.out.println(currentTile);
 					}
 				}
 				prevTile = currentTile;
@@ -221,7 +223,6 @@ public class GameScreen implements Screen {
 				for (Tile tile : currentTile.neighbours){
 					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
 						nextTile = tile;
-						System.out.println(currentTile);
 					}
 				}
 				prevTile = currentTile;
@@ -239,7 +240,6 @@ public class GameScreen implements Screen {
 				for (Tile tile : currentTile.neighbours){
 					if (tile instanceof Rail && tile != prevTile || tile instanceof City && tile != prevTile){
 						nextTile = tile;
-						System.out.println(currentTile);
 					}
 				}
 				prevTile = currentTile;
@@ -247,9 +247,6 @@ public class GameScreen implements Screen {
 			}
 			route4.add(currentTile);
 			highlight(currentTile);
-		}
-		for (Tile tile : route3){
-			System.out.println(tile);
 		}
 		possibleRoutes.add(route1);
 		possibleRoutes.add(route2);

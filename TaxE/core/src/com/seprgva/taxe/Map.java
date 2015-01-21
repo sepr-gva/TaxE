@@ -48,17 +48,6 @@ public class Map
 			x = tiles[0];
 			y = tiles[1];
 			if (mapArray[x][y] instanceof City){
-//				Rail cityRail = new Rail(x*32, y*32, null, true, this);
-//				
-//				cityRail.neighbours[0] = mapArray[x][y-1];
-//				mapArray[x][y-1].neighbours[2] = cityRail;
-//				cityRail.neighbours[1] = mapArray[x-1][y];
-//				mapArray[x-1][y].neighbours[3] = cityRail;
-//				cityRail.neighbours[2] = mapArray[x][y+1];
-//				mapArray[x][y+1].neighbours[0] = cityRail;
-//				cityRail.neighbours[3] = mapArray[x+1][y];
-//				mapArray[x+1][y].neighbours[1] = cityRail;
-//				route.add(cityRail);
 			}
 			else{
 				Rail newRail = new Rail(x*32, y*32, game.ud, false, game);
