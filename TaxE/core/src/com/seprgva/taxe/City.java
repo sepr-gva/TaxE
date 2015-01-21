@@ -42,7 +42,11 @@ public class City extends Tile
 							if (route.size() > 0){
 								if (route.get(route.size() - 1) == game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1]){
 									for (Tile tile : route){
-										if (tile.currentTexture == game.ld){
+										if (tile instanceof City){
+											int[] coords = {tile.xCoord, tile.yCoord};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.ld){
 											int[] coords = {tile.xCoord, tile.yCoord};
 											train.route.add(coords);
 										}
@@ -73,7 +77,11 @@ public class City extends Tile
 							if (route.size() > 0){
 								if (route.get(route.size() - 1) == game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1]){
 									for (Tile tile : route){
-										if (tile.currentTexture == game.ld){
+										if (tile instanceof City){
+											int[] coords = {tile.xCoord + 17, tile.yCoord};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.ld){
 											int[] coords = {tile.xCoord + 17, tile.yCoord + 16};
 											train.route.add(coords);
 										}

@@ -43,7 +43,6 @@ public class Map
 	private void createRoute(int[][] listOfTiles){
 		int x, y;
 		ArrayList<Tile> route = new ArrayList<Tile>(); 
-		int[] prevTile = {0,0};
 		for (int[] tiles : listOfTiles){
 			x = tiles[0];
 			y = tiles[1];
@@ -62,7 +61,6 @@ public class Map
 				route.add(newRail);
 				mapArray[x][y] = newRail;			
 				}
-			prevTile = tiles;
 		}
 		//Adds an ArrayList containing a route to an ArrayList of routes.
 		routeList.add(route);
@@ -198,16 +196,27 @@ public class Map
 			}
 		}
 		
-		createCity(2,2, "City 1", "CY1");
-		createCity(2,10, "City 2", "CY2");
-		createCity(6,6, "City 3", "CY3");
+		createCity(3,4, "London", "LDN");
+		createCity(19,19, "York", "YRK");
+		createCity(35,35, "Paris", "PAR");
+		createCity(35,4, "Amsterdam", "AMS");
+		createCity(3, 34, "Berlin", "BRL");
+		createCity(12, 12, "Lisbon", "LIS");
+		createCity(28, 28, "Minas Tirith", "MIN");
 		
 		//Test rail - iterating was easier than writing loads of code.
 		//Also, at the moment, rails MUST be placed after cities.
-		int[][] testRoute = {{2,2},{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9},{2,10}};
-		createRoute(testRoute);
-		int [][] testRoute2 = {{2,2},{3,2},{4,2},{5,2},{6,2},{6,3},{6,4},{6,5},{6,6}};
-		createRoute(testRoute2);
+		int[][] LNDtoBRL = {{3,4},{3,5},{3,6},{3,7},{3,8},{3,9},{3,10},{3,11},{3,12},{3,13},
+				{3,14},{3,15},{3,16},{3,17},{3,18},{3,19},{3,20},{3,21},{3,22},{3,23},{3,24},{3,25},
+				{3,26},{3,27},{3,28},{3,29},{3,30},{3,31},{3,32},{3,33},{3,34}};
+		createRoute(LNDtoBRL);
+		int[][] LNDtoAMS = {{3,4},{3,3},{3,2},{4,2},{5,2},{6,2},{7,2},{8,2},{9,2},{10,2},{11,2},{12,2},{13,2},{14,2},
+				{15,2},{16,2},{17,2},{18,2},{19,2},{20,2},{21,2},{22,2},{23,2},{24,2},{25,2},{26,2},{27,2},
+				{28,2},{29,2},{30,2},{31,2},{32,2},{33,2},{34,2},{35,2},{35,3},{35,4}};
+		createRoute(LNDtoAMS);
+		int[][] LNDtoLIS = {{3,4},{4,4},{5,4},{6,4},{7,4},{7,5},{7,6},{7,7},{7,8},{7,9},{8,9},
+				{9,9},{10,9},{10,10},{11,10},{12,10},{12,11},{12,12}};
+		createRoute(LNDtoLIS);
 		chooseRailTextures();
 		
 		System.out.println(mapArray[7][2]);

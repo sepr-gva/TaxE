@@ -82,8 +82,8 @@ public class GameScreen implements Screen {
 		}
 			
 		if ((turnNo == 1) && (game.phaseNo == 1)){ 
-			createTrain(2,2,game.player1);
-			createTrain(2,10,game.player2);
+			createTrain(3,4,game.player1);
+			createTrain(3,34,game.player2);
 		}
 	    
 	    for (Train train: game.trainList){
