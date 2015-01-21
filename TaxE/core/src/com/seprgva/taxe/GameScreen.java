@@ -381,10 +381,12 @@ public class GameScreen implements Screen {
 					city.highlighted = false;
 					city.currentTexture = city.defaultTexture;
 				}
-				game.setScreen(new GameScreen(game, game.phaseNo+1, game.turnNo));
+				game.gameScreen = new GameScreen(game, game.phaseNo+1, game.turnNo);
+				game.setScreen(game.gameScreen);
 			}
 			else{
-				game.setScreen(new GameScreen(game, 1, game.turnNo+1));
+				game.gameScreen = new GameScreen(game, 1, game.turnNo+1);
+				game.setScreen(game.gameScreen);
 			}
 		}
 	}

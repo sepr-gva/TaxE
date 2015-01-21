@@ -62,7 +62,8 @@ public class CustomisationScreen implements Screen {
 						this.dispose();
 					}
 					else{
-						game.setScreen(new GameScreen(game, 1, 1));
+						game.gameScreen = new GameScreen(game, 1, 1);
+						game.setScreen(game.gameScreen);
 						this.dispose();
 					}
 				}
@@ -76,7 +77,8 @@ public class CustomisationScreen implements Screen {
 						this.dispose();
 					}
 					else{
-						game.setScreen(new GameScreen(game, 1, 1));
+						game.gameScreen = new GameScreen(game, 1, 1);
+						game.setScreen(game.gameScreen);
 						this.dispose();
 					}
 				}
@@ -90,7 +92,8 @@ public class CustomisationScreen implements Screen {
 						this.dispose();
 					}
 					else{
-						game.setScreen(new GameScreen(game, 1, 1));
+						game.gameScreen = new GameScreen(game, 1, 1);
+						game.setScreen(game.gameScreen);
 						this.dispose();
 					}
 				}
@@ -102,7 +105,8 @@ public class CustomisationScreen implements Screen {
 			game.player2.companyName = "Sally's trains";
 			game.player1.avatar = game.blackAvatar;
 			game.player2.avatar = game.femaleAvatar;
-			game.setScreen(new GameScreen(game, 1, 1));
+			game.gameScreen = new GameScreen(game, 1, 1);
+			game.setScreen(game.gameScreen);
 			this.dispose();
 		}
 	}

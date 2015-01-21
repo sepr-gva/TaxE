@@ -27,6 +27,7 @@ public class TaxE extends Game {
 	int trainID;
 	ArrayList<Train> trainList;
 	ArrayList<City> cityList;
+	GameScreen gameScreen;
 	
 	@Override
 	public void create () {
