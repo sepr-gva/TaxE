@@ -197,6 +197,7 @@ public class Map
 			}
 		}
 		
+		//Generating cities on the map
 		createCity(3,4, "London", "LDN");
 		createCity(19,19, "York", "YRK");
 		createCity(35,34, "Paris", "PAR");
