@@ -1,5 +1,7 @@
 package com.seprgva.taxe;
 
+import org.junit.Test;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -14,10 +16,10 @@ public class Tile extends Actor
 	//Tile[] neighbours = new Tile[4];	//Should be able to calculate neighbours using tile coordinates as a unique ID.
 	//public String tileType;
 	
-	Texture defaultTexture, hoverTexture, currentTexture;
+	public Texture defaultTexture, hoverTexture, currentTexture;
 	public boolean started = false;
 	public boolean blank = false;
-	int xCoord, yCoord;
+	public int xCoord, yCoord;
 	Tile[] neighbours;
 	Map gameMap;
 	Player owner;
