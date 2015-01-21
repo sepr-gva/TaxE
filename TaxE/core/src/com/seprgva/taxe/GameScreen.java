@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameScreen implements Screen {
@@ -19,7 +20,7 @@ public class GameScreen implements Screen {
 	TaxE game;
 	int turnNo;
 	
-	private Stage baseStage, cityStage;
+	private Stage baseStage, cityStage, trainStage;
 	private float origX, origY, maxX, maxY;
 	OrthographicCamera uiCamera;
 	GeneralButton nextPhaseButton;
@@ -32,6 +33,7 @@ public class GameScreen implements Screen {
 		turnNo = turnNumber;
 		baseStage = new Stage(new ScreenViewport());
 		cityStage = new Stage(new ScreenViewport());
+		trainStage = new Stage(new ScreenViewport());
 		uiCamera = new OrthographicCamera();
 		uiCamera.setToOrtho(false, 1000, 625);
 		uiCamera.update();
@@ -77,22 +79,16 @@ public class GameScreen implements Screen {
 			for (Train train : player.trains){
 				train.possibleRoutes = isReachable(train.currentLocation);
 			}
-			
 		}
-		
+			
 		if ((turnNo == 1) && (game.phaseNo == 1)){ 
 			createTrain(2,2,game.player1);
 			createTrain(2,10,game.player2);
 		}
 	    
 	    for (Train train: game.trainList){
-	    	baseStage.addActor(train);
+	    	trainStage.addActor(train);
 	    }
-	    
-	    //ArrayList<Rail> testRoute = game.gameMap.getRoute(game.gameMap.mapArray[2][2],game.gameMap.mapArray[2][10]);
-	    //for (Rail rail: testRoute){
-	    //	System.out.println(rail.xCoord + ", " + rail.yCoord);
-	    //}
 	}
 	
 	private void createTrain(int X, int Y, Player owner)
@@ -170,8 +166,6 @@ public class GameScreen implements Screen {
 			tile.highlighted = false;
 		}
 	}
-	
-	
 	
 	public ArrayList<ArrayList<Tile>> isReachable(Tile city){
 		ArrayList<ArrayList<Tile>> possibleRoutes = new ArrayList<ArrayList<Tile>>();
@@ -267,6 +261,7 @@ public class GameScreen implements Screen {
 			{
 				cityStage.getCamera().position.x = maxX;
 				baseStage.getCamera().position.x = maxX;
+				trainStage.getCamera().position.x = maxX;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
@@ -276,6 +271,7 @@ public class GameScreen implements Screen {
 			{
 				cityStage.getCamera().position.x = origX;
 				baseStage.getCamera().position.x = origX;
+				trainStage.getCamera().position.x = origX;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
@@ -285,6 +281,7 @@ public class GameScreen implements Screen {
 			{
 				cityStage.getCamera().position.y = origY;
 				baseStage.getCamera().position.y = origY;
+				trainStage.getCamera().position.y = origY;
 			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)){
@@ -294,10 +291,12 @@ public class GameScreen implements Screen {
 			{
 				cityStage.getCamera().position.y = maxY;
 				baseStage.getCamera().position.y = maxY;
+				trainStage.getCamera().position.y = maxY;
 			}
 		}
 		baseStage.getCamera().update();
 		cityStage.getCamera().update();
+		trainStage.getCamera().update();
 		
 		//Test goals
 		if (Gdx.input.isKeyJustPressed(Keys.NUM_1)){
@@ -314,7 +313,7 @@ public class GameScreen implements Screen {
 		
 		//Test phase progression
 		if (nextPhaseButton.isPressed()){
-			if (game.phaseNo < 4){
+			if (game.phaseNo < 5){
 				game.setScreen(new GameScreen(game, game.phaseNo+1, turnNo));
 			}
 			else{
@@ -332,6 +331,24 @@ public class GameScreen implements Screen {
         baseStage.draw();
         cityStage.act(delta);
         cityStage.draw();
+        if(game.phaseNo == 4){
+        	System.out.println("tested for game phase");
+        	for(Train train : game.trainList){
+        		System.out.println("running for each train");
+        		System.out.println(train.route);
+        		for(int[] location : train.route){
+        			System.out.println("creating actions");
+        			MoveToAction moveAction = new MoveToAction();
+        			moveAction.setPosition(location[0], location[1]);
+        			System.out.println(location[0]);
+        			System.out.println(location[1]);
+        			moveAction.setDuration(1f);
+        			train.addAction(moveAction);
+        		}
+        	}
+        }
+        trainStage.act(delta);
+        trainStage.draw();
         
         game.batch.setProjectionMatrix(uiCamera.combined);
 		
