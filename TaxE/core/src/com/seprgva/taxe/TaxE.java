@@ -43,6 +43,8 @@ public class TaxE extends Game {
 		//Texts
 		gva = new Texture(Gdx.files.internal("Text/GroupName.png"), true);
 		gva.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		//Main Menu Texts
 		how = new Texture(Gdx.files.internal("Text/How To.png"), true);
 		how.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		play = new Texture(Gdx.files.internal("Text/Play.png"), true);
@@ -51,6 +53,8 @@ public class TaxE extends Game {
 		quit.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		title = new Texture(Gdx.files.internal("Text/TaxE.png"), true);
 		title.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		//Customisation Screen Texts
 		done = new Texture(Gdx.files.internal("Text/Done.png"), true);
 		done.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		player1Custom = new Texture(Gdx.files.internal("Text/Player1Custom.png"), true);
@@ -85,10 +89,19 @@ public class TaxE extends Game {
 		brownSquare = new Texture(Gdx.files.internal("gameGraphics/brownSquare.png"), true);
 		nextPhase = new Texture(Gdx.files.internal("gameGraphics/nextPhase.png"), true);
 		
-		//Tile Textures
+		//Tile Textures (32px x 32px: Except Cities) 
+		
+		//Empty Tiles
 		emptyTile = new Texture(Gdx.files.internal("gameGraphics/emptyTile.png"), true);
 		emptyTile.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		emptyTileHover = new Texture(Gdx.files.internal("gameGraphics/emptyTileHover.png"), true);
+		
+		//Rail Tiles (l = left, r = right, u = up, d = down: these are the directions which rail can enter the tile from)
+		//Two Directional Rail Tiles
+		lr = new Texture(Gdx.files.internal("gameGraphics/railLR.png"), true);
+		lr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		ud = new Texture(Gdx.files.internal("gameGraphics/railUD.png"), true);
+		ud.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		ld = new Texture(Gdx.files.internal("gameGraphics/railLD.png"), true);
 		ld.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		lu = new Texture(Gdx.files.internal("gameGraphics/railLU.png"), true);
@@ -97,6 +110,8 @@ public class TaxE extends Game {
 		rd.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		ru = new Texture(Gdx.files.internal("gameGraphics/railRU.png"), true);
 		ru.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		//Junction Tiles - blue and red are highlight colours
 		junction = new Texture(Gdx.files.internal("gameGraphics/rail4Way.png"), true);
 		junction.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		junctionred = new Texture(Gdx.files.internal("gameGraphics/rail4WayRed.png"), true);
@@ -127,16 +142,16 @@ public class TaxE extends Game {
 		dlrred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		dlrblue = new Texture(Gdx.files.internal("gameGraphics/railDLRBlue.png"), true);
 		dlrblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
-		lr = new Texture(Gdx.files.internal("gameGraphics/railLR.png"), true);
-		lr.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
-		ud = new Texture(Gdx.files.internal("gameGraphics/railUD.png"), true);
-		ud.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		//City tiles (96px x 96px)
 		city = new Texture(Gdx.files.internal("gameGraphics/city96.png"), true);
 		city.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		cityblue = new Texture(Gdx.files.internal("gameGraphics/citySelected.png"), true);
 		cityblue.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		cityred = new Texture(Gdx.files.internal("gameGraphics/cityHighlighted.png"), true);
 		cityred.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		//Turret tiles
 		turret = new Texture(Gdx.files.internal("gameGraphics/turretTile.png"), true);
 		turret.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
