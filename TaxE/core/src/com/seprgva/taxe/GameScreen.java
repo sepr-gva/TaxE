@@ -15,26 +15,26 @@ public class GameScreen implements Screen {
 	
 	TaxE game;
 	
-	public Stage baseStage, cityStage, trainStage;
-	private float origX, origY, maxX, maxY;
+	public Stage baseStage, cityStage, trainStage;	//define the three different stages that actors will be drawn to
+	private float origX, origY, maxX, maxY;			//variables used to bind the camera to the game region
 	OrthographicCamera uiCamera;
-	GeneralButton nextPhaseButton;
+	GeneralButton nextPhaseButton;					//used to transition between game phases and turns
 	boolean routeDone = false;
 	
 	//equivalent of create
 	public GameScreen(final TaxE gameInstance, int currentPhase, int turnNumber) {
-		game = gameInstance;
+		game = gameInstance;								//allow the gameScreen
 
 		game.phaseNo = currentPhase;
 		game.turnNo = turnNumber;
-		baseStage = new Stage(new ScreenViewport());
-		cityStage = new Stage(new ScreenViewport());
-		trainStage = new Stage(new ScreenViewport());
+		baseStage = new Stage(new ScreenViewport());		//set up the viewports for each Stage
+		cityStage = new Stage(new ScreenViewport());		//set up the viewports for each Stage
+		trainStage = new Stage(new ScreenViewport());		//set up the viewports for each Stage
 		uiCamera = new OrthographicCamera();
 		uiCamera.setToOrtho(false, 1000, 625);
 		uiCamera.update();
 		
-	    origX = baseStage.getCamera().position.x;
+	    origX = baseStage.getCamera().position.x;								//find appropriate bounds for the camera
 	    origY = baseStage.getCamera().position.y;
 	    maxX = origX + ((game.gameMap.xSize*32)-Gdx.graphics.getWidth());
 	    maxY = origY + ((game.gameMap.ySize*32)-Gdx.graphics.getHeight());
@@ -46,10 +46,10 @@ public class GameScreen implements Screen {
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
 				if (game.gameMap.getTile(i, j) instanceof City){
-					cityStage.addActor(game.gameMap.getTile(i, j));
-				}
+					cityStage.addActor(game.gameMap.getTile(i, j));		//add the cities to their own stage as they need a
+				}														//separate listener to the blank tiles
 				else{
-					baseStage.addActor(game.gameMap.getTile(i,j));
+					baseStage.addActor(game.gameMap.getTile(i,j));		//add all of the other tiles to the base layer
 				}
 			}
 		}
@@ -57,11 +57,11 @@ public class GameScreen implements Screen {
 		if ((game.phaseNo == 1) || (game.phaseNo == 2)){
 			//Set-up phase
 			if (game.turnNo == 1){
-				Gdx.input.setInputProcessor(cityStage);
-			}
+				Gdx.input.setInputProcessor(cityStage);		//phases one and two are a special case as the player needs to
+			}												//decide the city that they start on
 			else{
-				Gdx.input.setInputProcessor(baseStage);
-			}
+				Gdx.input.setInputProcessor(baseStage);		//otherwise we want to listen to input on the base layer
+			}												//ie. building of towers
 		}
 		else if ((game.phaseNo == 3) || (game.phaseNo == 4)){
 			//Deployment phase
@@ -74,15 +74,12 @@ public class GameScreen implements Screen {
 				player = game.player2;
 			}
 			for (Train train : player.trains){
-				train.possibleRoutes = isReachable(train.currentLocation);
-			}
-		}
-		else{
-			//Implement train movement here
+				train.possibleRoutes = isReachable(train.currentLocation);	//find the possible routes that a train can
+			}																//take to its neighbouring cities
 		}
 	    
 	    for (Train train: game.trainList){
-	    	trainStage.addActor(train);
+	    	trainStage.addActor(train);				//add each train to the train Stage
 	    	
 	    }
 	}

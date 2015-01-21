@@ -13,7 +13,6 @@ public class Tile extends Actor
 	//public String tileType;
 	
 	public Texture defaultTexture, hoverTexture, currentTexture;
-	public boolean started = false;
 	public boolean blank = false;
 	public int xCoord, yCoord;
 	Tile[] neighbours;
