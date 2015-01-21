@@ -99,16 +99,6 @@ public class CustomisationScreen implements Screen {
 				}
 			}
 		}
-		
-		if (Gdx.input.isKeyPressed(Keys.ENTER)){
-			game.player1.companyName = "Bob's trains";
-			game.player2.companyName = "Sally's trains";
-			game.player1.avatar = game.blackAvatar;
-			game.player2.avatar = game.femaleAvatar;
-			game.gameScreen = new GameScreen(game, 1, 1);
-			game.setScreen(game.gameScreen);
-			this.dispose();
-		}
 	}
 	
 	public CustomisationScreen(final TaxE gameInstance, Player player) {
@@ -137,7 +127,6 @@ public class CustomisationScreen implements Screen {
 		//Draw
 		game.batch.begin();
 		game.batch.draw(game.menuBackground, 0, 0, 1005, 630);
-		game.font.draw(game.batch, "Press Enter to skip customisation", 100, 100);
 		if (player.playerNumber == 1){
 			game.batch.draw(game.player1Custom, 200, 500, 600, 80);
 		}
