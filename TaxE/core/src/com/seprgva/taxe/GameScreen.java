@@ -6,13 +6,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameScreen implements Screen {
@@ -28,6 +24,7 @@ public class GameScreen implements Screen {
 	//equivalent of create
 	public GameScreen(final TaxE gameInstance, int currentPhase, int turnNumber) {
 		game = gameInstance;
+
 		game.phaseNo = currentPhase;
 		game.turnNo = turnNumber;
 		baseStage = new Stage(new ScreenViewport());
@@ -377,10 +374,9 @@ public class GameScreen implements Screen {
 				game.setScreen(game.gameScreen);
 			}
 			else{
-<<<<<<< Updated upstream
 				game.gameScreen = new GameScreen(game, 1, game.turnNo+1);
 				game.setScreen(game.gameScreen);
-=======
+
 				for (Goal goal : game.player1.goals){
 					goal.addTrain();
 					goal.isComplete();
@@ -390,7 +386,6 @@ public class GameScreen implements Screen {
 					goal.isComplete();
 				}
 				game.setScreen(new GameScreen(game, 1, game.turnNo+1));
->>>>>>> Stashed changes
 			}
 		}
 	}
