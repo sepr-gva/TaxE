@@ -76,6 +76,7 @@ public class Goal {
 					train.passengers = 0;
 					player.score += this.reward / 100 * this.passengers;
 					player.goals.remove(this);
+					player.goalsCompleted += 1;
 				}
 			}
 		}

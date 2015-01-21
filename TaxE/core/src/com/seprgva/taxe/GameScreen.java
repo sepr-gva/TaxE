@@ -371,18 +371,23 @@ public class GameScreen implements Screen {
 				game.setScreen(game.gameScreen);
 			}
 			else{
-				game.gameScreen = new GameScreen(game, 1, game.turnNo+1);
-				game.setScreen(game.gameScreen);
-
 				for (Goal goal : game.player1.goals){
 					goal.addTrain();
 					goal.isComplete();
 				}
-				for (Goal goal : game.player2.goals){
+				if (game.player1.goalsCompleted >= 5){
+					game.setScreen(new GameOverScreen(game.player1, game));
+				}
+				for (int i = 0; i < game.player2.goals.size() - 1; i++){
+					Goal goal = game.player2.goals.get(i);
 					goal.addTrain();
 					goal.isComplete();
 				}
-				game.setScreen(new GameScreen(game, 1, game.turnNo+1));
+				if (game.player1.goalsCompleted >= 5){
+					game.setScreen(new GameOverScreen(game.player2, game));
+				}
+				game.gameScreen = new GameScreen(game, 1, game.turnNo+1);
+				game.setScreen(game.gameScreen);
 			}
 		}
 	}

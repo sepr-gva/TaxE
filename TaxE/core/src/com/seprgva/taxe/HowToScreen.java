@@ -38,7 +38,8 @@ public class HowToScreen implements Screen {
 		
 		game.batch.begin();
 		game.batch.draw(game.menuBackground, 0, 0, 1005, 630);
-		game.font.draw(game.batch, "Read full user manual for more detail, touch to go back!", 500 - (game.font.getBounds("Read full user manual for more detail, touch to go back!").width)/2, 100);
+		game.batch.draw(game.controls, 150, 100, 700, 500);
+		game.font.draw(game.batch, "Read full user manual (on the github) for more detail, touch to go back!", 500 - (game.font.getBounds("Read full user manual (on the github) for more detail, touch to go back!").width)/2, 50);
 		game.batch.end();
 		
 		if (TimeUtils.millis() - time > 300){

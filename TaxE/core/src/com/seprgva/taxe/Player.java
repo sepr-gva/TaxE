@@ -18,6 +18,7 @@ public class Player {
 	ArrayList<Train> trains;
 	int playerNumber, money = 1000, reputation = 0, score = 0, safePass = 0;
 	ArrayList<Goal> goals;
+	int goalsCompleted = 0;
 	
 	public Player(int num){
 		this.playerNumber = num;

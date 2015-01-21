@@ -18,7 +18,7 @@ public class TaxE extends Game {
 	redSquare, greySquare, tempTrain1, tempTrain2, player1Build, player2Build, brownSquare,
 	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, junctionred, junctionblue, udl,
 	udlred, udlblue, ulr, ulrred, ulrblue, udr, udrred, udrblue, dlr, dlrred, dlrblue,
-	lr, ud, nextPhase, 
+	lr, ud, nextPhase,controls, 
 	city, cityred, cityblue, turretRed, turretBlue, menuBackground, train1, train2;
 
 	public BitmapFont font;
@@ -78,6 +78,8 @@ public class TaxE extends Game {
 		selected.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		menuBackground = new Texture(Gdx.files.internal("Images/menuBackground.png"), true);
 		menuBackground.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		controls = new Texture(Gdx.files.internal("Images/howTo.png"), true);
+		controls.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 				
 		//In-game graphics
 		greenSquare = new Texture(Gdx.files.internal("gameGraphics/greenSquare.png"), true);
