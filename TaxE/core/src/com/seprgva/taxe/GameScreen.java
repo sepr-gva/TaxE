@@ -83,38 +83,11 @@ public class GameScreen implements Screen {
 		else{
 			//Implement train movement here
 		}
-			
-		if ((game.turnNo == 1) && (game.phaseNo == 1)){ 
-			createTrain(3,4,game.player1);
-			createTrain(35,34,game.player2);
-		}
 	    
 	    for (Train train: game.trainList){
 	    	trainStage.addActor(train);
 	    	
 	    }
-	}
-	
-	private void createTrain(int X, int Y, Player owner)
-	{
-		Texture trainTexture;
-		if (owner.playerNumber == 1){
-			trainTexture = game.tempTrain1;
-		}
-		else{
-			trainTexture = game.tempTrain2;
-		}
-		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
-		Tile tileForTrain = game.gameMap.mapArray[X][Y];
-		if (tileForTrain instanceof City){
-			City cityForTrain = (City) tileForTrain;
-			Train newTrain = new Train(game.trainID, game.gameMap.mapArray[X][Y], owner, X*32, Y*32, trainTexture);
-			game.trainList.add(newTrain);
-			cityForTrain.trainsInStation.add(newTrain);
-			owner.trains.add(newTrain);
-			game.gameMap.mapArray[X][Y] = cityForTrain;
-			game.trainID++; //This needs to be implemented properly at some point
-		}
 	}
 	
 	//Function to highlight tiles which can be selected using select(tile). Highlight variant of tile textures has blue highlight.
@@ -395,6 +368,14 @@ public class GameScreen implements Screen {
 				goal.addTrain();
 				goal.isComplete();
 			}
+			if (game.phaseNo == 3){
+				if (game.player1.goals.size() < 3){
+					new Goal(game.player1, game);
+				}
+				if (game.player2.goals.size() < 3){
+					new Goal(game.player2, game);
+				}
+			}
 			if (game.phaseNo < 5){
 				for (City city : game.cityList){
 					city.highlighted = false;
@@ -403,12 +384,6 @@ public class GameScreen implements Screen {
 				game.setScreen(new GameScreen(game, game.phaseNo+1, game.turnNo));
 			}
 			else{
-				if (game.player1.goals.size() < 3){
-					new Goal(game.player1, game);
-				}
-				if (game.player2.goals.size() < 3){
-					new Goal(game.player2, game);
-				}
 				game.setScreen(new GameScreen(game, 1, game.turnNo+1));
 			}
 		}

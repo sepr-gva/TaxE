@@ -31,15 +31,13 @@ public class City extends Tile
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				System.out.println("down");
 				if (game.phaseNo == 1 && game.turnNo == 1){
-					game.player1.trains.get(0).currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
+					createTrain(xCoord/32+1, yCoord/32+1, game.player1);
 					game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1].currentTexture = game.cityred;
-					new Goal(game.player1, game);
 					
 				}
 				else if (game.phaseNo == 2 && game.turnNo == 1){
-					game.player2.trains.get(0).currentLocation = game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1];
+					createTrain(xCoord/32+1, yCoord/32+1, game.player2);
 					game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1].currentTexture = game.cityred;
-					new Goal(game.player2, game);
 				}
 				else{
 					if (highlighted){
@@ -145,6 +143,28 @@ public class City extends Tile
 				System.out.println("up");
 		    }
 		});
+	}
+	
+	private void createTrain(int X, int Y, Player owner)
+	{
+		Texture trainTexture;
+		if (owner.playerNumber == 1){
+			trainTexture = game.train1;
+		}
+		else{
+			trainTexture = game.train1;
+		}
+		//I feel like this is over-complicated. Do we need a trainList and trainsInStation?
+		Tile tileForTrain = game.gameMap.mapArray[X][Y];
+		if (tileForTrain instanceof City){
+			City cityForTrain = (City) tileForTrain;
+			Train newTrain = new Train(game.trainID, game.gameMap.mapArray[X][Y], owner, X*32, Y*32, trainTexture);
+			game.trainList.add(newTrain);
+			cityForTrain.trainsInStation.add(newTrain);
+			owner.trains.add(newTrain);
+			game.gameMap.mapArray[X][Y] = cityForTrain;
+			game.trainID++; //This needs to be implemented properly at some point
+		}
 	}
 
 	

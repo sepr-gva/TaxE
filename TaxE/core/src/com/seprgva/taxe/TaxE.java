@@ -19,7 +19,7 @@ public class TaxE extends Game {
 	emptyTile, emptyTileHover, ld, lu, rd, ru, junction, junctionred, junctionblue, udl,
 	udlred, udlblue, ulr, ulrred, ulrblue, udr, udrred, udrblue, dlr, dlrred, dlrblue,
 	lr, ud, nextPhase, 
-	city, cityred, cityblue, turret, menuBackground;
+	city, cityred, cityblue, turret, menuBackground, train1, train2;
 
 	public BitmapFont font;
 	public Player player1, player2;
@@ -154,6 +154,11 @@ public class TaxE extends Game {
 		//Turret tiles
 		turret = new Texture(Gdx.files.internal("gameGraphics/turretTile.png"), true);
 		turret.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
+		//Train Tiles
+		train1 = new Texture(Gdx.files.internal("gameGraphics/train1North.png"), true);
+		train1.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
+		
 		
 		//Map generation
 		//Map is currently set to 40x40

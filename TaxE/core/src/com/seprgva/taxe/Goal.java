@@ -16,13 +16,13 @@ public class Goal {
 	//Will be made smarter when map fully implemented
 	public Goal(Player player, TaxE gameInstance){
 			this.game = gameInstance;
-			this.turnsLeft = 10;
+			this.turnsLeft = 15;
 			int v = MathUtils.random(0,2);
 			boolean via = false;
 			if (v == 0){
 				via = true;
 			}
-			start = (City)player.trains.get(0).currentLocation;
+			start = game.cityList.get(MathUtils.random(0, game.cityList.size() - 1));
 			end = start;
 			while(start == end){
 				end = game.cityList.get(MathUtils.random(0, game.cityList.size() - 1));
@@ -56,6 +56,7 @@ public class Goal {
 			for (Train train : player.trains){
 				if (start.trainsInStation.contains(train, true)){
 					this.trains.add(train);
+					System.out.println(trains.get(0));
 					train.passengers += this.passengers;
 				}
 			}
