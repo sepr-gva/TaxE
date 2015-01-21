@@ -19,7 +19,7 @@ public class GameScreen implements Screen {
 	
 	TaxE game;
 	
-	private Stage baseStage, cityStage, trainStage;
+	public Stage baseStage, cityStage, trainStage;
 	private float origX, origY, maxX, maxY;
 	OrthographicCamera uiCamera;
 	GeneralButton nextPhaseButton;

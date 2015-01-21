@@ -16,7 +16,7 @@ public class Player {
 	String companyName = "";
 	Texture avatar;
 	ArrayList<Train> trains;
-	int playerNumber, money = 0, reputation = 0, score = 0, safePass = 0;
+	int playerNumber, money = 1000, reputation = 0, score = 0, safePass = 0;
 	ArrayList<Goal> goals;
 	
 	public Player(int num){

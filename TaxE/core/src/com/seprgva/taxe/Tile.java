@@ -47,6 +47,43 @@ public class Tile extends Actor
 				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 					currentTexture = defaultTexture;
 				}
+				
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					if(blank == true){
+					
+						Player player = null;
+						if(game.phaseNo == 1){
+							player = game.player1;
+						}
+						else{
+							player = game.player2;
+						}
+					
+						if(player.money>249){
+					
+			        	
+			        		Texture texture = game.turretBlue;
+			        
+			        		if(game.phaseNo == 2){
+			        			player = game.player2;
+			        			texture = game.turretRed;
+			        		}
+			        
+			        		Tower tower = new Tower(player, xCoord, yCoord, texture);
+			        		game.gameScreen.trainStage.addActor(tower);
+			        
+			        		player.money = player.money-250;
+			        		blank = false;
+			        	}
+					}
+			        return true;
+			        
+			    }
+
+			    public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+			        System.out.println("up");
+			    }
+				
 			});
 		}
 	
