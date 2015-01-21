@@ -6,8 +6,13 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Player {
 	
-	// Can't remember all the attributes for player, add the rest
-	//(This is just to implement customisation)
+	/* Attributes for player include: 
+	 * -Customisation fields: companyName and avatar 
+	 * -Resources: money, reputation, score and safe passengers
+	 * -List of trains owned by the player
+	 * -Goals/objectives given to the player
+	 * -Player Number 
+	*/
 	String companyName = "";
 	Texture avatar;
 	ArrayList<Train> trains;
