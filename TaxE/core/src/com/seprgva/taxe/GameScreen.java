@@ -368,7 +368,7 @@ public class GameScreen implements Screen {
 				goal.addTrain();
 				goal.isComplete();
 			}
-			if (game.phaseNo == 3){
+			if (game.phaseNo == 2){
 				if (game.player1.goals.size() < 3){
 					new Goal(game.player1, game);
 				}

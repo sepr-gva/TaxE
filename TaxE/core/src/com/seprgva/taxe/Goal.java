@@ -22,7 +22,7 @@ public class Goal {
 			if (v == 0){
 				via = true;
 			}
-			start = game.cityList.get(MathUtils.random(0, game.cityList.size() - 1));
+			start = (City)player.trains.get(0).currentLocation;
 			end = start;
 			while(start == end){
 				end = game.cityList.get(MathUtils.random(0, game.cityList.size() - 1));
@@ -45,6 +45,7 @@ public class Goal {
 			this.player = player;
 			trains = new ArrayList<Train>();
 			player.goals.add(this);
+			this.addTrain();
 	}
 	
 	
@@ -54,7 +55,7 @@ public class Goal {
 	public void addTrain(){
 		if (turnsLeft > 0){
 			for (Train train : player.trains){
-				if (start.trainsInStation.contains(train, true)){
+				if (train.currentLocation == start){
 					this.trains.add(train);
 					System.out.println(trains.get(0));
 					train.passengers += this.passengers;
@@ -69,9 +70,9 @@ public class Goal {
 	public void isComplete(){
 		if (turnsLeft > 0){
 			for (Train train : this.trains){
-				if (end.trainsInStation.contains(train, true)){
+				if (train.currentLocation == end){
 					player.money += this.reward;
-					player.safePass += train.passengers;
+					player.safePass += this.passengers;
 					train.passengers = 0;
 					player.score += this.reward / 100 * this.passengers;
 					player.goals.remove(this);
