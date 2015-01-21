@@ -8,7 +8,7 @@ public class Goal {
 	int turnsLeft, reward, passengers;
 	Player player;
 	String description;
-	City start, end;
+	City start, end, viaCity;
 	ArrayList<Train> trains;
 	TaxE game;
 	
@@ -16,30 +16,35 @@ public class Goal {
 	//Will be made smarter when map fully implemented
 	public Goal(Player player, TaxE gameInstance){
 			this.game = gameInstance;
-			this.turnsLeft = MathUtils.random(4, 7);
+			this.turnsLeft = 2;
 			int v = MathUtils.random(0,2);
 			boolean via = false;
 			if (v == 0){
 				via = true;
 			}
-			int s = MathUtils.random(0, game.cityList.size() - 1);
-			int e = MathUtils.random(0, game.cityList.size() - 1);
-			while (s == e){
-				e = MathUtils.random(0, game.cityList.size() - 1);
+			start = (City)player.trains.get(0).currentLocation;
+			for (City city : game.cityList){
+				int choose = MathUtils.random(0,2);
+				if (choose == 0 && city != start){
+					end = city;
+					break;
+				}
 			}
-			this.start = game.cityList.get(s);
-			this.end = game.cityList.get(e);
+			
 			this.passengers = 100;
 			if (via == true){
-				while (v == e || v == s){
-					v = MathUtils.random(0, game.cityList.size() - 1);
+				for (City city : game.cityList){
+					int choose = MathUtils.random(0,2);
+					if (choose == 0 && city != start && city != end){
+						viaCity = city;
+					}
 				}
 				this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
-						" to " + this.end.cityName + " via " + game.cityList.get(v).cityName + " in " + this.turnsLeft + " turns.      " + player.companyName;
+						" to " + end.cityName + " via " + game.cityList.get(v).cityName + " in " + this.turnsLeft + " turns";
 			}
 			else{
 				this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
-						" to " + this.end.cityName + " in " + this.turnsLeft + " turns.      " + player.companyName;
+						" to " + this.end.cityName + " in " + this.turnsLeft + " turns.";
 			}
 			this.reward = this.passengers * 10;
 			this.player = player;

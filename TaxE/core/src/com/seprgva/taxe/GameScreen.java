@@ -18,7 +18,6 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class GameScreen implements Screen {
 	
 	TaxE game;
-	int turnNo;
 	
 	private Stage baseStage, cityStage, trainStage;
 	private float origX, origY, maxX, maxY;
@@ -30,7 +29,7 @@ public class GameScreen implements Screen {
 	public GameScreen(final TaxE gameInstance, int currentPhase, int turnNumber) {
 		game = gameInstance;
 		game.phaseNo = currentPhase;
-		turnNo = turnNumber;
+		game.turnNo = turnNumber;
 		baseStage = new Stage(new ScreenViewport());
 		cityStage = new Stage(new ScreenViewport());
 		trainStage = new Stage(new ScreenViewport());
@@ -45,7 +44,7 @@ public class GameScreen implements Screen {
 	    
 	    nextPhaseButton = new GeneralButton(game.nextPhase, 942, 10, 48, 48, uiCamera);
 	    
-	    System.out.println("Turn no: " + turnNo + ". Phase: " + game.phaseNo);
+	    System.out.println("Turn no: " + game.turnNo + ". Phase: " + game.phaseNo);
 		
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
@@ -60,7 +59,12 @@ public class GameScreen implements Screen {
 	    
 		if ((game.phaseNo == 1) || (game.phaseNo == 2)){
 			//Set-up phase
-			Gdx.input.setInputProcessor(baseStage);
+			if (game.turnNo == 1){
+				Gdx.input.setInputProcessor(cityStage);
+			}
+			else{
+				Gdx.input.setInputProcessor(baseStage);
+			}
 		}
 		else if ((game.phaseNo == 3) || (game.phaseNo == 4)){
 			//Deployment phase
@@ -80,7 +84,7 @@ public class GameScreen implements Screen {
 			//Implement train movement here
 		}
 			
-		if ((turnNo == 1) && (game.phaseNo == 1)){ 
+		if ((game.turnNo == 1) && (game.phaseNo == 1)){ 
 			createTrain(3,4,game.player1);
 			createTrain(35,34,game.player2);
 		}
@@ -378,15 +382,27 @@ public class GameScreen implements Screen {
 		
 		//Test phase progression
 		if (nextPhaseButton.isPressed()){
+			for (Goal goal : game.player1.goals){
+				goal.addTrain();
+			}
+			for (Goal goal : game.player2.goals){
+				goal.addTrain();
+			}
 			if (game.phaseNo < 5){
 				for (City city : game.cityList){
 					city.highlighted = false;
 					city.currentTexture = city.defaultTexture;
 				}
-				game.setScreen(new GameScreen(game, game.phaseNo+1, turnNo));
+				game.setScreen(new GameScreen(game, game.phaseNo+1, game.turnNo));
 			}
 			else{
-				game.setScreen(new GameScreen(game, 1, turnNo+1));
+				if (game.player1.goals.size() < 3){
+					new Goal(game.player1, game);
+				}
+				if (game.player2.goals.size() < 3){
+					new Goal(game.player2, game);
+				}
+				game.setScreen(new GameScreen(game, 1, game.turnNo+1));
 			}
 		}
 	}
@@ -430,10 +446,27 @@ public class GameScreen implements Screen {
 		String string = "Phase number: " + game.phaseNo;
 		game.font.draw(game.batch, string, 500 - ((game.font.getBounds(string).width)/2), 600);
 		
+		if (game.turnNo == 1){
+			if (game.phaseNo == 1){
+				string = "Player 1, choose a starting city for your train!";
+				game.font.draw(game.batch, string, 500 - (game.font.getBounds(string).width)/2, 300);
+			}
+			else if (game.phaseNo == 2){
+				string = "Player 2, choose a starting city for your train!";
+				game.font.draw(game.batch, string, 500 - (game.font.getBounds(string).width)/2, 300);
+			}
+		}
+		
 		//Draw player1's company name, gold and passengers delivered
 		game.font.draw(game.batch, game.player1.companyName, 10, 515);
 		game.font.draw(game.batch, "Gold: " + game.player1.money, 10, 500);
 		game.font.draw(game.batch, "Passengers delivered: " + game.player1.safePass, 10, 485);
+		game.font.draw(game.batch, "Goals:", 10, 470);
+		int textY = 455;
+		for (Goal goal : game.player1.goals){
+			game.font.draw(game.batch, goal.description, 10, textY);
+			textY -= 15;
+		}
 		
 		//Draw player2's company name, gold and passengers delivered
 		//uses font.getBounds() to align from the right
@@ -442,6 +475,12 @@ public class GameScreen implements Screen {
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 500);
 		string = "Passengers delivered: " + game.player2.safePass;
 		game.font.draw(game.batch, string, 990 - (game.font.getBounds(string).width), 485);
+		game.font.draw(game.batch, "Goals:", 990 - (game.font.getBounds("Goals:        ").width), 470);
+		textY = 455;
+		for(Goal goal : game.player2.goals){
+			game.font.draw(game.batch, goal.description, 990 - (game.font.getBounds(goal.description).width), textY);
+			textY -= 15;
+		}
 		
 		game.batch.end();
 		
