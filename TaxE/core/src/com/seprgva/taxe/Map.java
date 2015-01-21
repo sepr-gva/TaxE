@@ -1,6 +1,10 @@
 package com.seprgva.taxe;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
+
+import org.junit.Test;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -292,5 +296,13 @@ public class Map
 		*/
 		
 		
+	}
+	
+	@Test
+	
+	public void testTileGetCoords(){
+		Tile tile = mapArray[1][1];
+		float[] expected = {32,32};
+		assertEquals(expected, tile.getCoords());
 	}
 }
