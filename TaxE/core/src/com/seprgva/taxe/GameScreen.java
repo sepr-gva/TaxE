@@ -91,6 +91,7 @@ public class GameScreen implements Screen {
 	    
 	    for (Train train: game.trainList){
 	    	trainStage.addActor(train);
+	    	
 	    }
 	}
 	
@@ -326,6 +327,7 @@ public class GameScreen implements Screen {
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
 			baseStage.getCamera().translate(5,0,0);
 			cityStage.getCamera().translate(5,0,0);
+			trainStage.getCamera().translate(5,0,0);
 			if (baseStage.getCamera().position.x > maxX)
 			{
 				cityStage.getCamera().position.x = maxX;
@@ -336,6 +338,7 @@ public class GameScreen implements Screen {
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
 			baseStage.getCamera().translate(-5,0,0);
 			cityStage.getCamera().translate(-5,0,0);
+			trainStage.getCamera().translate(-5,0,0);
 			if (baseStage.getCamera().position.x < origX)
 			{
 				cityStage.getCamera().position.x = origX;
@@ -346,6 +349,7 @@ public class GameScreen implements Screen {
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
 			baseStage.getCamera().translate(0,-5,0);
 			cityStage.getCamera().translate(0,-5,0);
+			trainStage.getCamera().translate(0,-5,0);
 			if (baseStage.getCamera().position.y < origY)
 			{
 				cityStage.getCamera().position.y = origY;
@@ -356,6 +360,7 @@ public class GameScreen implements Screen {
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)){
 			cityStage.getCamera().translate(0,5,0);
 			baseStage.getCamera().translate(0,5,0);
+			trainStage.getCamera().translate(0,5,0);
 			if (baseStage.getCamera().position.y > maxY)
 			{
 				cityStage.getCamera().position.y = maxY;
