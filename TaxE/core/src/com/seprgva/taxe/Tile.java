@@ -1,7 +1,5 @@
 package com.seprgva.taxe;
 
-import org.junit.Test;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
