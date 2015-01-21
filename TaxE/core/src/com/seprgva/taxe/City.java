@@ -40,8 +40,29 @@ public class City extends Tile
 						Train train = game.player1.trains.get(0);
 						for (ArrayList<Tile> route : train.possibleRoutes){
 							if (route.size() > 0){
-								if (route.get(route.size() - 1) == game.gameMap.mapArray[xCoord/32][yCoord/32]){
-									train.route = route;
+								if (route.get(route.size() - 1) == game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1]){
+									for (Tile tile : route){
+										if (tile.currentTexture == game.ld){
+											int[] coords = {tile.xCoord, tile.yCoord};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.lu){
+											int[] coords = {tile.xCoord, tile.yCoord + 16};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.ru){
+											int[] coords = {tile.xCoord, tile.yCoord};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.rd){
+											int[] coords = {tile.xCoord, tile.yCoord + 16};
+											train.route.add(coords);
+										}
+									}
+									for (int[] array : train.route){
+										System.out.println("x coordinate: " + array[0]);
+										System.out.println("y coordinate: " + array[1]);
+									}
 								}
 							}
 						}
@@ -50,9 +71,29 @@ public class City extends Tile
 						Train train = game.player2.trains.get(0);
 						for (ArrayList<Tile> route : train.possibleRoutes){
 							if (route.size() > 0){
-								if (route.get(route.size() - 1) == game.gameMap.mapArray[xCoord/32][yCoord/32]){
-									System.out.println(game.gameMap.mapArray[xCoord/32][yCoord/32]);
-									train.route = route;
+								if (route.get(route.size() - 1) == game.gameMap.mapArray[(xCoord/32)+1][(yCoord/32)+1]){
+									for (Tile tile : route){
+										if (tile.currentTexture == game.ld){
+											int[] coords = {tile.xCoord + 17, tile.yCoord + 16};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.lu){
+											int[] coords = {tile.xCoord + 17, tile.yCoord};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.ru){
+											int[] coords = {tile.xCoord + 17, tile.yCoord + 16};
+											train.route.add(coords);
+										}
+										else if (tile.currentTexture == game.rd){
+											int[] coords = {tile.xCoord + 17, tile.yCoord};
+											train.route.add(coords);
+										}
+									}
+									for (int[] array : train.route){
+										System.out.println(array[0]);
+										System.out.println(array[1]);
+									}
 								}
 							}
 						}

@@ -179,6 +179,10 @@ public class GameScreen implements Screen {
 		ArrayList<Tile> route2 = new ArrayList<Tile>();
 		ArrayList<Tile> route3 = new ArrayList<Tile>();
 		ArrayList<Tile> route4 = new ArrayList<Tile>();
+		route1.add(city);
+		route2.add(city);
+		route3.add(city);
+		route4.add(city);
 		Tile currentTile, prevTile, nextTile;
 		if (city.neighbours[0] instanceof Rail){
 			currentTile = city.neighbours[0];
