@@ -66,6 +66,7 @@ public class Map
 		routeList.add(route);
 	}
 	
+	// This function chooses which type of rail tile to place on a route
 	private void chooseRailTextures(){
 		for (int i = 0; i < routeList.size(); i++){
 			for (Tile rail : routeList.get(i)){

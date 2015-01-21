@@ -112,6 +112,7 @@ public class GameScreen implements Screen {
 		}
 	}
 	
+	//Function to highlight tiles which can be selected using select(tile). Highlight variant of tile textures has blue highlight.
 	public void highlight(Tile tile){
 		if (tile.currentTexture == game.city){
 			tile.changeTexture(game.cityblue);
@@ -139,6 +140,7 @@ public class GameScreen implements Screen {
 		}
 	}
 	
+	//Function to set city and junction tiles to their selected tile variants textures (red highlight).
 	public void select(Tile tile){
 		if (tile.currentTexture == game.city){
 			tile.currentTexture = game.cityred;
