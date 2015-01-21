@@ -156,7 +156,7 @@ public class TaxE extends Game {
 		turret.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		//Train Tiles
-		train1 = new Texture(Gdx.files.internal("gameGraphics/train1North.png"), true);
+		train1 = new Texture(Gdx.files.internal("gameGraphics/trainBlueUp.png"), true);
 		train1.setFilter(TextureFilter.MipMapLinearNearest, TextureFilter.Linear);
 		
 		
