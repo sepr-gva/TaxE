@@ -16,31 +16,26 @@ public class Goal {
 	//Will be made smarter when map fully implemented
 	public Goal(Player player, TaxE gameInstance){
 			this.game = gameInstance;
-			this.turnsLeft = 2;
+			this.turnsLeft = 10;
 			int v = MathUtils.random(0,2);
 			boolean via = false;
 			if (v == 0){
 				via = true;
 			}
 			start = (City)player.trains.get(0).currentLocation;
-			for (City city : game.cityList){
-				int choose = MathUtils.random(0,2);
-				if (choose == 0 && city != start){
-					end = city;
-					break;
-				}
+			end = start;
+			while(start == end){
+				end = game.cityList.get(MathUtils.random(0, game.cityList.size() - 1));
 			}
 			
 			this.passengers = 100;
 			if (via == true){
-				for (City city : game.cityList){
-					int choose = MathUtils.random(0,2);
-					if (choose == 0 && city != start && city != end){
-						viaCity = city;
-					}
+				viaCity = start;
+				while(viaCity == start || viaCity == end){
+					viaCity = game.cityList.get(MathUtils.random(0, game.cityList.size() - 1));
 				}
 				this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 
-						" to " + end.cityName + " via " + game.cityList.get(v).cityName + " in " + this.turnsLeft + " turns";
+						" to " + end.cityName + " via " + viaCity.cityName + " in " + this.turnsLeft + " turns";
 			}
 			else{
 				this.description = "Take " + this.passengers + " passengers from " + this.start.cityName + 

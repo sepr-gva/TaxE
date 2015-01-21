@@ -74,6 +74,14 @@ public class City extends Tile
 												int[] coords = {tile.xCoord, tile.yCoord + 16};
 												train.route.add(coords);
 											}
+											else if (tile.currentTexture == game.ud){
+												int[] coords = {tile.xCoord, tile.yCoord};
+												train.route.add(coords);
+											}
+											else if (tile.currentTexture == game.lr){
+												int[] coords = {tile.xCoord, tile.yCoord + 17};
+												train.route.add(coords);
+											}
 										}
 										for (int[] array : train.route){
 											System.out.println("x coordinate: " + array[0]);
@@ -108,6 +116,14 @@ public class City extends Tile
 											}
 											else if (tile.currentTexture == game.rd){
 												int[] coords = {tile.xCoord + 17, tile.yCoord};
+												train.route.add(coords);
+											}
+											else if (tile.currentTexture == game.ud){
+												int[] coords = {tile.xCoord + 17, tile.yCoord};
+												train.route.add(coords);
+											}
+											else if (tile.currentTexture == game.lr){
+												int[] coords = {tile.xCoord, tile.yCoord};
 												train.route.add(coords);
 											}
 										}

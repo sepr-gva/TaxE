@@ -389,9 +389,11 @@ public class GameScreen implements Screen {
 		if (nextPhaseButton.isPressed()){
 			for (Goal goal : game.player1.goals){
 				goal.addTrain();
+				goal.isComplete();
 			}
 			for (Goal goal : game.player2.goals){
 				goal.addTrain();
+				goal.isComplete();
 			}
 			if (game.phaseNo < 5){
 				for (City city : game.cityList){
