@@ -9,9 +9,9 @@ public class Rail extends Tile
 	
 	boolean inCity;
 	
-	public Rail(int x, int y, Texture railTexture, boolean inCityTest, Map map)
+	public Rail(int x, int y, Texture railTexture, boolean inCityTest, TaxE gameInstance)
 	{
-		super(x, y, railTexture, railTexture, false, null, map);
+		super(x, y, railTexture, railTexture, false, gameInstance);
 		inCity = inCityTest;
 	}
 	
@@ -28,7 +28,6 @@ public class Rail extends Tile
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				System.out.println("down");
-				selected = true;
 				System.out.println("got to here");
 				return true;
 			}

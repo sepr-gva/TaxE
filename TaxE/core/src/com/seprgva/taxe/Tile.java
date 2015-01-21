@@ -21,14 +21,14 @@ public class Tile extends Actor
 	Tile[] neighbours;
 	Map gameMap;
 	Player owner;
-	boolean junction = false, highlighted = false, selected = false;
+	boolean junction = false, highlighted = false;
+	TaxE game;
 	
-	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank, Player player, Map map)
+	public Tile(int x, int y, Texture sprite, Texture hoverSprite, boolean isblank, TaxE gameInstance)
 	{
+		game = gameInstance;
 		xCoord = x;
 		yCoord = y;
-		gameMap = map;
-		owner = player;
 		defaultTexture = sprite;
 		hoverTexture = hoverSprite;
 		currentTexture = defaultTexture;

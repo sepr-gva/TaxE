@@ -18,9 +18,9 @@ public class City extends Tile
 	
 	long time = TimeUtils.millis();
 	
-	public City(int x, int y, String name, String identifier, Texture cityTexture, Texture cityHoverTexture, Map map)
+	public City(final int xCoord, final int yCoord, String name, String identifier, Texture cityTexture, Texture cityHoverTexture, TaxE gameInstance)
 	{
-		super(x, y, cityTexture, cityHoverTexture, false, null, map);
+		super(xCoord, yCoord, cityTexture, cityHoverTexture, false, gameInstance);
 		cityName = name;
 		cityIdentifier = identifier;
 		trainsInStation = new Array<Train>();
@@ -28,7 +28,20 @@ public class City extends Tile
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				System.out.println("down");
-				selected = true;
+				if (highlighted){
+					for (City city : game.cityList){
+						city.highlighted = false;
+						city.currentTexture = city.defaultTexture;
+					}
+					currentTexture = game.cityred;
+					if (game.phaseNo == 3){
+						Train train = game.player1.trains.get(0);
+						train.route = game.gameMap.getRoute(train.currentLocation, game.gameMap.mapArray[xCoord/32][yCoord/32]);
+						for (Tile tile : train.route){
+							System.out.println("" + tile);
+						}
+					}
+				}
 				System.out.println("got to here");
 				return true;
 			}

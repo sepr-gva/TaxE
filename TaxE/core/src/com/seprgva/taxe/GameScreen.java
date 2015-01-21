@@ -17,17 +17,18 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class GameScreen implements Screen {
 	
 	TaxE game;
-	int phaseNo, turnNo;
+	int turnNo;
 	
 	private Stage baseStage, cityStage;
 	private float origX, origY, maxX, maxY;
 	OrthographicCamera uiCamera;
 	GeneralButton nextPhaseButton;
+	boolean routeDone = false;
 	
 	//equivalent of create
 	public GameScreen(final TaxE gameInstance, int currentPhase, int turnNumber) {
 		game = gameInstance;
-		phaseNo = currentPhase;
+		game.phaseNo = currentPhase;
 		turnNo = turnNumber;
 		baseStage = new Stage(new ScreenViewport());
 		cityStage = new Stage(new ScreenViewport());
@@ -42,7 +43,7 @@ public class GameScreen implements Screen {
 	    
 	    nextPhaseButton = new GeneralButton(game.nextPhase, 942, 10, 48, 48, uiCamera);
 	    
-	    System.out.println("Turn no: " + turnNo + ". Phase: " + phaseNo);
+	    System.out.println("Turn no: " + turnNo + ". Phase: " + game.phaseNo);
 		
 		for(int i = 0; i < game.gameMap.ySize; i++){
 			for(int j = 0; j < game.gameMap.ySize; j++){
@@ -55,17 +56,27 @@ public class GameScreen implements Screen {
 			}
 		}
 	    
-		if ((phaseNo == 1) || (phaseNo == 2)){
+		if ((game.phaseNo == 1) || (game.phaseNo == 2)){
 			//Set-up phase
 			Gdx.input.setInputProcessor(baseStage);
 		}
 		else{
 			//Deployment phase
 			Gdx.input.setInputProcessor(cityStage);
+			Player player;
+			if (game.phaseNo == 3){
+				player = game.player1;
+			}
+			else{
+				player = game.player2;
+			}
+			for (Train train : player.trains){
+				isReachable(train.currentLocation);
+			}
 			
 		}
 		
-		if ((turnNo == 1) && (phaseNo == 1)){ 
+		if ((turnNo == 1) && (game.phaseNo == 1)){ 
 			createTrain(2,2,game.player1);
 			createTrain(2,10,game.player2);
 		}
@@ -158,7 +169,7 @@ public class GameScreen implements Screen {
 	
 	
 	
-	public ArrayList<ArrayList<Tile>> isReachable(City city){
+	public ArrayList<ArrayList<Tile>> isReachable(Tile city){
 		ArrayList<ArrayList<Tile>> possibleRoutes = new ArrayList<ArrayList<Tile>>();
 		ArrayList<Tile> route1 = new ArrayList<Tile>();
 		ArrayList<Tile> route2 = new ArrayList<Tile>();
@@ -302,8 +313,8 @@ public class GameScreen implements Screen {
 		
 		//Test phase progression
 		if (nextPhaseButton.isPressed()){
-			if (phaseNo < 4){
-				game.setScreen(new GameScreen(game, phaseNo+1, turnNo));
+			if (game.phaseNo < 4){
+				game.setScreen(new GameScreen(game, game.phaseNo+1, turnNo));
 			}
 			else{
 				game.setScreen(new GameScreen(game, 1, turnNo+1));
